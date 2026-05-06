@@ -3965,6 +3965,32 @@
   .onb-btn-next{flex:1;max-width:220px;margin-left:auto}
   .onb-complete-banner{background:linear-gradient(135deg,var(--fhpd),transparent 70%);border:1px solid rgba(0,168,104,.3);border-radius:14px;padding:24px 28px;display:flex;align-items:center;gap:18px;margin-bottom:20px}
   .onb-complete-icon{width:52px;height:52px;border-radius:50%;background:var(--fhp);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  /* ── Match IA Seal ── */
+  .emp-seal-wrap{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0}
+  .emp-seal{position:relative;width:112px;height:112px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .emp-seal-ring{position:absolute;inset:0;border-radius:50%}
+  .emp-seal-inner{position:relative;width:86px;height:86px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;z-index:1}
+  .emp-seal-icon{display:flex;align-items:center;justify-content:center;margin-bottom:2px}
+  .emp-seal-icon svg{width:22px;height:22px}
+  .emp-seal-pct{font-family:var(--F);font-size:16px;font-weight:800;letter-spacing:-.5px;line-height:1}
+  .emp-seal-tier{font-family:var(--M);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;line-height:1;text-align:center}
+  .emp-seal-label{font-family:var(--M);font-size:10px;letter-spacing:.5px;text-transform:uppercase;margin-top:8px;text-align:center}
+  /* Tier colors */
+  .emp-seal.iniciante .emp-seal-ring{background:conic-gradient(#6B7280 calc(var(--pct)*1%),rgba(255,255,255,.08) 0)}
+  .emp-seal.iniciante .emp-seal-inner{background:var(--s1);border:2px solid rgba(107,114,128,.3);color:#9CA3AF}
+  .emp-seal.iniciante .emp-seal-label{color:#9CA3AF}
+  .emp-seal.ativo .emp-seal-ring{background:conic-gradient(#7EA8E8 calc(var(--pct)*1%),rgba(255,255,255,.08) 0)}
+  .emp-seal.ativo .emp-seal-inner{background:var(--s1);border:2px solid rgba(126,168,232,.3);color:#7EA8E8}
+  .emp-seal.ativo .emp-seal-label{color:#7EA8E8}
+  .emp-seal.premium .emp-seal-ring{background:conic-gradient(var(--fhp) calc(var(--pct)*1%),rgba(255,255,255,.08) 0)}
+  .emp-seal.premium .emp-seal-inner{background:var(--s1);border:2px solid rgba(0,168,104,.3);color:var(--fhp)}
+  .emp-seal.premium .emp-seal-label{color:var(--fhp)}
+  .emp-seal.elite .emp-seal-ring{background:conic-gradient(#F8A430 calc(var(--pct)*1%),rgba(255,255,255,.08) 0)}
+  .emp-seal.elite .emp-seal-inner{background:radial-gradient(circle at 50% 30%,rgba(248,164,48,.15),var(--s1) 70%);border:2px solid rgba(248,164,48,.4);color:#F8A430}
+  .emp-seal.elite .emp-seal-label{color:#F8A430}
+  @keyframes sealPulse{0%,100%{box-shadow:0 0 0 0 rgba(248,164,48,.3)}50%{box-shadow:0 0 0 8px rgba(248,164,48,0)}}
+  .emp-seal.elite .emp-seal-inner{animation:sealPulse 2.5s ease-in-out infinite}
+
   /* Score badge */
   .emp-score-wrap{background:var(--s1);border:1px solid var(--b1);border-radius:12px;padding:14px 18px;margin-bottom:20px}
   .emp-score-bar-bg{height:6px;background:var(--b1);border-radius:6px;margin-bottom:8px;overflow:hidden}
@@ -8234,7 +8260,7 @@ function renderEmpEmpresa(){
       </div>
     </div>
 
-    <!-- ═══ HEADER · logo + identidade visual ═══ -->
+    <!-- ═══ HEADER · logo + identidade visual + selo ═══ -->
     <div class="emp-header">
       <div class="emp-logo lg">${empLogoHTML(u)}</div>
       <div class="emp-header-info">
@@ -8247,6 +8273,7 @@ function renderEmpEmpresa(){
           <span class="chip orange">${escapeHtml(u.plano||'')}</span>
         </div>
       </div>
+      ${empMatchSealHTML(u)}
     </div>
 
     <!-- ═══ CULTURA · primeiro plano ═══ -->
@@ -8354,6 +8381,29 @@ function empScoreBadge(u){
       <span class="emp-score-pct" style="color:${color}">${pct}% completo</span>
       <span class="emp-score-msg">${msg}</span>
     </div>
+  </div>`;
+}
+
+function empMatchSealHTML(u){
+  const pct = empCompletionScore(u);
+  const tier =
+    pct >= 90 ? {cls:'elite',   icon:'crown',       label:'Match Elite',   sub:'IA Prioritário'} :
+    pct >= 70 ? {cls:'premium', icon:'sparkles',    label:'Match Premium', sub:'Alto índice'} :
+    pct >= 40 ? {cls:'ativo',   icon:'trending-up', label:'Match Ativo',   sub:'Em crescimento'} :
+               {cls:'iniciante',icon:'lock',         label:'Match Baixo',   sub:'Perfil incompleto'};
+
+  return `<div class="emp-seal-wrap">
+    <a href="#/contratante/empresa/editar?step=1" title="Completar perfil · ${pct}% preenchido">
+      <div class="emp-seal ${tier.cls}" style="--pct:${pct}">
+        <div class="emp-seal-ring"></div>
+        <div class="emp-seal-inner">
+          <div class="emp-seal-icon"><i data-lucide="${tier.icon}"></i></div>
+          <div class="emp-seal-pct">${pct}%</div>
+          <div class="emp-seal-tier">${tier.sub}</div>
+        </div>
+      </div>
+    </a>
+    <div class="emp-seal-label">${tier.label}</div>
   </div>`;
 }
 
