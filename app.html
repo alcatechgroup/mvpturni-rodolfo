@@ -8072,6 +8072,12 @@ function renderEmpDashboard(){
   const pal = paletteFor(u);
 
   const content = `
+    <!-- ══ SAUDAÇÃO ══ -->
+    <div style="margin-bottom:14px">
+      <h1 class="main-h" style="margin-bottom:4px">${greeting()}, ${escapeHtml(firstName(u.nome))}.</h1>
+      <div class="main-d">Precisando de turnos hoje?</div>
+    </div>
+
     <!-- ══ IDENTITY STRIP ══ -->
     <div class="cp-identity">
       <div class="cp-identity-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(u)}</div>
