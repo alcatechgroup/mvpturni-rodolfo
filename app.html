@@ -4608,6 +4608,38 @@
   .pool-pro-fav{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);border:none;border-radius:50%;width:28px;height:28px;color:#D9A441;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:transform .15s}
   .pool-pro-fav:hover{transform:scale(1.15)}
   .pool-pro-empty{grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--t-secondary)}
+  /* ═══ COCKPIT ZONES + DISMISS ═══ */
+  .cp-emerg-btn-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+  .cp-emerg-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--M);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 20px;border-radius:12px;border:1.5px solid rgba(220,50,50,.5);background:rgba(220,50,50,.1);color:#ff7a7a;cursor:pointer;transition:all .2s;animation:emergPulse 2.8s ease-in-out infinite}
+  .cp-emerg-btn:hover{background:rgba(220,50,50,.2);border-color:rgba(220,50,50,.8)}
+  .cp-emerg-btn-active{background:rgba(220,50,50,.22);border-color:rgba(220,50,50,.7);color:#ffaaaa}
+  .cp-emerg-status{font-family:var(--M);font-size:11px;color:var(--t-secondary);display:flex;align-items:center;gap:6px}
+  .cp-zone-label{font-family:var(--M);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--t-tertiary);padding:0 2px;margin:24px 0 10px;display:flex;align-items:center;gap:10px}
+  .cp-zone-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
+  .cp-card-close{position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.06);border:none;color:rgba(255,255,255,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;transition:all .2s;z-index:2}
+  .cp-card-close:hover{background:rgba(220,50,50,.2);color:#ff7a7a}
+  .cp-card.dismissible{position:relative}
+  .cp-restore-row{text-align:center;margin-top:6px}
+  .cp-restore-btn{font-family:var(--M);font-size:10px;letter-spacing:1px;color:var(--t-tertiary);background:none;border:none;cursor:pointer;padding:4px 8px;transition:color .2s}
+  .cp-restore-btn:hover{color:var(--t-secondary)}
+  /* Vagas abertas card */
+  .cp-vagas-list{padding:10px 16px 14px;display:flex;flex-direction:column;gap:6px}
+  .cp-vaga-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;cursor:pointer;transition:border-color .2s;text-decoration:none}
+  .cp-vaga-row:hover{border-color:rgba(0,168,104,.35)}
+  .cp-vaga-fn{font-family:var(--M);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:6px;flex-shrink:0}
+  .cp-vaga-info{flex:1;min-width:0}
+  .cp-vaga-local{font-size:12px;color:var(--w);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cp-vaga-date{font-family:var(--M);font-size:10px;color:var(--t-tertiary);margin-top:1px}
+  .cp-vaga-cands{font-family:var(--M);font-size:10px;color:var(--t-secondary);text-align:right;flex-shrink:0}
+  /* Match card */
+  .cp-match-list{padding:10px 16px 14px;display:flex;flex-direction:column;gap:8px}
+  .cp-match-row{display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:8px}
+  .cp-match-row:last-child{border-bottom:none;padding-bottom:0}
+  .cp-match-foto{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,.1)}
+  .cp-match-info{flex:1;min-width:0}
+  .cp-match-nome{font-size:13px;font-weight:600;color:var(--w);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cp-match-vaga{font-family:var(--M);font-size:10px;color:var(--t-secondary)}
+  .cp-match-empty{padding:24px 16px;text-align:center;font-size:12px;color:var(--t-tertiary)}
 </style>
 </head>
 <body>
@@ -8313,68 +8345,31 @@ function renderEmpDashboard(){
     </div>`;
   }
 
-  // cards HTML individuais
-  const cardMetrics = `
-    <div class="cp-card" data-card="metrics" data-span="2" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title"><i data-lucide="bar-chart-2"></i> Métricas do cockpit</div>
-      </div>
-      <div style="padding:14px">
-        <div class="cp-metrics">
-          <div class="cp-metric cp-metric-green" onclick="location.hash='#/contratante/vagas'">
-            <div class="cp-metric-num">${vagasAbertas.length}</div>
-            <div class="cp-metric-label">Vagas abertas</div>
-            <div class="cp-metric-sub">${totalCands} candidatura${totalCands!==1?'s':''} recebida${totalCands!==1?'s':''}</div>
-          </div>
-          <div class="cp-metric cp-metric-orange" onclick="location.hash='#/contratante/turnos'">
-            <div class="cp-metric-num">${turnosAtivos.length + turnosConf.length}</div>
-            <div class="cp-metric-label">Em andamento</div>
-            <div class="cp-metric-sub">${turnosAtivos.length} ativo${turnosAtivos.length!==1?'s':''} · ${turnosConf.length} confirmado${turnosConf.length!==1?'s':''}</div>
-          </div>
-          <div class="cp-metric cp-metric-blue" onclick="location.hash='#/contratante/turnos'">
-            <div class="cp-metric-num">${turnosFin.length}</div>
-            <div class="cp-metric-label">Realizados</div>
-            <div class="cp-metric-sub">${fmtMoney(turnosFin.reduce((s,t)=>s+t.valor,0))} via Pix</div>
-          </div>
-        </div>
-      </div>
-    </div>`;
+  // ── Cards de baixa prioridade (dismissíveis) ──
+  let _dismissed = [];
+  try{ _dismissed = JSON.parse(localStorage.getItem('turni_cockpit_hidden')||'[]'); }catch(e){}
+  function _lowCard(id, span, titleHTML, bodyHTML){
+    if(_dismissed.includes(id)) return '';
+    return `<div class="cp-card dismissible" data-card="${id}"${span?' data-span="'+span+'"':''} draggable="true">
+      <button class="cp-card-close" onclick="cockpitDismissCard('${id}')" title="Ocultar card">×</button>
+      <div class="cp-card-head"><span class="cp-drag-handle" title="Arrastar">⠿</span>${titleHTML}</div>
+      ${bodyHTML}</div>`;
+  }
 
+  // Cards primários — não dismissíveis
   const cardEscala = `
-    <div class="cp-card" data-card="escala" draggable="true">
+    <div class="cp-card" data-card="escala" data-span="2">
       <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
         <div class="cp-card-title"><i data-lucide="calendar-days"></i> Escala · 7 dias</div>
         <a class="btn-secondary" href="#/contratante/vagas/nova" style="padding:5px 12px;font-size:11px"><i data-lucide="plus"></i> Agendar</a>
       </div>
-      <div class="cp-escala-body">
-        ${dias7.map(d => escalaDayHTML(d)).join('')}
-      </div>
+      <div class="cp-escala-body">${dias7.map(d => escalaDayHTML(d)).join('')}</div>
     </div>`;
 
-  const cardPool = `
-    <div class="cp-card" data-card="pool" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title"><i data-lucide="users"></i> Pool TURN<span class="di">I</span><span class="de">.</span></div>
-        <span class="cp-pool-ticker">● AO VIVO</span>
-      </div>
-      <div class="cp-pool-body">
-        ${poolSlides.map((slide, idx) => `
-          <div class="cp-pool-slide ${idx===0?'active':''}" data-slide="${idx}">
-            ${slide.map(p => poolProHTML(p)).join('')}
-          </div>`).join('')}
-        <div class="cp-pool-dots">
-          ${poolSlides.map((_,i) => `<div class="cp-pool-dot ${i===0?'active':''}" data-dot="${i}" onclick="poolGoTo(${i})"></div>`).join('')}
-        </div>
-      </div>
-    </div>`;
-
+  // Cards secundários — não dismissíveis
   const cardFeed = `
-    <div class="cp-card" data-card="feed" draggable="true">
+    <div class="cp-card" data-card="feed">
       <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
         <div class="cp-card-title"><i data-lucide="rss"></i> Publicar novidade</div>
       </div>
       <div class="cp-feed-body">
@@ -8385,110 +8380,79 @@ function renderEmpDashboard(){
         </div>
         ${meusPostsRecentes.length > 0 ? `
           <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)">
-            ${meusPostsRecentes.map(p => `
-              <div style="font-size:12px;color:var(--t-secondary);margin-bottom:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escapeHtml(p.texto)}</div>
-            `).join('')}
+            ${meusPostsRecentes.map(p => `<div style="font-size:12px;color:var(--t-secondary);margin-bottom:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escapeHtml(p.texto)}</div>`).join('')}
             <a href="#/contratante/novidades" style="font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:1px">Ver todos →</a>
           </div>` : ''}
       </div>
     </div>`;
 
-  // ── Card: Horas abertas vs realizadas ──
-  const cardHoras = `
-    <div class="cp-card" data-card="horas" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title"><i data-lucide="clock"></i> Horas de turno</div>
+  // Cards de baixa prioridade (dismissíveis + draggable)
+  const cardPool = _lowCard('pool', null,
+    `<div class="cp-card-title"><i data-lucide="users"></i> Pool TURN<span class="di">I</span><span class="de">.</span></div><span class="cp-pool-ticker">● AO VIVO</span>`,
+    `<div class="cp-pool-body">
+      ${poolSlides.map((slide, idx) => `
+        <div class="cp-pool-slide ${idx===0?'active':''}" data-slide="${idx}">
+          ${slide.map(p => poolProHTML(p)).join('')}
+        </div>`).join('')}
+      <div class="cp-pool-dots">
+        ${poolSlides.map((_,i) => `<div class="cp-pool-dot ${i===0?'active':''}" data-dot="${i}" onclick="poolGoTo(${i})"></div>`).join('')}
       </div>
-      <div style="padding:14px 18px 18px">
-        <div class="cp-horas-grid">
-          <div class="cp-horas-metric">
-            <div class="cp-horas-num" style="color:#F0813A">${horasAbertas.toFixed(0)}<span style="font-size:14px">h</span></div>
-            <div class="cp-horas-label">Em aberto</div>
-            <div class="cp-horas-sub">${vagasAbertas.length} vaga${vagasAbertas.length!==1?'s':''}</div>
-          </div>
-          <div class="cp-horas-metric">
-            <div class="cp-horas-num" style="color:#00A868">${horasRealizadas.toFixed(0)}<span style="font-size:14px">h</span></div>
-            <div class="cp-horas-label">Realizadas</div>
-            <div class="cp-horas-sub">${turnosFin.length} turno${turnosFin.length!==1?'s':''}</div>
-          </div>
-        </div>
-        <div style="padding:4px 0 2px">${horasBarSVG(horasAbertas, horasRealizadas)}</div>
-      </div>
-    </div>`;
+    </div>`);
 
-  // ── Card: Demanda por função ──
-  const cardFuncao = `
-    <div class="cp-card" data-card="funcao" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title"><i data-lucide="users-2"></i> Demanda por função</div>
-        <div class="cp-period-tabs">
-          <button class="cp-period-btn active" id="pfTab-dia" onclick="cockpitFuncaoFilter(this,'dia')">Dia</button>
-          <button class="cp-period-btn" id="pfTab-semana" onclick="cockpitFuncaoFilter(this,'semana')">Sem</button>
-          <button class="cp-period-btn" id="pfTab-mes" onclick="cockpitFuncaoFilter(this,'mes')">Mês</button>
-        </div>
+  const cardMetrics = _lowCard('metrics', 2,
+    `<div class="cp-card-title"><i data-lucide="bar-chart-2"></i> Métricas do cockpit</div>`,
+    `<div style="padding:14px"><div class="cp-metrics">
+      <div class="cp-metric cp-metric-green" onclick="location.hash='#/contratante/vagas'">
+        <div class="cp-metric-num">${vagasAbertas.length}</div>
+        <div class="cp-metric-label">Vagas abertas</div>
+        <div class="cp-metric-sub">${totalCands} candidatura${totalCands!==1?'s':''}</div>
       </div>
-      <div style="padding:8px 14px 14px">
-        ${funcaoBarSVG(fnDia,'dia','dia')}
-        ${funcaoBarSVG(fnSemana,'semana','dia')}
-        ${funcaoBarSVG(fnMes,'mes','dia')}
+      <div class="cp-metric cp-metric-orange" onclick="location.hash='#/contratante/turnos'">
+        <div class="cp-metric-num">${turnosAtivos.length + turnosConf.length}</div>
+        <div class="cp-metric-label">Em andamento</div>
+        <div class="cp-metric-sub">${turnosAtivos.length} ativo${turnosAtivos.length!==1?'s':''} · ${turnosConf.length} conf.</div>
       </div>
-    </div>`;
+      <div class="cp-metric cp-metric-blue" onclick="location.hash='#/contratante/turnos'">
+        <div class="cp-metric-num">${turnosFin.length}</div>
+        <div class="cp-metric-label">Realizados</div>
+        <div class="cp-metric-sub">${fmtMoney(turnosFin.reduce((s,t)=>s+t.valor,0))} via Pix</div>
+      </div>
+    </div></div>`);
 
-  // ── Card: Emergencial (pinado ao topo quando existe) ──
-  const _ematchPros = vagaEmerg
-    ? db.candidaturas.filter(c => c.vagaId === vagaEmerg.id && c.status === 'pendente')
-        .map(c => db.users.find(p => p.id === c.proId)).filter(Boolean)
-    : [];
-  const cardEmergencia = vagaEmerg ? `
-    <div class="cp-card cp-emerg-card" data-card="emergencia" data-span="2" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title" style="color:#ff7a7a"><i data-lucide="zap" style="color:#ff4a4a"></i> Vaga Emergencial</div>
-        <span class="cp-emerg-badge"><span class="cp-emerg-dot"></span>URGENTE</span>
-      </div>
-      <div style="padding:14px 18px 18px">
-        <div class="cp-emerg-desc">
-          <b style="color:var(--w)">${escapeHtml(vagaEmerg.funcao)}</b> · ${escapeHtml(vagaEmerg.local||u.estabelecimento)}
-          · ${new Date(vagaEmerg.dataIni).toLocaleString('pt-BR',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}
+  const cardHoras = _lowCard('horas', null,
+    `<div class="cp-card-title"><i data-lucide="clock"></i> Horas de turno</div>`,
+    `<div style="padding:14px 18px 18px">
+      <div class="cp-horas-grid">
+        <div class="cp-horas-metric">
+          <div class="cp-horas-num" style="color:#F0813A">${horasAbertas.toFixed(0)}<span style="font-size:14px">h</span></div>
+          <div class="cp-horas-label">Em aberto</div>
+          <div class="cp-horas-sub">${vagasAbertas.length} vaga${vagasAbertas.length!==1?'s':''}</div>
         </div>
-        <div class="cp-emerg-match">
-          <div class="cp-emerg-match-num">${_ematchPros.length}</div>
-          <div class="cp-emerg-match-info">
-            <div class="cp-emerg-match-label">Candidatos em match</div>
-            <div class="cp-emerg-match-names">${_ematchPros.slice(0,3).map(p=>escapeHtml(firstName(p.nome))).join(' · ') || 'Aguardando candidatos…'}</div>
-          </div>
-        </div>
-        <div class="cp-emerg-progress"><div class="cp-emerg-progress-fill" style="width:${Math.min(100,_ematchPros.length*25)}%"></div></div>
-        <div class="cp-emerg-actions">
-          <a href="#/contratante/vaga?id=${vagaEmerg.id}" class="btn-primary" style="font-size:12px;padding:9px 18px"><i data-lucide="eye"></i> Ver candidatos</a>
-          <a href="#/contratante/vagas/nova" class="btn-secondary" style="font-size:12px;padding:9px 16px"><i data-lucide="plus"></i> Nova vaga</a>
+        <div class="cp-horas-metric">
+          <div class="cp-horas-num" style="color:#00A868">${horasRealizadas.toFixed(0)}<span style="font-size:14px">h</span></div>
+          <div class="cp-horas-label">Realizadas</div>
+          <div class="cp-horas-sub">${turnosFin.length} turno${turnosFin.length!==1?'s':''}</div>
         </div>
       </div>
-    </div>` : `
-    <div class="cp-card cp-emerg-card" data-card="emergencia" data-span="2" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title" style="color:#ff7a7a"><i data-lucide="zap" style="color:#ff4a4a"></i> Vaga Emergencial</div>
-        <span class="cp-emerg-badge"><span class="cp-emerg-dot"></span>DISPONÍVEL</span>
-      </div>
-      <div style="padding:14px 18px 18px">
-        <div class="cp-emerg-desc">Precisa de alguém <b style="color:var(--w)">agora</b>? Abra uma vaga emergencial — o match IA prioriza profissionais disponíveis e envia notificação imediata.</div>
-        <div class="cp-emerg-actions">
-          <button class="btn-primary" onclick="empAbrirEmergencia()" style="font-size:13px;padding:10px 22px"><i data-lucide="zap"></i> Abrir vaga emergencial</button>
-        </div>
-      </div>
-    </div>`;
+      <div style="padding:4px 0 2px">${horasBarSVG(horasAbertas, horasRealizadas)}</div>
+    </div>`);
 
-  // ── Card: Notas / Lembretes ──
-  const cardNotas = `
-    <div class="cp-card" data-card="notas" draggable="true">
-      <div class="cp-card-head">
-        <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title"><i data-lucide="notebook-pen"></i> Notas & lembretes${notasPendentes>0?` <span style="background:var(--orange);color:#fff;font-size:9px;padding:1px 7px;border-radius:999px;font-family:var(--M)">${notasPendentes}</span>`:''}</div>
-      </div>
-      ${minhasNotas.length === 0
+  const cardFuncao = _lowCard('funcao', null,
+    `<div class="cp-card-title"><i data-lucide="users-2"></i> Demanda por função</div>
+     <div class="cp-period-tabs">
+       <button class="cp-period-btn active" id="pfTab-dia" onclick="cockpitFuncaoFilter(this,'dia')">Dia</button>
+       <button class="cp-period-btn" id="pfTab-semana" onclick="cockpitFuncaoFilter(this,'semana')">Sem</button>
+       <button class="cp-period-btn" id="pfTab-mes" onclick="cockpitFuncaoFilter(this,'mes')">Mês</button>
+     </div>`,
+    `<div style="padding:8px 14px 14px">
+      ${funcaoBarSVG(fnDia,'dia','dia')}
+      ${funcaoBarSVG(fnSemana,'semana','dia')}
+      ${funcaoBarSVG(fnMes,'mes','dia')}
+    </div>`);
+
+  const cardNotas = _lowCard('notas', null,
+    `<div class="cp-card-title"><i data-lucide="notebook-pen"></i> Notas & lembretes${notasPendentes>0?` <span style="background:var(--orange);color:#fff;font-size:9px;padding:1px 7px;border-radius:999px;font-family:var(--M)">${notasPendentes}</span>`:''}</div>`,
+    `${minhasNotas.length === 0
         ? `<div class="cp-notas-empty">Nenhuma nota. Adicione um lembrete abaixo.</div>`
         : `<div class="cp-notas-list">${minhasNotas.map(n => `
             <div class="cp-nota-item ${n.feita?'done':''}" id="nota-item-${n.id}">
@@ -8500,8 +8464,7 @@ function renderEmpDashboard(){
       <div class="cp-notas-compose">
         <input class="cp-notas-input" id="notaInput" type="text" placeholder="Adicionar lembrete…" maxlength="160" onkeydown="if(event.key==='Enter')empSalvarNota()">
         <button class="btn-primary cp-notas-add" onclick="empSalvarNota()"><i data-lucide="plus"></i></button>
-      </div>
-    </div>`;
+      </div>`);
 
   const content = `
     <!-- ══ SAUDAÇÃO ══ -->
@@ -8523,21 +8486,33 @@ function renderEmpDashboard(){
       <div class="cp-greeting-q">Precisando de turnos, hoje?</div>
     </div>
 
-    <!-- ══ COCKPIT DRAGGÁVEL ══ -->
-    <div class="cockpit-cards" id="cockpitCards">
-      ${cardEmergencia}
-      ${cardMetrics}
-      ${cardHoras}
-      ${cardFuncao}
+    <!-- Botão emergencial -->
+    <div class="cp-emerg-btn-row">${emergBtnHTML}</div>
+
+    <!-- ══ ZONA PRIMÁRIA ══ -->
+    <div class="cp-zone-label">Prioridade</div>
+    <div class="cockpit-cards" id="cockpitCardsA">
       ${cardEscala}
-      ${cardPool}
-      ${cardFeed}
-      ${cardNotas}
+      ${cardVagasAbertas}
     </div>
 
-    <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:1px;text-align:center;margin-top:10px;opacity:.5">
-      ⠿ arraste os cards para reorganizar o cockpit · o layout é salvo automaticamente
+    <!-- ══ ZONA SECUNDÁRIA ══ -->
+    <div class="cp-zone-label">Acompanhamento</div>
+    <div class="cockpit-cards" id="cockpitCardsB">
+      ${cardFeed}
+      ${cardMatch}
     </div>
+
+    <!-- ══ ZONA DE EXTRAS (dismissíveis) ══ -->
+    ${(()=>{
+      const extras = [cardPool, cardMetrics, cardHoras, cardFuncao, cardNotas].filter(Boolean).join('');
+      if(!extras) return '';
+      const hiddenCount = _dismissed.length;
+      const restoreLink = hiddenCount > 0
+        ? `<div class="cp-restore-row"><button class="cp-restore-btn" onclick="cockpitRestoreCards()">+ Restaurar ${hiddenCount} card${hiddenCount!==1?'s':''} oculto${hiddenCount!==1?'s':''}</button></div>`
+        : '';
+      return `<div class="cp-zone-label">Análises</div><div class="cockpit-cards" id="cockpitCardsC">${extras}</div>${restoreLink}`;
+    })()}
   `;
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'dash'));
@@ -8629,6 +8604,21 @@ function empToggleFavorito(proId){
     clearInterval(window._poolTimer);
     renderEmpDashboard();
   }
+}
+
+function cockpitDismissCard(id){
+  let hidden = [];
+  try{ hidden = JSON.parse(localStorage.getItem('turni_cockpit_hidden')||'[]'); }catch(e){}
+  if(!hidden.includes(id)) hidden.push(id);
+  localStorage.setItem('turni_cockpit_hidden', JSON.stringify(hidden));
+  clearInterval(window._poolTimer);
+  renderEmpDashboard();
+}
+
+function cockpitRestoreCards(){
+  localStorage.removeItem('turni_cockpit_hidden');
+  clearInterval(window._poolTimer);
+  renderEmpDashboard();
 }
 
 function cockpitFuncaoFilter(btn, periodo){
