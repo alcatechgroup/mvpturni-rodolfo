@@ -8010,10 +8010,10 @@ function getNavEmp(u, active){
   // Início = crachá · Vagas = abertura · Turnos = ativos+históricos · Financeiro = pagamentos · Empresa = RH
   return [
     {label:'Início', icon:'id-card', hash:'#/contratante', active:active==='dash'},
+    {label:'Empresa', icon:'building-2', hash:'#/contratante/empresa', active:active==='empresa'},
     {label:'Vagas', icon:'briefcase', hash:'#/contratante/vagas', count:minhasAtivas.length, active:active==='vagas'},
     {label:'Turnos', icon:'list', hash:'#/contratante/turnos', count:turnosAtivos.length, active:active==='turnos'},
     {label:'Financeiro', icon:'wallet', hash:'#/contratante/financeiro', active:active==='financeiro'},
-    {label:'Empresa', icon:'building-2', hash:'#/contratante/empresa', active:active==='empresa'},
     {label:'Pool Turner', icon:'users-2', hash:'#/contratante/pool-pros', active:active==='pool-pros'},
     {label:'Novidades', icon:'rss', hash:'#/contratante/novidades', active:active==='novidades'},
     {label:'Atendimento', icon:'message-circle', hash:'#/contratante/atendimento', active:active==='atendimento'}
