@@ -4453,6 +4453,20 @@
   .radio-opt-sub{font-size:11px;color:var(--t-secondary);margin-top:2px}
 
   /* responsive já no bloco acima */
+  /* ── Charts ── */
+  .cp-horas-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  .cp-horas-metric{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px 12px;text-align:center}
+  .cp-horas-num{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;margin-bottom:2px}
+  .cp-horas-label{font-family:var(--M);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--t-secondary)}
+  .cp-horas-sub{font-size:11px;color:var(--t-tertiary);margin-top:4px}
+  .cp-chart-svg{width:100%;overflow:visible}
+  .cp-period-tabs{display:flex;gap:4px;margin-left:auto}
+  .cp-period-btn{font-family:var(--M);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--t-secondary);cursor:pointer;transition:all .2s}
+  .cp-period-btn.active{background:var(--fhp);border-color:var(--fhp);color:#fff}
+  .cp-chart-empty{text-align:center;padding:28px 16px;color:var(--t-tertiary);font-size:12px}
+  .cp-chart-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.05)}
+  .cp-chart-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t-secondary)}
+  .cp-chart-legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
   /* ═══ SOCIAL FEED ═══ */
   .feed-compose{background:var(--s1);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px 22px;margin-bottom:28px}
   .feed-compose-textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;font-family:var(--F);font-size:15px;color:var(--w);resize:vertical;min-height:80px;transition:border-color .2s;box-sizing:border-box}
@@ -4548,6 +4562,52 @@
   @media(max-width:640px){
     .vitrine-eco{grid-template-columns:1fr 1fr}
   }
+  /* ═══ CARD EMERGENCIAL ═══ */
+  .cp-emerg-card{background:linear-gradient(135deg,rgba(220,50,50,.18),rgba(240,129,58,.12));border:1.5px solid rgba(220,50,50,.5)!important;animation:emergPulse 2.8s ease-in-out infinite}
+  @keyframes emergPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,50,50,.0)}50%{box-shadow:0 0 22px 0 rgba(220,50,50,.28)}}
+  .cp-emerg-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:rgba(220,50,50,.22);border:1px solid rgba(220,50,50,.45);color:#ff7a7a}
+  .cp-emerg-dot{width:7px;height:7px;border-radius:50%;background:#ff4a4a;animation:blinkDot .9s infinite}
+  @keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.1}}
+  .cp-emerg-desc{font-size:13px;color:var(--t-secondary);line-height:1.5;margin:8px 0 14px}
+  .cp-emerg-match{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.25);border-radius:12px;padding:12px 16px;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+  .cp-emerg-match-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:#ff7a7a}
+  .cp-emerg-match-info{flex:1}
+  .cp-emerg-match-label{font-family:var(--M);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,120,120,.6);margin-bottom:4px}
+  .cp-emerg-match-names{font-size:12px;color:var(--t-secondary);line-height:1.55}
+  .cp-emerg-progress{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:14px}
+  .cp-emerg-progress-fill{height:100%;background:linear-gradient(90deg,#ff4a4a,#F0813A);border-radius:2px;transition:width .6s ease}
+  .cp-emerg-actions{display:flex;gap:8px;flex-wrap:wrap}
+  /* ═══ CARD NOTAS/LEMBRETES ═══ */
+  .cp-notas-list{padding:14px 18px 6px;display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+  .cp-nota-item{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;transition:border-color .2s}
+  .cp-nota-item.done{opacity:.45}
+  .cp-nota-item.done .cp-nota-text{text-decoration:line-through}
+  .cp-nota-check{width:16px;height:16px;border-radius:4px;border:1.5px solid rgba(255,255,255,.2);background:transparent;cursor:pointer;flex-shrink:0;margin-top:2px;transition:all .2s;appearance:none;-webkit-appearance:none}
+  .cp-nota-check:checked{background:var(--fhp);border-color:var(--fhp)}
+  .cp-nota-text{flex:1;font-size:13px;color:var(--w);line-height:1.45;word-break:break-word}
+  .cp-nota-del{background:none;border:none;color:rgba(255,255,255,.2);cursor:pointer;padding:0 2px;font-size:15px;line-height:1;flex-shrink:0;transition:color .2s}
+  .cp-nota-del:hover{color:#ff6b6b}
+  .cp-notas-compose{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid rgba(255,255,255,.06);margin-top:4px}
+  .cp-notas-input{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:9px 12px;font-family:var(--F);font-size:13px;color:var(--w);outline:none;transition:border-color .2s}
+  .cp-notas-input:focus{border-color:rgba(217,164,65,.4)}
+  .cp-notas-add{flex-shrink:0;padding:9px 16px;border-radius:10px;font-size:12px}
+  .cp-notas-empty{padding:24px 18px;text-align:center;font-size:12px;color:var(--t-tertiary)}
+  /* ═══ POOL DE PROFISSIONAIS (tela) ═══ */
+  .pool-pros-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .pool-pros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+  .pool-pro-card{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
+  .pool-pro-card:hover{border-color:rgba(0,168,104,.4);transform:translateY(-2px)}
+  .pool-pro-foto-wrap{position:relative;aspect-ratio:1;overflow:hidden;background:var(--s2)}
+  .pool-pro-foto-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+  .pool-pro-nivel{position:absolute;top:10px;right:10px;font-family:var(--M);font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+  .pool-pro-info{padding:12px 14px 14px}
+  .pool-pro-nome{font-family:var(--F);font-size:14px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pool-pro-fn{font-family:var(--M);font-size:10px;letter-spacing:.5px;color:var(--fhp);margin-bottom:6px}
+  .pool-pro-meta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t-secondary)}
+  .pool-pro-meta i{width:11px;height:11px}
+  .pool-pro-fav{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);border:none;border-radius:50%;width:28px;height:28px;color:#D9A441;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:transform .15s}
+  .pool-pro-fav:hover{transform:scale(1.15)}
+  .pool-pro-empty{grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--t-secondary)}
 </style>
 </head>
 <body>
@@ -4705,7 +4765,7 @@ function empLogoHTML(emp){
 
 // ── SEED DATA ──────────────────────────────────────────────────
 // Schema version · incrementar quando o SEED ganhar campos novos · força reseed dos clientes
-const SEED_SCHEMA_VERSION = 5;
+const SEED_SCHEMA_VERSION = 6;
 const SEED = {
   _schemaVersion: SEED_SCHEMA_VERSION,
   // 1 SUPER ADMIN
@@ -4943,6 +5003,12 @@ const SEED = {
     {empId:'emp-1', proId:'pro-1'},
     {empId:'emp-1', proId:'pro-4'},
     {empId:'emp-1', proId:'pro-8'}
+  ],
+
+  notas:[
+    {id:'nota-1', empId:'emp-1', texto:'Confirmar uniforme dos garçons para o evento de sexta', feita:false, criadaEm:'2026-05-05T09:00'},
+    {id:'nota-2', empId:'emp-1', texto:'Abrir vaga de Bartender para o fim de semana do dia 10', feita:false, criadaEm:'2026-05-05T11:30'},
+    {id:'nota-3', empId:'emp-1', texto:'Pagar Pix dos turnos de domingo passado', feita:true, criadaEm:'2026-05-04T16:00'}
   ]
 };
 
@@ -5069,6 +5135,7 @@ function route(){
   if(path === '/contratante/pagamentos') return renderEmpFinanceiro(params); // legacy
   if(path === '/contratante/financeiro') return renderEmpFinanceiro(params);
   if(path === '/contratante/atendimento') return renderEmpAtendimento(params);
+  if(path === '/contratante/pool-pros') return renderEmpPoolPros(params);
   if(path === '/contratante/novidades') return renderEmpNovidades(params);
   if(path === '/profissional') return renderProDashboard(params);
   if(path === '/profissional/feed') return renderProFeed(params);
@@ -7770,6 +7837,89 @@ function genInsightCardHTML(insight, role){
   `;
 }
 
+// ── POOL DE PROFISSIONAIS · TURNERS ──
+function renderEmpPoolPros(params){
+  const u = Session.user();
+  if(!db.favoritos) db.favoritos = [];
+  const favSet = new Set(db.favoritos.filter(f => f.empId === u.id).map(f => f.proId));
+  const prosAtivos = db.users.filter(p => p.role === 'pro' && p.ativo === true);
+
+  // Funções únicas para filtro
+  const funcoes = ['Todos', ...new Set(prosAtivos.map(p => p.funcao).filter(Boolean))].sort((a,b) => a==='Todos'?-1:b==='Todos'?1:a.localeCompare(b));
+
+  const FN_PILL_COLORS = {'Garçom':'#00A868','Cozinheira':'#F8A430','Cozinheiro':'#F0812A','Bartender':'#7EA8E8',
+    'Hostess':'#E87EB2','Forneiro':'#D9A441','Pizzaiolo':'#E87A5A','Pia':'#6BC5D2','Auxiliar':'#9B8BD6'};
+
+  const filters = `
+    <div class="pool-pros-filter">
+      ${funcoes.map((fn,i) => `<button class="vf-pill${i===0?' active':''}" onclick="poolProsFilter(this,'${escapeHtml(fn)}')">${escapeHtml(fn)}</button>`).join('')}
+    </div>`;
+
+  const NIVEL_CSS = {elite:'nivel-elite',destaque:'nivel-destaque','confiável':'nivel-confiável',iniciante:'nivel-iniciante'};
+
+  const cards = prosAtivos.length === 0
+    ? `<div class="pool-pro-empty"><i data-lucide="users-2" style="width:36px;height:36px;opacity:.25;display:block;margin:0 auto 12px"></i>Nenhum profissional ativo no momento.</div>`
+    : prosAtivos.map(p => {
+        const fav = favSet.has(p.id);
+        const nivelKey = (p.nivel||'iniciante').toLowerCase().replace('á','a').replace('é','e');
+        const nivelCss = NIVEL_CSS[nivelKey] || 'nivel-iniciante';
+        const fnColor = FN_PILL_COLORS[p.funcao] || 'var(--fhp)';
+        const turnosConcluidos = db.turnos.filter(t => t.proId === p.id && t.status === 'finalizado').length;
+        return `
+        <div class="pool-pro-card" data-funcao="${escapeHtml(p.funcao||'')}" onclick="vitrineExpand('${p.id}')">
+          <div class="pool-pro-foto-wrap">
+            <img src="${p.foto}" alt="${escapeHtml(p.nome)}" loading="lazy">
+            <span class="pool-pro-nivel ${nivelCss}">${escapeHtml(p.nivel||'Iniciante')}</span>
+            <button class="pool-pro-fav" onclick="event.stopPropagation();empToggleFavoritoPool('${p.id}')" id="pool-fav-${p.id}" title="${fav?'Remover favorito':'Favoritar'}">${fav?'★':'☆'}</button>
+          </div>
+          <div class="pool-pro-info">
+            <div class="pool-pro-nome">${escapeHtml(p.nome)}</div>
+            <div class="pool-pro-fn" style="color:${fnColor}">${escapeHtml(p.funcao||'—')}</div>
+            <div class="pool-pro-meta">
+              <i data-lucide="star"></i>${p.avaliacao||'—'}
+              <i data-lucide="check-circle" style="margin-left:6px"></i>${turnosConcluidos} turno${turnosConcluidos!==1?'s':''}
+              ${p.cidade ? `<i data-lucide="map-pin" style="margin-left:6px"></i>${escapeHtml(p.cidade)}` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+  const content = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:10px">
+      <div>
+        <h2 style="font-family:var(--F);font-size:22px;font-weight:700;margin:0 0 4px">Pool Turner <span style="color:var(--fhp)">${prosAtivos.length}</span></h2>
+        <p style="font-size:13px;color:var(--t-secondary);margin:0">Profissionais ativos disponíveis para contratação · filtre por função e favorite quem preferir</p>
+      </div>
+    </div>
+    ${filters}
+    <div class="pool-pros-grid" id="poolProsGrid">${cards}</div>
+  `;
+
+  document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'pool-pros'));
+  refreshIcons();
+}
+
+function poolProsFilter(btn, funcao){
+  document.querySelectorAll('.pool-pros-filter .vf-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#poolProsGrid .pool-pro-card').forEach(c => {
+    c.style.display = (funcao === 'Todos' || c.dataset.funcao === funcao) ? '' : 'none';
+  });
+}
+
+function empToggleFavoritoPool(proId){
+  if(!db.favoritos) db.favoritos = [];
+  const u = Session.user();
+  const idx = db.favoritos.findIndex(f => f.empId === u.id && f.proId === proId);
+  if(idx >= 0) db.favoritos.splice(idx, 1);
+  else db.favoritos.push({empId: u.id, proId});
+  DB.save(db);
+  const btn = document.getElementById('pool-fav-'+proId);
+  const isFav = db.favoritos.some(f => f.empId === u.id && f.proId === proId);
+  if(btn){ btn.textContent = isFav ? '★' : '☆'; btn.title = isFav ? 'Remover favorito' : 'Favoritar'; }
+  showToast(isFav ? 'Adicionado aos favoritos' : 'Removido dos favoritos');
+}
+
 // ── NOVIDADES · feed de posts do estabelecimento ──
 function renderEmpNovidades(){
   const u = Session.user();
@@ -7864,6 +8014,7 @@ function getNavEmp(u, active){
     {label:'Turnos', icon:'list', hash:'#/contratante/turnos', count:turnosAtivos.length, active:active==='turnos'},
     {label:'Financeiro', icon:'wallet', hash:'#/contratante/financeiro', active:active==='financeiro'},
     {label:'Empresa', icon:'building-2', hash:'#/contratante/empresa', active:active==='empresa'},
+    {label:'Pool Turner', icon:'users-2', hash:'#/contratante/pool-pros', active:active==='pool-pros'},
     {label:'Novidades', icon:'rss', hash:'#/contratante/novidades', active:active==='novidades'},
     {label:'Atendimento', icon:'message-circle', hash:'#/contratante/atendimento', active:active==='atendimento'}
   ];
@@ -8083,6 +8234,85 @@ function renderEmpDashboard(){
 
   const totalCands = vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0);
 
+  // ── Horas ──
+  const horasAbertas = vagasAbertas.reduce((s,v) => s + (new Date(v.dataFim)-new Date(v.dataIni))/3600000, 0);
+  const horasRealizadas = turnosFin.reduce((s,t) => {
+    if(t.checkIn && t.checkOut) return s + (new Date(t.checkOut)-new Date(t.checkIn))/3600000;
+    const v = db.vagas.find(x => x.id === t.vagaId);
+    return v ? s + (new Date(v.dataFim)-new Date(v.dataIni))/3600000 : s;
+  }, 0);
+
+  // ── Demanda por Função ──
+  const FN_COLORS = {'Garçom':'#00A868','Cozinheira':'#F8A430','Cozinheiro':'#F0812A','Bartender':'#7EA8E8',
+    'Hostess':'#E87EB2','Forneiro':'#D9A441','Pizzaiolo':'#E87A5A','Pia':'#6BC5D2','Auxiliar':'#9B8BD6'};
+  const agora2 = new Date();
+  function funcaoPorPeriodo(dtInicio){
+    const map = {};
+    [...meusTurnos, ...vagasAbertas].forEach(item => {
+      const v = item.vagaId ? db.vagas.find(x => x.id === item.vagaId) : item;
+      if(!v) return;
+      if(new Date(v.dataIni) < dtInicio) return;
+      map[v.funcao] = (map[v.funcao]||0) + 1;
+    });
+    return Object.entries(map).map(([funcao,count])=>({funcao,count})).sort((a,b)=>b.count-a.count);
+  }
+  const dtHoje = new Date(agora2); dtHoje.setHours(0,0,0,0);
+  const dtSemana = new Date(agora2); dtSemana.setDate(agora2.getDate()-7);
+  const dtMes    = new Date(agora2); dtMes.setDate(agora2.getDate()-30);
+  const fnDia    = funcaoPorPeriodo(dtHoje);
+  const fnSemana = funcaoPorPeriodo(dtSemana);
+  const fnMes    = funcaoPorPeriodo(dtMes);
+
+  // ── Vaga Emergencial ──
+  const vagaEmerg = vagasAbertas.find(v => v.emergencial) || null;
+
+  // ── Notas ──
+  if(!db.notas) db.notas = [];
+  const minhasNotas = db.notas.filter(n => n.empId === u.id).sort((a,b) => new Date(b.criadaEm)-new Date(a.criadaEm));
+  const notasPendentes = minhasNotas.filter(n => !n.feita).length;
+
+  // ── SVG helpers ──
+  function horasBarSVG(abertas, realizadas){
+    const mx = Math.max(abertas, realizadas, 1);
+    const W = 240;
+    const wA = Math.round((abertas/mx)*W);
+    const wR = Math.round((realizadas/mx)*W);
+    return `<svg class="cp-chart-svg" viewBox="0 0 ${W+60} 60" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="10" font-size="9" fill="rgba(255,255,255,.4)" font-family="monospace" letter-spacing="1">EM ABERTO</text>
+      <rect x="0" y="14" width="${W}" height="11" rx="5" fill="rgba(255,255,255,.06)"/>
+      <rect x="0" y="14" width="${wA}" height="11" rx="5" fill="#F0813A"/>
+      <text x="${wA+5}" y="23" font-size="10" fill="rgba(255,255,255,.55)">${abertas.toFixed(1)}h</text>
+      <text x="0" y="42" font-size="9" fill="rgba(255,255,255,.4)" font-family="monospace" letter-spacing="1">REALIZADAS</text>
+      <rect x="0" y="46" width="${W}" height="11" rx="5" fill="rgba(255,255,255,.06)"/>
+      <rect x="0" y="46" width="${wR}" height="11" rx="5" fill="#00A868"/>
+      <text x="${wR+5}" y="55" font-size="10" fill="rgba(255,255,255,.55)">${realizadas.toFixed(1)}h</text>
+    </svg>`;
+  }
+
+  function funcaoBarSVG(data, periodo, activeP){
+    if(!data.length) return `<div class="funcao-chart" data-periodo="${periodo}" style="display:${periodo===activeP?'block':'none'}"><div class="cp-chart-empty">Nenhum turno no período</div></div>`;
+    const itemW = 38; const gap = 8; const chartH = 90; const barMaxH = 58;
+    const mx = Math.max(...data.map(d=>d.count), 1);
+    const totalW = data.length*(itemW+gap)-gap;
+    const bars = data.map((d,i) => {
+      const c = FN_COLORS[d.funcao]||'#888';
+      const bH = Math.round((d.count/mx)*barMaxH);
+      const x = i*(itemW+gap);
+      const abbr = d.funcao.length>7 ? d.funcao.slice(0,6)+'.' : d.funcao;
+      return `<rect x="${x}" y="${barMaxH-bH+4}" width="${itemW}" height="${bH}" rx="5" fill="${c}" opacity=".88"/>
+        ${d.count>0?`<text x="${x+itemW/2}" y="${barMaxH-bH}" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.75)">${d.count}</text>`:''}
+        <text x="${x+itemW/2}" y="${chartH-2}" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,.4)">${abbr}</text>`;
+    }).join('');
+    const legend = data.slice(0,5).map(d=>{
+      const c = FN_COLORS[d.funcao]||'#888';
+      return `<div class="cp-chart-legend-item"><div class="cp-chart-legend-dot" style="background:${c}"></div>${escapeHtml(d.funcao)} <b style="color:var(--w)">${d.count}</b></div>`;
+    }).join('');
+    return `<div class="funcao-chart" data-periodo="${periodo}" style="display:${periodo===activeP?'block':'none'}">
+      <svg class="cp-chart-svg" viewBox="0 0 ${Math.max(totalW,260)} ${chartH}" xmlns="http://www.w3.org/2000/svg">${bars}</svg>
+      <div class="cp-chart-legend">${legend}</div>
+    </div>`;
+  }
+
   // cards HTML individuais
   const cardMetrics = `
     <div class="cp-card" data-card="metrics" data-span="2" draggable="true">
@@ -8163,22 +8393,113 @@ function renderEmpDashboard(){
       </div>
     </div>`;
 
-  const cardFavs = `
-    <div class="cp-card" data-card="favs" draggable="true">
+  // ── Card: Horas abertas vs realizadas ──
+  const cardHoras = `
+    <div class="cp-card" data-card="horas" draggable="true">
       <div class="cp-card-head">
         <span class="cp-drag-handle" title="Arrastar">⠿</span>
-        <div class="cp-card-title"><i data-lucide="star" style="color:#D9A441"></i> Favoritos · ${favPros.length}</div>
-        ${favPros.length > 0 ? `<a href="#/contratante/vagas/nova" class="btn-secondary" style="padding:5px 12px;font-size:11px"><i data-lucide="briefcase"></i> Vaga</a>` : ''}
+        <div class="cp-card-title"><i data-lucide="clock"></i> Horas de turno</div>
       </div>
-      <div style="padding:14px 18px 16px">
-        ${favPros.length === 0
-          ? `<div class="cp-favs-empty">Marque ★ nos profissionais do Pool para adicioná-los aqui e priorizar em vagas.</div>`
-          : `<div class="cp-favs-grid">${favPros.map(p => `
-              <div class="cp-fav-item" onclick="vitrineExpand('${p.id}')">
-                <div class="cp-fav-star">★</div>
-                <img class="cp-fav-foto" src="${p.foto}" alt="${escapeHtml(p.nome)}">
-                <div class="cp-fav-nome">${escapeHtml(firstName(p.nome))}</div>
-              </div>`).join('')}</div>`}
+      <div style="padding:14px 18px 18px">
+        <div class="cp-horas-grid">
+          <div class="cp-horas-metric">
+            <div class="cp-horas-num" style="color:#F0813A">${horasAbertas.toFixed(0)}<span style="font-size:14px">h</span></div>
+            <div class="cp-horas-label">Em aberto</div>
+            <div class="cp-horas-sub">${vagasAbertas.length} vaga${vagasAbertas.length!==1?'s':''}</div>
+          </div>
+          <div class="cp-horas-metric">
+            <div class="cp-horas-num" style="color:#00A868">${horasRealizadas.toFixed(0)}<span style="font-size:14px">h</span></div>
+            <div class="cp-horas-label">Realizadas</div>
+            <div class="cp-horas-sub">${turnosFin.length} turno${turnosFin.length!==1?'s':''}</div>
+          </div>
+        </div>
+        <div style="padding:4px 0 2px">${horasBarSVG(horasAbertas, horasRealizadas)}</div>
+      </div>
+    </div>`;
+
+  // ── Card: Demanda por função ──
+  const cardFuncao = `
+    <div class="cp-card" data-card="funcao" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="users-2"></i> Demanda por função</div>
+        <div class="cp-period-tabs">
+          <button class="cp-period-btn active" id="pfTab-dia" onclick="cockpitFuncaoFilter(this,'dia')">Dia</button>
+          <button class="cp-period-btn" id="pfTab-semana" onclick="cockpitFuncaoFilter(this,'semana')">Sem</button>
+          <button class="cp-period-btn" id="pfTab-mes" onclick="cockpitFuncaoFilter(this,'mes')">Mês</button>
+        </div>
+      </div>
+      <div style="padding:8px 14px 14px">
+        ${funcaoBarSVG(fnDia,'dia','dia')}
+        ${funcaoBarSVG(fnSemana,'semana','dia')}
+        ${funcaoBarSVG(fnMes,'mes','dia')}
+      </div>
+    </div>`;
+
+  // ── Card: Emergencial (pinado ao topo quando existe) ──
+  const _ematchPros = vagaEmerg
+    ? db.candidaturas.filter(c => c.vagaId === vagaEmerg.id && c.status === 'pendente')
+        .map(c => db.users.find(p => p.id === c.proId)).filter(Boolean)
+    : [];
+  const cardEmergencia = vagaEmerg ? `
+    <div class="cp-card cp-emerg-card" data-card="emergencia" data-span="2" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title" style="color:#ff7a7a"><i data-lucide="zap" style="color:#ff4a4a"></i> Vaga Emergencial</div>
+        <span class="cp-emerg-badge"><span class="cp-emerg-dot"></span>URGENTE</span>
+      </div>
+      <div style="padding:14px 18px 18px">
+        <div class="cp-emerg-desc">
+          <b style="color:var(--w)">${escapeHtml(vagaEmerg.funcao)}</b> · ${escapeHtml(vagaEmerg.local||u.estabelecimento)}
+          · ${new Date(vagaEmerg.dataIni).toLocaleString('pt-BR',{weekday:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}
+        </div>
+        <div class="cp-emerg-match">
+          <div class="cp-emerg-match-num">${_ematchPros.length}</div>
+          <div class="cp-emerg-match-info">
+            <div class="cp-emerg-match-label">Candidatos em match</div>
+            <div class="cp-emerg-match-names">${_ematchPros.slice(0,3).map(p=>escapeHtml(firstName(p.nome))).join(' · ') || 'Aguardando candidatos…'}</div>
+          </div>
+        </div>
+        <div class="cp-emerg-progress"><div class="cp-emerg-progress-fill" style="width:${Math.min(100,_ematchPros.length*25)}%"></div></div>
+        <div class="cp-emerg-actions">
+          <a href="#/contratante/vaga?id=${vagaEmerg.id}" class="btn-primary" style="font-size:12px;padding:9px 18px"><i data-lucide="eye"></i> Ver candidatos</a>
+          <a href="#/contratante/vagas/nova" class="btn-secondary" style="font-size:12px;padding:9px 16px"><i data-lucide="plus"></i> Nova vaga</a>
+        </div>
+      </div>
+    </div>` : `
+    <div class="cp-card cp-emerg-card" data-card="emergencia" data-span="2" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title" style="color:#ff7a7a"><i data-lucide="zap" style="color:#ff4a4a"></i> Vaga Emergencial</div>
+        <span class="cp-emerg-badge"><span class="cp-emerg-dot"></span>DISPONÍVEL</span>
+      </div>
+      <div style="padding:14px 18px 18px">
+        <div class="cp-emerg-desc">Precisa de alguém <b style="color:var(--w)">agora</b>? Abra uma vaga emergencial — o match IA prioriza profissionais disponíveis e envia notificação imediata.</div>
+        <div class="cp-emerg-actions">
+          <button class="btn-primary" onclick="empAbrirEmergencia()" style="font-size:13px;padding:10px 22px"><i data-lucide="zap"></i> Abrir vaga emergencial</button>
+        </div>
+      </div>
+    </div>`;
+
+  // ── Card: Notas / Lembretes ──
+  const cardNotas = `
+    <div class="cp-card" data-card="notas" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="notebook-pen"></i> Notas & lembretes${notasPendentes>0?` <span style="background:var(--orange);color:#fff;font-size:9px;padding:1px 7px;border-radius:999px;font-family:var(--M)">${notasPendentes}</span>`:''}</div>
+      </div>
+      ${minhasNotas.length === 0
+        ? `<div class="cp-notas-empty">Nenhuma nota. Adicione um lembrete abaixo.</div>`
+        : `<div class="cp-notas-list">${minhasNotas.map(n => `
+            <div class="cp-nota-item ${n.feita?'done':''}" id="nota-item-${n.id}">
+              <input type="checkbox" class="cp-nota-check" ${n.feita?'checked':''} onchange="empTogglaNota('${n.id}',this.checked)">
+              <div class="cp-nota-text">${escapeHtml(n.texto)}</div>
+              <button class="cp-nota-del" onclick="empExcluirNota('${n.id}')" title="Remover">×</button>
+            </div>`).join('')}
+          </div>`}
+      <div class="cp-notas-compose">
+        <input class="cp-notas-input" id="notaInput" type="text" placeholder="Adicionar lembrete…" maxlength="160" onkeydown="if(event.key==='Enter')empSalvarNota()">
+        <button class="btn-primary cp-notas-add" onclick="empSalvarNota()"><i data-lucide="plus"></i></button>
       </div>
     </div>`;
 
@@ -8204,11 +8525,14 @@ function renderEmpDashboard(){
 
     <!-- ══ COCKPIT DRAGGÁVEL ══ -->
     <div class="cockpit-cards" id="cockpitCards">
+      ${cardEmergencia}
       ${cardMetrics}
+      ${cardHoras}
+      ${cardFuncao}
       ${cardEscala}
       ${cardPool}
       ${cardFeed}
-      ${cardFavs}
+      ${cardNotas}
     </div>
 
     <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:1px;text-align:center;margin-top:10px;opacity:.5">
@@ -8305,6 +8629,47 @@ function empToggleFavorito(proId){
     clearInterval(window._poolTimer);
     renderEmpDashboard();
   }
+}
+
+function cockpitFuncaoFilter(btn, periodo){
+  document.querySelectorAll('.cp-period-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.funcao-chart').forEach(el => {
+    el.style.display = el.dataset.periodo === periodo ? 'block' : 'none';
+  });
+}
+
+function empAbrirEmergencia(){
+  location.hash = '#/contratante/vagas/nova?emergencial=1';
+}
+
+function empSalvarNota(){
+  const u = Session.user();
+  const input = document.getElementById('notaInput');
+  const texto = (input?.value||'').trim();
+  if(!texto){ input?.focus(); return; }
+  if(!db.notas) db.notas = [];
+  db.notas.push({id:'nota-'+Date.now(), empId:u.id, texto, feita:false, criadaEm:new Date().toISOString()});
+  DB.save(db);
+  clearInterval(window._poolTimer);
+  renderEmpDashboard();
+  requestAnimationFrame(() => { const el = document.getElementById('notaInput'); if(el) el.focus(); });
+}
+
+function empExcluirNota(id){
+  if(!db.notas) return;
+  db.notas = db.notas.filter(n => n.id !== id);
+  DB.save(db);
+  clearInterval(window._poolTimer);
+  renderEmpDashboard();
+}
+
+function empTogglaNota(id, feita){
+  if(!db.notas) return;
+  const n = db.notas.find(n => n.id === id);
+  if(n){ n.feita = feita; DB.save(db); }
+  const item = document.getElementById('nota-item-'+id);
+  if(item) item.classList.toggle('done', feita);
 }
 
 function cockpitPublicar(){
