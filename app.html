@@ -5094,6 +5094,12 @@ const Session = {
     const s = this.get();
     if(!s) return null;
     return db.users.find(u => u.id === s.userId) || null;
+  },
+  login(email, _senha){
+    const normalized = (email||'').trim().toLowerCase();
+    const u = db.users.find(x => (x.email||'').toLowerCase() === normalized);
+    if(!u){ showToast('E-mail não encontrado', 'error'); return; }
+    login(u.id);
   }
 };
 
