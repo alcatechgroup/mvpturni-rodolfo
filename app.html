@@ -8259,6 +8259,13 @@ function renderEmpEmpresa(){
       ` : ''}
     </div>
 
+    <!-- ═══ POR QUE TURNIFICAR ═══ -->
+    ${u.porqueTurnificar ? `
+    <div class="emp-block emp-block-full" style="border-color:rgba(248,164,48,.3);background:linear-gradient(135deg,rgba(248,164,48,.06) 0%,transparent 60%)">
+      <div class="emp-block-h"><i data-lucide="star" style="color:#F8A430"></i>Por que Turnificar aqui? <span style="font-family:var(--M);font-size:10px;color:#F8A430;letter-spacing:1.5px;text-transform:uppercase;margin-left:auto;background:rgba(248,164,48,.12);padding:3px 8px;border:1px solid rgba(248,164,48,.3);border-radius:3px"><i data-lucide="paperclip" style="width:10px;height:10px;vertical-align:middle"></i> Enviado nos matchs</span></div>
+      <p style="font-family:var(--B);font-size:15px;color:var(--w);line-height:1.65;margin:0;font-style:italic">"${escapeHtml(u.porqueTurnificar)}"</p>
+    </div>` : ''}
+
     <!-- ═══ REGRAS PADRÃO · vai pro card de match ═══ -->
     <div class="emp-block emp-block-full">
       <div class="emp-block-h"><i data-lucide="shield-check"></i>Regras padrão das vagas <span style="font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:1.5px;text-transform:uppercase;margin-left:auto;background:var(--fhpd);padding:3px 8px;border:1px solid rgba(0,168,104,.3);border-radius:3px"><i data-lucide="paperclip" style="width:10px;height:10px;vertical-align:middle"></i> Anexado nos matchs</span></div>
@@ -8635,6 +8642,22 @@ function renderEmpEmpresaEditar(params){
         <button class="btn-secondary" type="button" onclick="onbAdicionarContato()" style="width:100%;justify-content:center;margin-top:4px">
           <i data-lucide="plus"></i> Adicionar contato
         </button>
+      </div>
+      <div class="onb-card" style="margin-top:18px;border-color:rgba(248,164,48,.3);background:linear-gradient(135deg,rgba(248,164,48,.06),transparent 70%)">
+        <div class="onb-card-h"><i data-lucide="star" style="color:#F8A430"></i> Por que Turnificar aqui?</div>
+        <p style="font-family:var(--M);font-size:12px;color:var(--t-secondary);margin:0 0 14px;line-height:1.6">
+          Escreva uma frase motivacional para atrair os melhores Turners. Esta mensagem aparece no perfil da empresa e no card de match — é o seu pitch para quem está escolhendo onde trabalhar.
+        </p>
+        <div class="onb-field" style="margin:0">
+          <textarea class="onb-textarea" id="onb_porqueTurnificar" rows="3"
+            placeholder="Ex: Aqui você não vai só trabalhar um turno — vai participar de algo especial. Nossa equipe tem orgulho do que coloca no prato e isso se sente desde o primeiro dia."
+            style="border-color:rgba(248,164,48,.4)"
+          >${escapeHtml(u.porqueTurnificar||'')}</textarea>
+          <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);margin-top:6px;display:flex;justify-content:space-between">
+            <span style="color:#F8A430">✦ Turners leem isso antes de se candidatar</span>
+            <span id="onb_ptq_count">${(u.porqueTurnificar||'').length} / 280</span>
+          </div>
+        </div>
       </div>`;
   }
 
@@ -8665,6 +8688,14 @@ function renderEmpEmpresaEditar(params){
     const cnt = document.getElementById('onb_cultura_count');
     if(cnt) cnt.textContent = this.value.length + ' / 600';
     if(this.value.length > 600) this.value = this.value.substring(0,600);
+  });
+
+  // Counter for "Por que Turnificar"
+  const ptqTA = document.getElementById('onb_porqueTurnificar');
+  if(ptqTA) ptqTA.addEventListener('input', function(){
+    const cnt = document.getElementById('onb_ptq_count');
+    if(cnt) cnt.textContent = this.value.length + ' / 280';
+    if(this.value.length > 280) this.value = this.value.substring(0,280);
   });
 
   // Init empty contact if none
@@ -8863,12 +8894,8 @@ function onbContatoItemHTML(c, i){
       <div class="onb-field" style="margin:0"><label class="onb-label">Cargo</label>
         <input class="onb-input" data-contact="${i}" data-field="cargo" value="${escapeHtml(c.cargo||'')}" placeholder="Gerente de salão"></div>
     </div>
-    <div class="onb-row-2">
-      <div class="onb-field" style="margin:0"><label class="onb-label">Telefone / WhatsApp</label>
-        <input class="onb-input" data-contact="${i}" data-field="telefone" value="${escapeHtml(c.telefone||'')}" placeholder="(11) 99999-9999"></div>
-      <div class="onb-field" style="margin:0"><label class="onb-label">E-mail</label>
-        <input class="onb-input" data-contact="${i}" data-field="email" value="${escapeHtml(c.email||'')}" placeholder="marina@casa.com.br"></div>
-    </div>
+    <div class="onb-field" style="margin:0"><label class="onb-label">E-mail</label>
+      <input class="onb-input" data-contact="${i}" data-field="email" value="${escapeHtml(c.email||'')}" placeholder="marina@casa.com.br"></div>
   </div>`;
 }
 
@@ -8944,10 +8971,10 @@ function empSalvarEtapa(step){
     u.contatos = Array.from(contatoEls).map((el,i)=>({
       nome:(el.querySelector('[data-field="nome"]')||{}).value||'',
       cargo:(el.querySelector('[data-field="cargo"]')||{}).value||'',
-      telefone:(el.querySelector('[data-field="telefone"]')||{}).value||'',
       email:(el.querySelector('[data-field="email"]')||{}).value||'',
       principal:i===0
     })).filter(c=>c.nome.trim());
+    u.porqueTurnificar = v('onb_porqueTurnificar').substring(0,280);
     DB.save(db);
     showToast('Perfil da empresa salvo!');
     location.hash='#/contratante/empresa';
