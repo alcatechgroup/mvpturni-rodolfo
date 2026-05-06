@@ -3914,6 +3914,64 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
+     EMPRESA ONBOARDING WIZARD · 4 etapas
+     ════════════════════════════════════════════════════════════════ */
+  .onb-wrap{max-width:720px;margin:0 auto;padding-bottom:48px}
+  .onb-head{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+  .onb-back{width:38px;height:38px;border-radius:50%;border:1px solid var(--b1);background:var(--s1);color:var(--t-secondary);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:border-color .15s}
+  .onb-back:hover{border-color:var(--orange);color:var(--orange)}
+  .onb-head-info{flex:1}
+  .onb-head-step{font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+  .onb-head-title{font-family:var(--F);font-size:22px;font-weight:600;color:var(--w);letter-spacing:-.3px}
+  .onb-progress{display:flex;gap:6px;margin-bottom:32px}
+  .onb-progress-seg{flex:1;height:3px;border-radius:3px;background:var(--b1);transition:background .3s}
+  .onb-progress-seg.done{background:var(--fhp)}
+  .onb-progress-seg.active{background:var(--orange)}
+  .onb-steps-row{display:flex;gap:0;margin-bottom:28px;border:1px solid var(--b1);border-radius:12px;overflow:hidden}
+  .onb-step-pill{flex:1;padding:10px 6px;text-align:center;font-family:var(--M);font-size:10px;letter-spacing:.5px;color:var(--t-tertiary);border-right:1px solid var(--b1);cursor:pointer;transition:background .2s}
+  .onb-step-pill:last-child{border-right:none}
+  .onb-step-pill.done{color:var(--fhp)}
+  .onb-step-pill.active{background:var(--s2);color:var(--w);font-weight:600}
+  .onb-step-num{display:block;font-size:16px;font-weight:700;margin-bottom:2px}
+  .onb-card{background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:28px 28px 24px;margin-bottom:18px}
+  .onb-card-h{font-family:var(--F);font-size:15px;font-weight:600;color:var(--w);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+  .onb-card-h svg{width:17px;height:17px;color:var(--orange);flex-shrink:0}
+  .onb-field{margin-bottom:16px}
+  .onb-field:last-child{margin-bottom:0}
+  .onb-label{font-family:var(--M);font-size:11px;color:var(--t-secondary);letter-spacing:.5px;margin-bottom:6px;display:block}
+  .onb-label b{color:var(--orange);font-weight:400}
+  .onb-input,.onb-select,.onb-textarea{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:8px;padding:11px 14px;font-family:var(--B);font-size:13px;color:var(--w);outline:none;box-sizing:border-box;transition:border-color .15s}
+  .onb-input:focus,.onb-select:focus,.onb-textarea:focus{border-color:var(--orange)}
+  .onb-textarea{resize:vertical;min-height:90px;line-height:1.55}
+  .onb-select option{background:var(--s2)}
+  .onb-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .onb-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .onb-chips-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:36px}
+  .onb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--b1);border-radius:999px;padding:5px 12px;font-family:var(--M);font-size:11px;color:var(--w)}
+  .onb-chip-del{width:16px;height:16px;border-radius:50%;background:var(--b1);color:var(--t-secondary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;padding:0;flex-shrink:0}
+  .onb-chip-del:hover{background:var(--orange);color:#fff}
+  .onb-chip-add{display:flex;gap:8px}
+  .onb-contact-item{background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:14px 16px;margin-bottom:10px;position:relative}
+  .onb-contact-del{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--t-tertiary);cursor:pointer;font-size:18px;line-height:1;padding:2px}
+  .onb-contact-del:hover{color:var(--orange)}
+  .onb-contact-principal{font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+  .onb-regra-item{background:var(--s2);border:1px solid var(--b1);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .onb-regra-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .onb-regra-icon{width:36px;height:36px;border-radius:50%;background:var(--fhpd);color:var(--fhp);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .onb-regra-icon svg{width:16px;height:16px}
+  .onb-regra-title{font-family:var(--M);font-size:11px;color:var(--t-secondary);letter-spacing:1px;text-transform:uppercase}
+  .onb-regra-badge{margin-left:auto;font-family:var(--M);font-size:9px;color:var(--fhp);letter-spacing:1.5px;background:var(--fhpd);padding:2px 8px;border-radius:3px;border:1px solid rgba(0,168,104,.25)}
+  .onb-nav{display:flex;gap:12px;justify-content:space-between;padding-top:8px}
+  .onb-btn-next{flex:1;max-width:220px;margin-left:auto}
+  .onb-complete-banner{background:linear-gradient(135deg,var(--fhpd),transparent 70%);border:1px solid rgba(0,168,104,.3);border-radius:14px;padding:24px 28px;display:flex;align-items:center;gap:18px;margin-bottom:20px}
+  .onb-complete-icon{width:52px;height:52px;border-radius:50%;background:var(--fhp);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  @media(max-width:600px){
+    .onb-row-2,.onb-row-3{grid-template-columns:1fr}
+    .onb-card{padding:20px 16px}
+    .onb-steps-row{display:none}
+  }
+
+  /* ════════════════════════════════════════════════════════════════
      KANBAN · Turnos do contratante · 3 colunas verticais
      Em curso (azul) · Confirmados (amarelo) · Finalizados (verde)
      ════════════════════════════════════════════════════════════════ */
@@ -5163,6 +5221,7 @@ function route(){
   if(path === '/admin/usuarios') return renderAdminUsuarios(params);
   if(path === '/contratante') return renderEmpDashboard(params);
   if(path === '/contratante/empresa') return renderEmpEmpresa(params);
+  if(path === '/contratante/empresa/editar') return renderEmpEmpresaEditar(params);
   if(path === '/contratante/vagas') return renderEmpVagas(params);
   if(path === '/contratante/vagas/nova') return renderEmpVagaNova(params);
   if(path === '/contratante/vaga') return renderEmpVagaDetalhe(params);
@@ -8098,7 +8157,7 @@ function renderEmpEmpresa(){
         <h1 class="main-h">RH · Cultura, regras e identidade</h1>
         <div class="main-d">${escapeHtml(u.estabelecimento)} · este conteúdo é anexado <b>automaticamente</b> em todo match · o profissional já chega sabendo o que esperar</div>
       </div>
-      <button class="btn-secondary" disabled style="opacity:.6"><i data-lucide="edit-3"></i> Editar dados</button>
+      <a class="btn-secondary" href="#/contratante/empresa/editar?step=1"><i data-lucide="edit-3"></i> Editar dados</a>
     </div>
 
     <!-- ═══ CALLOUT · O que vai com cada match ═══ -->
@@ -8189,6 +8248,363 @@ function renderEmpEmpresa(){
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'empresa'));
   refreshIcons();
+}
+
+// ── Empresa · Onboarding Wizard ─────────────────────────────────
+function renderEmpEmpresaEditar(params){
+  const u = Session.user();
+  const step = Math.max(1, Math.min(4, parseInt(params.step || '1')));
+  const e = u.endereco || {};
+
+  const STEPS = [
+    {n:1, label:'Dados', icon:'building-2'},
+    {n:2, label:'Contatos', icon:'users-round'},
+    {n:3, label:'Cultura', icon:'flame'},
+    {n:4, label:'Regras', icon:'shield-check'},
+  ];
+
+  const progressBar = `
+    <div class="onb-progress">
+      ${STEPS.map(s => `<div class="onb-progress-seg ${s.n < step ? 'done' : s.n === step ? 'active' : ''}"></div>`).join('')}
+    </div>
+    <div class="onb-steps-row">
+      ${STEPS.map(s => `<div class="onb-step-pill ${s.n < step ? 'done' : s.n === step ? 'active' : ''}" onclick="location.hash='#/contratante/empresa/editar?step=${s.n}'">
+        <span class="onb-step-num">${s.n < step ? '✓' : s.n}</span>${s.label}
+      </div>`).join('')}
+    </div>`;
+
+  const backHash = step === 1 ? '#/contratante/empresa' : `#/contratante/empresa/editar?step=${step-1}`;
+  const nextLabel = step === 4 ? 'Concluir' : 'Próximo →';
+
+  let stepTitle = '';
+  let stepBody = '';
+
+  if(step === 1){
+    stepTitle = 'Dados da empresa';
+    const segmentos = ['Restaurante','Bar','Café','Pizzaria','Hamburgueria','Churrascaria','Buffet','Hotel','Eventos','Outros'];
+    stepBody = `
+      <div class="onb-card">
+        <div class="onb-card-h"><i data-lucide="building-2"></i> Identificação</div>
+        <div class="onb-field">
+          <label class="onb-label">Nome do estabelecimento <b>*</b></label>
+          <input class="onb-input" id="onb_estabelecimento" value="${escapeHtml(u.estabelecimento||'')}" placeholder="Ex: Pizza da Mooca">
+        </div>
+        <div class="onb-row-2">
+          <div class="onb-field">
+            <label class="onb-label">Segmento <b>*</b></label>
+            <select class="onb-select" id="onb_segmento">
+              ${segmentos.map(s => `<option value="${s}" ${u.segmento===s?'selected':''}>${s}</option>`).join('')}
+            </select>
+          </div>
+          <div class="onb-field">
+            <label class="onb-label">CNPJ</label>
+            <input class="onb-input" id="onb_cnpj" value="${escapeHtml(u.cnpj||'')}" placeholder="00.000.000/0001-00">
+          </div>
+        </div>
+        <div class="onb-row-2">
+          <div class="onb-field">
+            <label class="onb-label">Ano de fundação</label>
+            <input class="onb-input" id="onb_fundacao" value="${escapeHtml(u.fundacao||'')}" placeholder="2015">
+          </div>
+          <div class="onb-field">
+            <label class="onb-label">Nº de funcionários fixos</label>
+            <input class="onb-input" id="onb_funcionarios" type="number" min="1" value="${u.funcionarios||''}" placeholder="12">
+          </div>
+        </div>
+      </div>
+      <div class="onb-card">
+        <div class="onb-card-h"><i data-lucide="map-pin"></i> Endereço</div>
+        <div class="onb-row-2">
+          <div class="onb-field" style="grid-column:1/-1">
+            <label class="onb-label">Logradouro</label>
+            <input class="onb-input" id="onb_logradouro" value="${escapeHtml(e.logradouro||'')}" placeholder="Rua das Rosas, 123">
+          </div>
+        </div>
+        <div class="onb-row-3">
+          <div class="onb-field">
+            <label class="onb-label">Complemento</label>
+            <input class="onb-input" id="onb_complemento" value="${escapeHtml(e.complemento||'')}" placeholder="Galpão 2">
+          </div>
+          <div class="onb-field">
+            <label class="onb-label">Bairro</label>
+            <input class="onb-input" id="onb_bairro" value="${escapeHtml(e.bairro||'')}" placeholder="Mooca">
+          </div>
+          <div class="onb-field">
+            <label class="onb-label">CEP</label>
+            <input class="onb-input" id="onb_cep" value="${escapeHtml(e.cep||'')}" placeholder="03101-000">
+          </div>
+        </div>
+        <div class="onb-row-2">
+          <div class="onb-field">
+            <label class="onb-label">Cidade</label>
+            <input class="onb-input" id="onb_cidade" value="${escapeHtml(e.cidade||'')}" placeholder="São Paulo">
+          </div>
+          <div class="onb-field">
+            <label class="onb-label">UF</label>
+            <input class="onb-input" id="onb_uf" value="${escapeHtml(e.uf||'SP')}" placeholder="SP" maxlength="2">
+          </div>
+        </div>
+      </div>`;
+  }
+
+  if(step === 2){
+    stepTitle = 'Contatos da empresa';
+    const contatos = u.contatos || [];
+    stepBody = `
+      <div class="onb-card">
+        <div class="onb-card-h"><i data-lucide="users-round"></i> Pessoas-chave da operação</div>
+        <p style="font-family:var(--M);font-size:12px;color:var(--t-secondary);margin:0 0 20px;line-height:1.6">Estes contatos são enviados junto ao match. O profissional sabe exatamente com quem falar antes de chegar.</p>
+        <div id="onb_contatos_list">
+          ${contatos.length === 0 ? '' : contatos.map((c,i) => onbContatoItemHTML(c,i)).join('')}
+        </div>
+        <button class="btn-secondary" type="button" onclick="onbAdicionarContato()" style="width:100%;justify-content:center;margin-top:4px">
+          <i data-lucide="plus"></i> Adicionar contato
+        </button>
+      </div>
+      <div class="onb-card">
+        <div class="onb-card-h"><i data-lucide="clock"></i> Horário de operação</div>
+        <div class="onb-field">
+          <label class="onb-label">Turnos de operação</label>
+          <input class="onb-input" id="onb_turnosOperacao" value="${escapeHtml(u.turnosOperacao||'')}" placeholder="Ter–Dom · almoço 11h30–15h · jantar 18h–23h">
+        </div>
+      </div>`;
+  }
+
+  if(step === 3){
+    stepTitle = 'Cultura da casa';
+    const valores = u.valoresChave || ['Excelência no atendimento','Equipe unida','Cliente em primeiro lugar'];
+    stepBody = `
+      <div class="onb-card">
+        <div class="onb-card-h"><i data-lucide="flame"></i> Quem somos <span class="onb-regra-badge" style="margin-left:auto"><i data-lucide="paperclip" style="width:9px;height:9px;vertical-align:middle"></i> Enviado nos matchs</span></div>
+        <p style="font-family:var(--M);font-size:12px;color:var(--t-secondary);margin:0 0 14px;line-height:1.6">Descreva o espírito da casa. O profissional lê antes do primeiro turno e já chega alinhado com a sua energia.</p>
+        <div class="onb-field">
+          <label class="onb-label">Cultura e ambiente <b>*</b></label>
+          <textarea class="onb-textarea" id="onb_cultura" rows="5" placeholder="Somos um restaurante familiar fundado em 2010 com foco em hospitalidade calorosa…">${escapeHtml(u.cultura||'')}</textarea>
+        </div>
+      </div>
+      <div class="onb-card">
+        <div class="onb-card-h"><i data-lucide="hash"></i> Valores-chave <span class="onb-regra-badge" style="margin-left:auto"><i data-lucide="paperclip" style="width:9px;height:9px;vertical-align:middle"></i> Enviado nos matchs</span></div>
+        <p style="font-family:var(--M);font-size:12px;color:var(--t-secondary);margin:0 0 14px;line-height:1.6">Palavras que definem a identidade da casa. Aparecem como chips no card do profissional.</p>
+        <div class="onb-chips-wrap" id="onb_valores_wrap">
+          ${valores.map((v,i) => `<span class="onb-chip">${escapeHtml(v)}<button class="onb-chip-del" onclick="onbRemoverValor(${i})" type="button">×</button></span>`).join('')}
+        </div>
+        <div class="onb-chip-add">
+          <input class="onb-input" id="onb_valor_input" placeholder="Ex: Hospitalidade" style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();onbAdicionarValor()}">
+          <button class="btn-secondary" type="button" onclick="onbAdicionarValor()"><i data-lucide="plus"></i></button>
+        </div>
+        <input type="hidden" id="onb_valores_data" value="${escapeHtml(JSON.stringify(valores))}">
+      </div>`;
+  }
+
+  if(step === 4){
+    stepTitle = 'Regras da casa';
+    const r = u.regrasPadrao || [];
+    const get = (label) => (r.find(x => x.label === label)||{}).valor || '';
+    stepBody = `
+      <div style="background:linear-gradient(135deg,var(--fhpd),transparent 70%);border:1px solid rgba(0,168,104,.25);border-radius:14px;padding:16px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:flex-start">
+        <i data-lucide="paperclip" style="width:18px;height:18px;color:var(--fhp);flex-shrink:0;margin-top:2px"></i>
+        <div style="font-family:var(--M);font-size:12px;color:var(--t-secondary);line-height:1.6">Estas informações são <b style="color:var(--w)">anexadas automaticamente</b> em cada match. O profissional chega sabendo uniforme, como entrar e com quem falar — sem você precisar repetir a cada vaga.</div>
+      </div>
+      <div class="onb-regra-item">
+        <div class="onb-regra-head">
+          <div class="onb-regra-icon"><i data-lucide="shirt"></i></div>
+          <div>
+            <div class="onb-regra-title">Uniforme</div>
+            <div style="font-size:11px;color:var(--t-tertiary);font-family:var(--M)">O que o profissional deve usar no turno</div>
+          </div>
+          <div class="onb-regra-badge">Anexado nos matchs</div>
+        </div>
+        <textarea class="onb-textarea" id="onb_uniforme" rows="2" placeholder="Ex: Camisa preta lisa · calça jeans ou preta · sapato fechado escuro">${escapeHtml(get('Uniforme'))}</textarea>
+      </div>
+      <div class="onb-regra-item">
+        <div class="onb-regra-head">
+          <div class="onb-regra-icon"><i data-lucide="clock"></i></div>
+          <div>
+            <div class="onb-regra-title">Check-in</div>
+            <div style="font-size:11px;color:var(--t-tertiary);font-family:var(--M)">Horário de chegada e procedimento de entrada</div>
+          </div>
+          <div class="onb-regra-badge">Anexado nos matchs</div>
+        </div>
+        <textarea class="onb-textarea" id="onb_checkin" rows="2" placeholder="Ex: Chegar 15 min antes · registrar PIN no app · comunicar ao gerente de salão">${escapeHtml(get('Chegada'))}</textarea>
+      </div>
+      <div class="onb-regra-item">
+        <div class="onb-regra-head">
+          <div class="onb-regra-icon"><i data-lucide="door-open"></i></div>
+          <div>
+            <div class="onb-regra-title">Acesso ao local</div>
+            <div style="font-size:11px;color:var(--t-tertiary);font-family:var(--M)">Entrada, estacionamento e outras instruções de acesso</div>
+          </div>
+          <div class="onb-regra-badge">Anexado nos matchs</div>
+        </div>
+        <textarea class="onb-textarea" id="onb_acesso" rows="2" placeholder="Ex: Porta lateral (Galpão 2) · estacionamento gratuito na lateral · interfone 02">${escapeHtml(get('Entrada'))}</textarea>
+      </div>
+      <div class="onb-regra-item">
+        <div class="onb-regra-head">
+          <div class="onb-regra-icon"><i data-lucide="user-check"></i></div>
+          <div>
+            <div class="onb-regra-title">Quem procurar</div>
+            <div style="font-size:11px;color:var(--t-tertiary);font-family:var(--M)">Responsável pela recepção e imprevistos no turno</div>
+          </div>
+          <div class="onb-regra-badge">Anexado nos matchs</div>
+        </div>
+        <textarea class="onb-textarea" id="onb_quemprocurar" rows="2" placeholder="Ex: Marina (gerente de salão) · WhatsApp (11) 99999-9999 · responde em até 5 min">${escapeHtml(get('Imprevistos'))}</textarea>
+      </div>`;
+  }
+
+  const content = `
+    <div class="onb-wrap">
+      <div class="onb-head">
+        <button class="onb-back" onclick="location.hash='${backHash}'" type="button"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></button>
+        <div class="onb-head-info">
+          <div class="onb-head-step">Etapa ${step} de 4</div>
+          <div class="onb-head-title">${stepTitle}</div>
+        </div>
+      </div>
+      ${progressBar}
+      ${stepBody}
+      <div class="onb-nav">
+        ${step > 1 ? `<button class="btn-secondary" onclick="location.hash='#/contratante/empresa/editar?step=${step-1}'" type="button"><i data-lucide="arrow-left"></i> Voltar</button>` : '<span></span>'}
+        <button class="btn-primary onb-btn-next" onclick="empSalvarEtapa(${step})" type="button">${nextLabel} ${step < 4 ? '<i data-lucide="arrow-right"></i>' : '<i data-lucide="check"></i>'}</button>
+      </div>
+    </div>`;
+
+  document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'empresa'));
+  refreshIcons();
+
+  // Init contact list if empty on step 2
+  if(step === 2 && (u.contatos||[]).length === 0){
+    onbAdicionarContato();
+  }
+}
+
+function onbContatoItemHTML(c, i){
+  return `<div class="onb-contact-item" id="onb_contato_${i}">
+    <button class="onb-contact-del" onclick="onbRemoverContato(${i})" type="button">×</button>
+    ${i===0?'<div class="onb-contact-principal">✓ Contato principal</div>':''}
+    <div class="onb-row-2" style="margin-bottom:10px">
+      <div class="onb-field" style="margin:0">
+        <label class="onb-label">Nome</label>
+        <input class="onb-input" data-contact="${i}" data-field="nome" value="${escapeHtml(c.nome||'')}" placeholder="Marina Costa">
+      </div>
+      <div class="onb-field" style="margin:0">
+        <label class="onb-label">Cargo</label>
+        <input class="onb-input" data-contact="${i}" data-field="cargo" value="${escapeHtml(c.cargo||'')}" placeholder="Gerente de salão">
+      </div>
+    </div>
+    <div class="onb-row-2">
+      <div class="onb-field" style="margin:0">
+        <label class="onb-label">Telefone / WhatsApp</label>
+        <input class="onb-input" data-contact="${i}" data-field="telefone" value="${escapeHtml(c.telefone||'')}" placeholder="(11) 99999-9999">
+      </div>
+      <div class="onb-field" style="margin:0">
+        <label class="onb-label">E-mail</label>
+        <input class="onb-input" data-contact="${i}" data-field="email" value="${escapeHtml(c.email||'')}" placeholder="marina@casa.com.br">
+      </div>
+    </div>
+  </div>`;
+}
+
+function onbAdicionarContato(){
+  const list = document.getElementById('onb_contatos_list');
+  if(!list) return;
+  const idx = list.querySelectorAll('.onb-contact-item').length;
+  const div = document.createElement('div');
+  div.innerHTML = onbContatoItemHTML({}, idx);
+  list.appendChild(div.firstElementChild);
+  if(window.lucide) lucide.createIcons();
+}
+
+function onbRemoverContato(i){
+  const el = document.getElementById(`onb_contato_${i}`);
+  if(el) el.remove();
+}
+
+function onbAdicionarValor(){
+  const input = document.getElementById('onb_valor_input');
+  const hidden = document.getElementById('onb_valores_data');
+  const wrap = document.getElementById('onb_valores_wrap');
+  if(!input || !hidden || !wrap) return;
+  const val = input.value.trim();
+  if(!val) return;
+  let arr = JSON.parse(hidden.value || '[]');
+  arr.push(val);
+  hidden.value = JSON.stringify(arr);
+  const idx = arr.length - 1;
+  const span = document.createElement('span');
+  span.className = 'onb-chip';
+  span.innerHTML = `${escapeHtml(val)}<button class="onb-chip-del" onclick="onbRemoverValor(${idx})" type="button">×</button>`;
+  wrap.appendChild(span);
+  input.value = '';
+}
+
+function onbRemoverValor(i){
+  const hidden = document.getElementById('onb_valores_data');
+  const wrap = document.getElementById('onb_valores_wrap');
+  if(!hidden || !wrap) return;
+  let arr = JSON.parse(hidden.value || '[]');
+  arr.splice(i, 1);
+  hidden.value = JSON.stringify(arr);
+  wrap.innerHTML = arr.map((v,idx) => `<span class="onb-chip">${escapeHtml(v)}<button class="onb-chip-del" onclick="onbRemoverValor(${idx})" type="button">×</button></span>`).join('');
+}
+
+function empSalvarEtapa(step){
+  const u = Session.user();
+
+  if(step === 1){
+    const v = (id) => (document.getElementById(id)||{}).value || '';
+    u.estabelecimento = v('onb_estabelecimento') || u.estabelecimento;
+    u.segmento = v('onb_segmento') || u.segmento;
+    u.cnpj = v('onb_cnpj') || u.cnpj;
+    u.fundacao = v('onb_fundacao') || u.fundacao;
+    u.funcionarios = parseInt(v('onb_funcionarios')) || u.funcionarios;
+    u.endereco = {
+      logradouro: v('onb_logradouro'),
+      complemento: v('onb_complemento'),
+      bairro: v('onb_bairro'),
+      cep: v('onb_cep'),
+      cidade: v('onb_cidade'),
+      uf: v('onb_uf') || 'SP'
+    };
+    DB.save(db);
+    location.hash = '#/contratante/empresa/editar?step=2';
+  }
+
+  else if(step === 2){
+    const items = document.querySelectorAll('#onb_contatos_list .onb-contact-item');
+    const contatos = Array.from(items).map((el, i) => ({
+      nome:     (el.querySelector('[data-field="nome"]')||{}).value || '',
+      cargo:    (el.querySelector('[data-field="cargo"]')||{}).value || '',
+      telefone: (el.querySelector('[data-field="telefone"]')||{}).value || '',
+      email:    (el.querySelector('[data-field="email"]')||{}).value || '',
+      principal: i === 0
+    })).filter(c => c.nome.trim());
+    u.contatos = contatos;
+    u.turnosOperacao = (document.getElementById('onb_turnosOperacao')||{}).value || u.turnosOperacao;
+    DB.save(db);
+    location.hash = '#/contratante/empresa/editar?step=3';
+  }
+
+  else if(step === 3){
+    u.cultura = (document.getElementById('onb_cultura')||{}).value || u.cultura;
+    try {
+      u.valoresChave = JSON.parse((document.getElementById('onb_valores_data')||{}).value || '[]');
+    } catch(e){}
+    DB.save(db);
+    location.hash = '#/contratante/empresa/editar?step=4';
+  }
+
+  else if(step === 4){
+    const v = (id) => (document.getElementById(id)||{}).value || '';
+    u.regrasPadrao = [
+      {icon:'shirt',      label:'Uniforme',    valor: v('onb_uniforme')    || ''},
+      {icon:'clock',      label:'Chegada',     valor: v('onb_checkin')     || ''},
+      {icon:'door-open',  label:'Entrada',     valor: v('onb_acesso')      || ''},
+      {icon:'user-check', label:'Imprevistos', valor: v('onb_quemprocurar')|| ''},
+    ].filter(r => r.valor.trim());
+    DB.save(db);
+    showToast('Empresa atualizada com sucesso!');
+    location.hash = '#/contratante/empresa';
+  }
 }
 
 // ── Dashboard contratante · COCKPIT ──
