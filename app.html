@@ -4340,6 +4340,24 @@
   }
 
   /* ═══ COCKPIT CONTRATANTE ═══ */
+  /* Saudação */
+  .cp-greeting{text-align:center;padding:28px 0 22px}
+  .cp-greeting-sub{font-family:var(--M);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--t-secondary);margin-bottom:10px}
+  .cp-greeting-q{font-family:var(--F);font-size:clamp(30px,5vw,52px);font-weight:700;letter-spacing:-.5px;line-height:1.1;color:var(--w)}
+  /* Cards draggáveis */
+  .cockpit-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
+  .cp-card{border-radius:18px;background:var(--s1);border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:border-color .2s}
+  .cp-card[data-span="2"]{grid-column:span 2}
+  .cp-card.dragging{opacity:.45;border-color:var(--fhp)!important}
+  .cp-card.drag-target{border-color:var(--fhp)!important;box-shadow:0 0 0 2px rgba(0,168,104,.25)}
+  .cp-drag-handle{cursor:grab;padding:2px 6px;border-radius:6px;color:var(--t-tertiary);font-size:18px;line-height:1;user-select:none;transition:color .15s}
+  .cp-drag-handle:hover{color:var(--fhp)}
+  .cp-drag-handle:active{cursor:grabbing}
+  .cp-card-head{display:flex;align-items:center;gap:8px;padding:14px 18px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .cp-card-title{font-family:var(--F);font-size:13px;font-weight:600;flex:1;display:flex;align-items:center;gap:7px}
+  @media(max-width:860px){.cockpit-cards{grid-template-columns:1fr}.cp-card[data-span="2"]{grid-column:span 1}}
+  @media(max-width:560px){.cp-metrics{grid-template-columns:1fr 1fr}}
+  /* remove regras antigas */
   .cp-identity{display:flex;align-items:center;gap:16px;background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:14px 20px;margin-bottom:20px;flex-wrap:wrap}
   .cp-identity-logo{width:48px;height:48px;border-radius:12px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px}
   .cp-identity-name{font-family:var(--F);font-size:17px;font-weight:600;line-height:1.2}
@@ -4349,9 +4367,7 @@
   .cp-badge-green{background:rgba(0,168,104,.12);border:1px solid rgba(0,168,104,.28);color:var(--fhp)}
   .cp-badge-amber{background:rgba(217,164,65,.12);border:1px solid rgba(217,164,65,.28);color:#D9A441}
 
-  .cockpit-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
-  .cockpit-main{display:flex;flex-direction:column;gap:16px}
-  .cockpit-side{display:flex;flex-direction:column;gap:16px}
+  /* cockpit-grid deprecated → cockpit-cards */
 
   /* Métricas */
   .cp-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -4436,13 +4452,7 @@
   .radio-opt-label{font-size:14px}
   .radio-opt-sub{font-size:11px;color:var(--t-secondary);margin-top:2px}
 
-  @media(max-width:860px){
-    .cockpit-grid{grid-template-columns:1fr}
-    .cockpit-side{grid-row:1}
-  }
-  @media(max-width:560px){
-    .cp-metrics{grid-template-columns:1fr 1fr}
-  }
+  /* responsive já no bloco acima */
   /* ═══ SOCIAL FEED ═══ */
   .feed-compose{background:var(--s1);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px 22px;margin-bottom:28px}
   .feed-compose-textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;font-family:var(--F);font-size:15px;color:var(--w);resize:vertical;min-height:80px;transition:border-color .2s;box-sizing:border-box}
@@ -8071,40 +8081,21 @@ function renderEmpDashboard(){
 
   const pal = paletteFor(u);
 
-  const content = `
-    <!-- ══ SAUDAÇÃO ══ -->
-    <div style="margin-bottom:14px">
-      <h1 class="main-h" style="margin-bottom:4px">${greeting()}, ${escapeHtml(firstName(u.nome))}.</h1>
-      <div class="main-d">Precisando de turnos hoje?</div>
-    </div>
+  const totalCands = vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0);
 
-    <!-- ══ IDENTITY STRIP ══ -->
-    <div class="cp-identity">
-      <div class="cp-identity-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(u)}</div>
-      <div>
-        <div class="cp-identity-name">${escapeHtml(u.estabelecimento)}</div>
-        <div class="cp-identity-meta">${escapeHtml(u.segmento||'Hospitalidade')} · CNPJ ${escapeHtml(u.cnpj||'—')}</div>
+  // cards HTML individuais
+  const cardMetrics = `
+    <div class="cp-card" data-card="metrics" data-span="2" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="bar-chart-2"></i> Métricas do cockpit</div>
       </div>
-      <div class="cp-identity-badge">
-        <span class="cp-badge cp-badge-green">Pagar.me ativo</span>
-        <span class="cp-badge cp-badge-amber">Plano ${escapeHtml(u.plano||'Essencial')}</span>
-        <span style="font-family:var(--M);font-size:11px;color:var(--t-secondary)">${greeting()}, ${escapeHtml(firstName(u.nome))}</span>
-        <a class="btn-secondary" href="#/contratante/empresa" style="padding:6px 14px;font-size:11px"><i data-lucide="edit-3"></i> Editar</a>
-      </div>
-    </div>
-
-    <!-- ══ COCKPIT 2 COLUNAS ══ -->
-    <div class="cockpit-grid">
-
-      <!-- COLUNA PRINCIPAL -->
-      <div class="cockpit-main">
-
-        <!-- Métricas -->
+      <div style="padding:14px">
         <div class="cp-metrics">
           <div class="cp-metric cp-metric-green" onclick="location.hash='#/contratante/vagas'">
             <div class="cp-metric-num">${vagasAbertas.length}</div>
             <div class="cp-metric-label">Vagas abertas</div>
-            <div class="cp-metric-sub">${vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0)} candidatura${vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0)!==1?'s':''} recebida${vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0)!==1?'s':''}</div>
+            <div class="cp-metric-sub">${totalCands} candidatura${totalCands!==1?'s':''} recebida${totalCands!==1?'s':''}</div>
           </div>
           <div class="cp-metric cp-metric-orange" onclick="location.hash='#/contratante/turnos'">
             <div class="cp-metric-num">${turnosAtivos.length + turnosConf.length}</div>
@@ -8113,96 +8104,187 @@ function renderEmpDashboard(){
           </div>
           <div class="cp-metric cp-metric-blue" onclick="location.hash='#/contratante/turnos'">
             <div class="cp-metric-num">${turnosFin.length}</div>
-            <div class="cp-metric-label">Turnos realizados</div>
-            <div class="cp-metric-sub">${fmtMoney(turnosFin.reduce((s,t)=>s+t.valor,0))} pagos via Pix</div>
+            <div class="cp-metric-label">Realizados</div>
+            <div class="cp-metric-sub">${fmtMoney(turnosFin.reduce((s,t)=>s+t.valor,0))} via Pix</div>
           </div>
         </div>
-
-        <!-- Escala da semana -->
-        <div class="cp-escala">
-          <div class="cp-escala-head">
-            <div class="cp-escala-title"><i data-lucide="calendar-days"></i> Escala dos próximos 7 dias</div>
-            <a class="btn-secondary" href="#/contratante/vagas/nova" style="padding:6px 14px;font-size:11px"><i data-lucide="plus"></i> Agendar</a>
-          </div>
-          <div class="cp-escala-body">
-            ${dias7.map(d => escalaDayHTML(d)).join('')}
-          </div>
-        </div>
-
       </div>
+    </div>`;
 
-      <!-- COLUNA LATERAL -->
-      <div class="cockpit-side">
-
-        <!-- Pool de Profissionais TURNI -->
-        <div class="cp-pool">
-          <div class="cp-pool-head">
-            <div class="cp-pool-title"><i data-lucide="users"></i> Pool TURN<span class="di">I</span><span class="de">.</span></div>
-            <span class="cp-pool-ticker">● AO VIVO</span>
-          </div>
-          <div class="cp-pool-body">
-            ${poolSlides.map((slide, idx) => `
-              <div class="cp-pool-slide ${idx===0?'active':''}" data-slide="${idx}">
-                ${slide.map(p => poolProHTML(p)).join('')}
-              </div>`).join('')}
-            <div class="cp-pool-dots">
-              ${poolSlides.map((_,i) => `<div class="cp-pool-dot ${i===0?'active':''}" data-dot="${i}" onclick="poolGoTo(${i})"></div>`).join('')}
-            </div>
-          </div>
-        </div>
-
-        <!-- Publicar no Feed -->
-        <div class="cp-feed">
-          <div class="cp-feed-head">
-            <i data-lucide="rss" style="width:15px;height:15px;color:var(--t-secondary)"></i>
-            <div class="cp-feed-title">Publicar novidade</div>
-          </div>
-          <div class="cp-feed-body">
-            <textarea class="cp-feed-ta" id="cpFeedTa" placeholder="Compartilhe uma novidade com os profissionais da rede…"></textarea>
-            <div class="cp-feed-row">
-              <span style="font-family:var(--M);font-size:10px;color:var(--t-tertiary)">Vai para o feed dos profissionais</span>
-              <button class="btn-primary" onclick="cockpitPublicar()" style="padding:8px 18px;font-size:12px"><i data-lucide="send"></i> Publicar</button>
-            </div>
-            ${meusPostsRecentes.length > 0 ? `
-              <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)">
-                ${meusPostsRecentes.map(p => `
-                  <div style="font-size:12px;color:var(--t-secondary);margin-bottom:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escapeHtml(p.texto)}</div>
-                `).join('')}
-                <a href="#/contratante/novidades" style="font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:1px">Ver todos →</a>
-              </div>` : ''}
-          </div>
-        </div>
-
-        <!-- Favoritos -->
-        <div class="cp-favs">
-          <div class="cp-favs-title"><i data-lucide="star" style="width:14px;height:14px;color:#D9A441"></i> Favoritos · ${favPros.length}</div>
-          ${favPros.length === 0
-            ? `<div class="cp-favs-empty">Marque a ★ nos profissionais do Pool para adicioná-los aqui e usar na publicação de vagas.</div>`
-            : `<div class="cp-favs-grid">
-                ${favPros.map(p => `
-                  <div class="cp-fav-item" onclick="vitrineExpand('${p.id}')">
-                    <div class="cp-fav-star">★</div>
-                    <img class="cp-fav-foto" src="${p.foto}" alt="${escapeHtml(p.nome)}">
-                    <div class="cp-fav-nome">${escapeHtml(firstName(p.nome))}</div>
-                  </div>`).join('')}
-              </div>`}
-          ${favPros.length > 0 ? `<a href="#/contratante/vagas/nova" class="btn-secondary" style="display:inline-flex;margin-top:12px;padding:7px 14px;font-size:11px"><i data-lucide="briefcase"></i> Vaga para favoritos</a>` : ''}
-        </div>
-
+  const cardEscala = `
+    <div class="cp-card" data-card="escala" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="calendar-days"></i> Escala · 7 dias</div>
+        <a class="btn-secondary" href="#/contratante/vagas/nova" style="padding:5px 12px;font-size:11px"><i data-lucide="plus"></i> Agendar</a>
       </div>
+      <div class="cp-escala-body">
+        ${dias7.map(d => escalaDayHTML(d)).join('')}
+      </div>
+    </div>`;
+
+  const cardPool = `
+    <div class="cp-card" data-card="pool" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="users"></i> Pool TURN<span class="di">I</span><span class="de">.</span></div>
+        <span class="cp-pool-ticker">● AO VIVO</span>
+      </div>
+      <div class="cp-pool-body">
+        ${poolSlides.map((slide, idx) => `
+          <div class="cp-pool-slide ${idx===0?'active':''}" data-slide="${idx}">
+            ${slide.map(p => poolProHTML(p)).join('')}
+          </div>`).join('')}
+        <div class="cp-pool-dots">
+          ${poolSlides.map((_,i) => `<div class="cp-pool-dot ${i===0?'active':''}" data-dot="${i}" onclick="poolGoTo(${i})"></div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+
+  const cardFeed = `
+    <div class="cp-card" data-card="feed" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="rss"></i> Publicar novidade</div>
+      </div>
+      <div class="cp-feed-body">
+        <textarea class="cp-feed-ta" id="cpFeedTa" placeholder="Compartilhe uma novidade com os profissionais da rede…"></textarea>
+        <div class="cp-feed-row">
+          <span style="font-family:var(--M);font-size:10px;color:var(--t-tertiary)">Vai para o feed dos profissionais</span>
+          <button class="btn-primary" onclick="cockpitPublicar()" style="padding:8px 18px;font-size:12px"><i data-lucide="send"></i> Publicar</button>
+        </div>
+        ${meusPostsRecentes.length > 0 ? `
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)">
+            ${meusPostsRecentes.map(p => `
+              <div style="font-size:12px;color:var(--t-secondary);margin-bottom:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escapeHtml(p.texto)}</div>
+            `).join('')}
+            <a href="#/contratante/novidades" style="font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:1px">Ver todos →</a>
+          </div>` : ''}
+      </div>
+    </div>`;
+
+  const cardFavs = `
+    <div class="cp-card" data-card="favs" draggable="true">
+      <div class="cp-card-head">
+        <span class="cp-drag-handle" title="Arrastar">⠿</span>
+        <div class="cp-card-title"><i data-lucide="star" style="color:#D9A441"></i> Favoritos · ${favPros.length}</div>
+        ${favPros.length > 0 ? `<a href="#/contratante/vagas/nova" class="btn-secondary" style="padding:5px 12px;font-size:11px"><i data-lucide="briefcase"></i> Vaga</a>` : ''}
+      </div>
+      <div style="padding:14px 18px 16px">
+        ${favPros.length === 0
+          ? `<div class="cp-favs-empty">Marque ★ nos profissionais do Pool para adicioná-los aqui e priorizar em vagas.</div>`
+          : `<div class="cp-favs-grid">${favPros.map(p => `
+              <div class="cp-fav-item" onclick="vitrineExpand('${p.id}')">
+                <div class="cp-fav-star">★</div>
+                <img class="cp-fav-foto" src="${p.foto}" alt="${escapeHtml(p.nome)}">
+                <div class="cp-fav-nome">${escapeHtml(firstName(p.nome))}</div>
+              </div>`).join('')}</div>`}
+      </div>
+    </div>`;
+
+  const content = `
+    <!-- ══ SAUDAÇÃO ══ -->
+    <div class="cp-identity" style="margin-bottom:0;border-bottom:none;padding-bottom:0;background:transparent;border:none">
+      <div class="cp-identity-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(u)}</div>
+      <div>
+        <div class="cp-identity-name">${escapeHtml(u.estabelecimento)}</div>
+        <div class="cp-identity-meta">${escapeHtml(u.segmento||'Hospitalidade')} · CNPJ ${escapeHtml(u.cnpj||'—')}</div>
+      </div>
+      <div class="cp-identity-badge">
+        <span class="cp-badge cp-badge-green">Pagar.me ativo</span>
+        <span class="cp-badge cp-badge-amber">Plano ${escapeHtml(u.plano||'Essencial')}</span>
+        <a class="btn-secondary" href="#/contratante/empresa" style="padding:6px 14px;font-size:11px"><i data-lucide="edit-3"></i> Editar</a>
+      </div>
+    </div>
+
+    <div class="cp-greeting">
+      <div class="cp-greeting-sub">${greeting()} · ${escapeHtml(firstName(u.nome))}</div>
+      <div class="cp-greeting-q">Precisando de turnos, hoje?</div>
+    </div>
+
+    <!-- ══ COCKPIT DRAGGÁVEL ══ -->
+    <div class="cockpit-cards" id="cockpitCards">
+      ${cardMetrics}
+      ${cardEscala}
+      ${cardPool}
+      ${cardFeed}
+      ${cardFavs}
+    </div>
+
+    <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:1px;text-align:center;margin-top:10px;opacity:.5">
+      ⠿ arraste os cards para reorganizar o cockpit · o layout é salvo automaticamente
     </div>
   `;
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'dash'));
   refreshIcons();
+  initCockpitDnD();
 
-  // Pool auto-rotate · limpa timer anterior antes de criar novo
+  // Pool auto-rotate
   clearInterval(window._poolTimer);
   let poolIdx = 0;
   const poolTotal = poolSlides.length;
   if(poolTotal > 1){
     window._poolTimer = setInterval(() => { poolIdx = (poolIdx+1) % poolTotal; poolGoTo(poolIdx); }, 3500);
   }
+}
+
+function initCockpitDnD(){
+  const container = document.getElementById('cockpitCards');
+  if(!container) return;
+
+  // Restaura ordem salva
+  const saved = cockpitLoadOrder();
+  if(saved && saved.length){
+    saved.forEach(id => {
+      const card = container.querySelector(`[data-card="${id}"]`);
+      if(card) container.appendChild(card);
+    });
+  }
+
+  let dragSrc = null;
+  container.querySelectorAll('.cp-card').forEach(card => {
+    card.addEventListener('dragstart', e => {
+      // Só inicia drag pelo handle
+      dragSrc = card;
+      e.dataTransfer.effectAllowed = 'move';
+      requestAnimationFrame(() => card.classList.add('dragging'));
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      container.querySelectorAll('.cp-card').forEach(c => c.classList.remove('drag-target'));
+      cockpitSaveOrder();
+    });
+    card.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if(card !== dragSrc) card.classList.add('drag-target');
+    });
+    card.addEventListener('dragleave', e => {
+      if(!card.contains(e.relatedTarget)) card.classList.remove('drag-target');
+    });
+    card.addEventListener('drop', e => {
+      e.preventDefault();
+      card.classList.remove('drag-target');
+      if(!dragSrc || dragSrc === card) return;
+      const cards = [...container.querySelectorAll('.cp-card')];
+      const srcIdx = cards.indexOf(dragSrc);
+      const tgtIdx = cards.indexOf(card);
+      if(srcIdx < tgtIdx) card.after(dragSrc);
+      else card.before(dragSrc);
+    });
+  });
+}
+
+function cockpitSaveOrder(){
+  const container = document.getElementById('cockpitCards');
+  if(!container) return;
+  const order = [...container.querySelectorAll('.cp-card')].map(c => c.dataset.card);
+  try{ localStorage.setItem('turni_cockpit_order', JSON.stringify(order)); }catch(e){}
+}
+
+function cockpitLoadOrder(){
+  try{ const r = localStorage.getItem('turni_cockpit_order'); return r ? JSON.parse(r) : null; }catch(e){ return null; }
 }
 
 function poolGoTo(idx){
