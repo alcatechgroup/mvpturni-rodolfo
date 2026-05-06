@@ -8305,6 +8305,20 @@ function renderEmpDashboard(){
 
   // ── Vaga Emergencial ──
   const vagaEmerg = vagasAbertas.find(v => v.emergencial) || null;
+  const _ematchPros = vagaEmerg
+    ? db.candidaturas.filter(c => c.vagaId === vagaEmerg.id && c.status === 'pendente')
+        .map(c => db.users.find(p => p.id === c.proId)).filter(Boolean)
+    : [];
+  const emergBtnHTML = vagaEmerg
+    ? `<button class="cp-emerg-btn cp-emerg-btn-active" onclick="location.hash='#/contratante/vaga?id=${vagaEmerg.id}'">
+        <span class="cp-emerg-dot"></span>
+        EMERGENCIAL ATIVA · ${escapeHtml(vagaEmerg.funcao)} · ${_ematchPros.length} candidato${_ematchPros.length!==1?'s':''}
+      </button>
+      <span class="cp-emerg-status"><span class="cp-emerg-dot" style="background:#F0813A"></span>Match IA em curso</span>`
+    : `<button class="cp-emerg-btn" onclick="empAbrirEmergencia()">
+        <i data-lucide="zap" style="width:14px;height:14px"></i>
+        Preciso de alguém agora — Emergencial
+      </button>`;
 
   // ── Notas ──
   if(!db.notas) db.notas = [];
