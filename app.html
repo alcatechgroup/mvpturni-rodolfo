@@ -4339,6 +4339,53 @@
     .agt-quick{padding-left:0}
   }
 
+  /* ═══ SOCIAL FEED ═══ */
+  .feed-compose{background:var(--s1);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px 22px;margin-bottom:28px}
+  .feed-compose-textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;font-family:var(--F);font-size:15px;color:var(--w);resize:vertical;min-height:80px;transition:border-color .2s;box-sizing:border-box}
+  .feed-compose-textarea:focus{outline:none;border-color:rgba(217,164,65,.45)}
+  .feed-compose-link{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 14px;font-family:var(--M);font-size:12px;color:var(--w);margin-top:8px;box-sizing:border-box}
+  .feed-compose-link::placeholder{color:var(--t-tertiary)}
+  .feed-compose-link:focus{outline:none;border-color:rgba(217,164,65,.35)}
+  .feed-compose-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:10px}
+  .feed-compose-char{font-family:var(--M);font-size:11px;color:var(--t-tertiary)}
+  .feed-post{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:20px 22px;margin-bottom:14px;transition:border-color .2s}
+  .feed-post:hover{border-color:rgba(255,255,255,.12)}
+  .feed-post-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .feed-post-logo{width:40px;height:40px;border-radius:12px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px}
+  .feed-post-meta{flex:1}
+  .feed-post-estab{font-family:var(--F);font-size:14px;font-weight:600;margin-bottom:1px}
+  .feed-post-time{font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:1px}
+  .feed-post-text{font-size:15px;line-height:1.6;color:var(--w);margin-bottom:14px}
+  .feed-post-link{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 14px;margin-bottom:14px;text-decoration:none;color:var(--w);transition:background .2s}
+  .feed-post-link:hover{background:rgba(255,255,255,.07)}
+  .feed-post-link-title{font-family:var(--F);font-size:13px;font-weight:500}
+  .feed-post-link-url{font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:.5px;margin-top:2px}
+  .feed-post-actions{display:flex;align-items:center;gap:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+  .feed-like-btn{display:flex;align-items:center;gap:6px;font-family:var(--M);font-size:11px;letter-spacing:1px;color:var(--t-secondary);background:none;border:none;cursor:pointer;padding:4px 0;transition:color .2s}
+  .feed-like-btn.curtido{color:#e05555}
+  .feed-like-btn i{width:14px;height:14px}
+  .feed-like-btn.curtido i{color:#e05555}
+  .feed-empty{text-align:center;padding:48px 20px;color:var(--t-secondary)}
+  .feed-empty i{display:block;margin:0 auto 12px;opacity:.3;width:36px;height:36px}
+  /* Companies list (pro side) */
+  .emp-follow-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:32px}
+  .emp-follow-card{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:18px 20px;display:flex;align-items:center;gap:14px}
+  .emp-follow-logo{width:48px;height:48px;border-radius:14px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px}
+  .emp-follow-info{flex:1;min-width:0}
+  .emp-follow-nome{font-family:var(--F);font-size:14px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .emp-follow-seg{font-size:12px;color:var(--t-secondary)}
+  .follow-btn{font-family:var(--M);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+  .follow-btn.seguindo{background:rgba(0,168,104,.1);border:1px solid rgba(0,168,104,.3);color:var(--fhp)}
+  .follow-btn.nao-seguindo{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--t-secondary)}
+  .follow-btn.nao-seguindo:hover{border-color:rgba(0,168,104,.4);color:var(--fhp)}
+  /* Mini-feed no dashboard do profissional */
+  .mini-feed{margin-bottom:28px}
+  .mini-feed-post{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+  .mini-feed-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .mini-feed-logo{width:32px;height:32px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;overflow:hidden}
+  .mini-feed-estab{font-family:var(--F);font-size:13px;font-weight:600}
+  .mini-feed-time{font-family:var(--M);font-size:10px;color:var(--t-tertiary);margin-left:auto}
+  .mini-feed-text{font-size:13px;line-height:1.55;color:var(--t-secondary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   /* ═══ VITRINE DE PROFISSIONAIS ═══ */
   .vitrine-wrap{margin-bottom:32px}
   .vitrine-eco{display:grid;grid-template-columns:repeat(3,1fr) 2fr;gap:12px;margin-bottom:24px}
@@ -4354,28 +4401,38 @@
   .vitrine-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
   .vf-pill{font-family:var(--M);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--t-secondary);cursor:pointer;transition:all .2s}
   .vf-pill.active,.vf-pill:hover{background:var(--fhp);border-color:var(--fhp);color:#fff}
-  .vitrine-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
-  .vcard{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
-  .vcard:hover{border-color:rgba(0,168,104,.35);transform:translateY(-2px)}
-  .vcard-foto{width:100%;aspect-ratio:1;overflow:hidden}
-  .vcard-foto img{width:100%;height:100%;object-fit:cover;display:block}
-  .vcard-body{padding:12px 14px 8px;flex:1}
-  .vcard-nome{font-family:var(--F);font-size:15px;font-weight:600;margin-bottom:2px}
-  .vcard-funcao{font-size:12px;color:var(--t-secondary);margin-bottom:6px}
-  .vcard-nivel{display:inline-block;font-family:var(--M);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:6px}
+  /* Vitrine compacta — tira de avatares circulares */
+  .vitrine-strip{display:flex;gap:18px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+  .vitrine-strip::-webkit-scrollbar{display:none}
+  .vstripitem{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;width:72px}
+  .vstripitem[style*="none"]{display:none!important}
+  .vstrip-foto{width:64px;height:64px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.08);transition:border-color .2s,transform .2s}
+  .vstripitem:hover .vstrip-foto{border-color:var(--fhp);transform:scale(1.06)}
+  .vstrip-foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .vstrip-nome{font-family:var(--F);font-size:12px;font-weight:600;text-align:center;line-height:1.2;max-width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vstrip-fn{font-family:var(--M);font-size:9px;letter-spacing:.5px;color:var(--t-secondary);text-align:center;max-width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* Modal do card expandido */
+  .vmodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);animation:fadeIn .18s ease}
+  .vmodal-card{background:var(--s2);border:1px solid rgba(255,255,255,.1);border-radius:20px;width:100%;max-width:340px;overflow:hidden;animation:slideUp .22s ease;position:relative}
+  .vmodal-foto{width:100%;aspect-ratio:1;overflow:hidden}
+  .vmodal-foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .vmodal-body{padding:16px 18px 10px}
+  .vmodal-nome{font-family:var(--F);font-size:18px;font-weight:600;margin-bottom:2px}
+  .vmodal-funcao{font-size:13px;color:var(--t-secondary);margin-bottom:8px}
+  .vmodal-nivel{display:inline-block;font-family:var(--M);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 10px;border-radius:999px;margin-bottom:10px}
   .nivel-elite{background:rgba(0,168,104,.15);color:var(--fhp);border:1px solid rgba(0,168,104,.3)}
   .nivel-destaque{background:rgba(248,198,96,.12);color:#F8C860;border:1px solid rgba(248,198,96,.3)}
   .nivel-confiável{background:rgba(100,149,237,.12);color:#7EA8E8;border:1px solid rgba(100,149,237,.25)}
   .nivel-iniciante{background:rgba(255,255,255,.06);color:var(--t-secondary);border:1px solid rgba(255,255,255,.1)}
-  .vcard-score{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--t-secondary);margin-bottom:4px}
-  .vcard-score i{width:12px;height:12px;color:#F8C860}
-  .vcard-bairro{font-size:11px;color:var(--t-tertiary)}
-  .vcard-preco{font-family:var(--M);font-size:10px;color:var(--fhp);margin-top:4px}
-  .vcard-btn{margin:8px 14px 14px;padding:8px;background:rgba(0,168,104,.1);border:1px solid rgba(0,168,104,.25);border-radius:10px;color:var(--fhp);font-family:var(--M);font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:background .2s}
-  .vcard-btn:hover{background:rgba(0,168,104,.2)}
+  .vmodal-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+  .vmodal-meta-item{font-size:12px;color:var(--t-secondary);display:flex;align-items:center;gap:4px}
+  .vmodal-meta-item i{width:12px;height:12px}
+  .vmodal-bio{font-size:13px;line-height:1.55;color:var(--t-secondary);margin-bottom:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07)}
+  .vmodal-actions{display:flex;gap:8px;padding:10px 18px 18px}
+  .vmodal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.45);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  @keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
   @media(max-width:640px){
     .vitrine-eco{grid-template-columns:1fr 1fr}
-    .vitrine-grid{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 </head>
@@ -4534,7 +4591,7 @@ function empLogoHTML(emp){
 
 // ── SEED DATA ──────────────────────────────────────────────────
 // Schema version · incrementar quando o SEED ganhar campos novos · força reseed dos clientes
-const SEED_SCHEMA_VERSION = 3;
+const SEED_SCHEMA_VERSION = 4;
 const SEED = {
   _schemaVersion: SEED_SCHEMA_VERSION,
   // 1 SUPER ADMIN
@@ -4736,6 +4793,36 @@ const SEED = {
      avaliacaoEmp:{stars:5, comment:'Onessta tem padrão exigente e Marina elevou ainda mais. Casa cheia de gente fina e ela conduziu o salão como anfitriã.'},
      avaliacaoPro:{stars:5, comment:'Onessta é boutique. Treinamento sério, gerência cuidadosa com a equipe, todos com voz.'},
      criadoEm:'2026-04-12'}
+  ],
+
+  posts:[
+    {id:'post-1', estabId:'emp-1', tipo:'texto',
+     texto:'Inauguramos a nova carta de pizzas napolitanas · 12 sabores artesanais com ingredientes importados direto da Campânia. Vem provar essa semana!',
+     criadoEm:'2026-05-05T10:30', curtidas:['pro-1','pro-4','pro-6']},
+    {id:'post-2', estabId:'emp-1', tipo:'link',
+     texto:'Bastidores de hoje no Instagram — equipe de forneiros em ação antes da abertura. Orgulho dessa turma!',
+     linkUrl:'https://instagram.com', linkTitle:'@apizzadamooca · Instagram',
+     criadoEm:'2026-05-04T18:15', curtidas:['pro-1','pro-2']},
+    {id:'post-3', estabId:'emp-1', tipo:'texto',
+     texto:'Recebemos menção especial no guia Michelin 2026! Uma honra para toda a equipe — fixos e TURNI. 🏅',
+     criadoEm:'2026-05-02T14:00', curtidas:['pro-1','pro-2','pro-3','pro-5']},
+    {id:'post-4', estabId:'emp-2', tipo:'texto',
+     texto:'Abertura do novo rooftop em junho! 3 andares, carta de drinks autoral, vista 360° para São Paulo. Buscamos profissionais para integrar o time de abertura.',
+     criadoEm:'2026-05-03T16:00', curtidas:['pro-4','pro-6']},
+    {id:'post-5', estabId:'emp-2', tipo:'link',
+     texto:'Cobertura da nossa noite de lançamento do menu degustation pelo Estadão. Muito orgulho do time!',
+     linkUrl:'https://estadao.com.br', linkTitle:'Brasa Prime no Estadão · Reportagem especial',
+     criadoEm:'2026-04-28T20:00', curtidas:['pro-1','pro-4']},
+    {id:'post-6', estabId:'emp-3', tipo:'texto',
+     texto:'Top 10 no São Paulo Cocktail Week 2025! Nosso bartender subiu ao palco com um drink autoral de cachaça envelhecida e cardamomo. Que noite histórica! 🏆',
+     criadoEm:'2026-04-30T22:00', curtidas:['pro-4','pro-6','pro-1']}
+  ],
+
+  follows:[
+    {proId:'pro-1', estabId:'emp-1'},
+    {proId:'pro-1', estabId:'emp-2'},
+    {proId:'pro-4', estabId:'emp-2'},
+    {proId:'pro-6', estabId:'emp-1'}
   ]
 };
 
@@ -4861,8 +4948,10 @@ function route(){
   if(path === '/contratante/pagamentos') return renderEmpFinanceiro(params); // legacy
   if(path === '/contratante/financeiro') return renderEmpFinanceiro(params);
   if(path === '/contratante/atendimento') return renderEmpAtendimento(params);
+  if(path === '/contratante/novidades') return renderEmpNovidades(params);
   if(path === '/profissional') return renderProDashboard(params);
   if(path === '/profissional/feed') return renderProFeed(params);
+  if(path === '/profissional/empresas') return renderProEmpresas(params);
   if(path === '/profissional/vaga') return renderProVagaDetalhe(params);
   if(path === '/profissional/candidaturas') return renderProCandidaturas(params);
   if(path === '/profissional/turnos') return renderProTurnos(params);
@@ -7560,6 +7649,89 @@ function genInsightCardHTML(insight, role){
   `;
 }
 
+// ── NOVIDADES · feed de posts do estabelecimento ──
+function renderEmpNovidades(){
+  const u = Session.user();
+  const meusPosts = (db.posts || []).filter(p => p.estabId === u.id)
+    .sort((a,b) => new Date(b.criadoEm) - new Date(a.criadoEm));
+
+  function postHTML(p){
+    const pal = paletteFor(u);
+    const dt = new Date(p.criadoEm);
+    const timeStr = dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}) + ' · ' + String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+    return `
+      <div class="feed-post" id="fp-${p.id}">
+        <div class="feed-post-head">
+          <div class="feed-post-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(u)}</div>
+          <div class="feed-post-meta">
+            <div class="feed-post-estab">${escapeHtml(u.estabelecimento)}</div>
+            <div class="feed-post-time">${timeStr}</div>
+          </div>
+        </div>
+        <div class="feed-post-text">${escapeHtml(p.texto)}</div>
+        ${p.linkUrl ? `<a class="feed-post-link" href="${escapeHtml(p.linkUrl)}" target="_blank" rel="noopener">
+          <i data-lucide="external-link" style="width:16px;height:16px;flex-shrink:0;opacity:.6"></i>
+          <div><div class="feed-post-link-title">${escapeHtml(p.linkTitle||p.linkUrl)}</div><div class="feed-post-link-url">${escapeHtml(p.linkUrl)}</div></div>
+        </a>` : ''}
+        <div class="feed-post-actions">
+          <span style="font-family:var(--M);font-size:11px;color:var(--t-tertiary);letter-spacing:1px">${p.curtidas.length} curtida${p.curtidas.length!==1?'s':''}</span>
+        </div>
+      </div>`;
+  }
+
+  const content = `
+    <div class="main-head">
+      <div>
+        <h1 class="main-h">Novidades</h1>
+        <div class="main-d">Publique atualizações · seu feed vai para o app dos profissionais que seguem sua empresa</div>
+      </div>
+    </div>
+
+    <div class="feed-compose">
+      <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--t-tertiary);margin-bottom:10px">Nova publicação</div>
+      <textarea class="feed-compose-textarea" id="fcTexto" placeholder="Compartilhe uma novidade, conquista ou oportunidade com os profissionais que seguem sua empresa…" oninput="document.getElementById('fcChar').textContent=this.value.length+'/400'"></textarea>
+      <input class="feed-compose-link" id="fcLink" type="url" placeholder="Link (opcional) · cole a URL de um post de rede social ou matéria">
+      <input class="feed-compose-link" id="fcLinkTitle" type="text" placeholder="Título do link (opcional)" style="margin-top:6px">
+      <div class="feed-compose-row">
+        <span class="feed-compose-char" id="fcChar">0/400</span>
+        <button class="btn-primary" onclick="empPublicar()" style="padding:10px 24px"><i data-lucide="send"></i> Publicar</button>
+      </div>
+    </div>
+
+    <div id="feedList">
+      ${meusPosts.length === 0
+        ? `<div class="feed-empty"><i data-lucide="rss"></i><p>Nenhuma publicação ainda · use o campo acima para criar a primeira</p></div>`
+        : meusPosts.map(postHTML).join('')}
+    </div>
+  `;
+
+  document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'novidades'));
+  refreshIcons();
+}
+
+function empPublicar(){
+  const u = Session.user();
+  const texto = (document.getElementById('fcTexto')?.value || '').trim();
+  const linkUrl = (document.getElementById('fcLink')?.value || '').trim();
+  const linkTitle = (document.getElementById('fcLinkTitle')?.value || '').trim();
+  if(!texto){ alert('Escreva algo para publicar.'); return; }
+  if(texto.length > 400){ alert('Máximo de 400 caracteres.'); return; }
+  if(!db.posts) db.posts = [];
+  const post = {
+    id: 'post-' + Date.now(),
+    estabId: u.id,
+    tipo: linkUrl ? 'link' : 'texto',
+    texto,
+    linkUrl: linkUrl || null,
+    linkTitle: linkTitle || linkUrl || null,
+    criadoEm: new Date().toISOString(),
+    curtidas: []
+  };
+  db.posts.unshift(post);
+  DB.save(db);
+  renderEmpNovidades();
+}
+
 function getNavEmp(u, active){
   const minhasAtivas = db.vagas.filter(v => v.estabId === u.id && v.status === 'aberta');
   const turnosAtivos = db.turnos.filter(t => t.estabId === u.id && t.status === 'ativo');
@@ -7571,6 +7743,7 @@ function getNavEmp(u, active){
     {label:'Turnos', icon:'list', hash:'#/contratante/turnos', count:turnosAtivos.length, active:active==='turnos'},
     {label:'Financeiro', icon:'wallet', hash:'#/contratante/financeiro', active:active==='financeiro'},
     {label:'Empresa', icon:'building-2', hash:'#/contratante/empresa', active:active==='empresa'},
+    {label:'Novidades', icon:'rss', hash:'#/contratante/novidades', active:active==='novidades'},
     {label:'Atendimento', icon:'message-circle', hash:'#/contratante/atendimento', active:active==='atendimento'}
   ];
 }
@@ -7770,14 +7943,14 @@ function renderEmpDashboard(){
         <div class="eco-cta">
           <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,168,104,.6);margin-bottom:6px">Força disponível</div>
           <div class="eco-cta-text">São Paulo · Grande SP</div>
-          <div class="eco-cta-sub" style="margin-top:6px">Talentos prontos para o seu próximo turno · match em minutos</div>
+          <div class="eco-cta-sub" style="margin-top:6px">Talentos prontos para o seu próximo turno</div>
         </div>
       </div>
 
       <div class="vitrine-header">
         <div>
           <h2 class="vitrine-title"><i data-lucide="users"></i> Vitrine de Profissionais</h2>
-          <div class="vitrine-sub">Talentos disponíveis · clique em <b>Convidar</b> para abrir uma vaga</div>
+          <div class="vitrine-sub">Toque em um perfil para ver detalhes e convidar</div>
         </div>
         <a class="btn-secondary" href="#/contratante/vagas/nova"><i data-lucide="plus"></i> Abrir vaga</a>
       </div>
@@ -7790,19 +7963,12 @@ function renderEmpDashboard(){
         }).join('')}
       </div>
 
-      <div class="vitrine-grid" id="vitrineGrid">
+      <div class="vitrine-strip" id="vitrineGrid">
         ${prosAtivos.map(p => `
-          <div class="vcard" data-funcao="${escapeHtml(p.funcao)}">
-            <div class="vcard-foto"><img src="${p.foto}" loading="lazy" alt="${escapeHtml(p.nome)}"></div>
-            <div class="vcard-body">
-              <div class="vcard-nome">${escapeHtml(firstName(p.nome))}</div>
-              <div class="vcard-funcao">${escapeHtml(p.funcao)}${p.funcao2 ? ' · ' + escapeHtml(p.funcao2) : ''}</div>
-              ${p.nivel ? `<div class="vcard-nivel nivel-${p.nivel.toLowerCase().replace('á','a').replace('é','e')}">${escapeHtml(p.nivel)}</div>` : ''}
-              ${p.score ? `<div class="vcard-score"><i data-lucide="star"></i> ${p.score} · ${p.turnos} turnos</div>` : ''}
-              <div class="vcard-bairro"><i data-lucide="map-pin" style="width:10px;height:10px;margin-right:3px"></i>${escapeHtml((p.bairro||'').split('·')[0].trim())}</div>
-              ${p.precoHora ? `<div class="vcard-preco">R$ ${p.precoHora}/h</div>` : ''}
-            </div>
-            <button class="vcard-btn" onclick="location.hash='#/contratante/vagas/nova'">Convidar para turno</button>
+          <div class="vstripitem" data-funcao="${escapeHtml(p.funcao)}" data-proid="${p.id}" onclick="vitrineExpand('${p.id}')">
+            <div class="vstrip-foto"><img src="${p.foto}" loading="lazy" alt="${escapeHtml(p.nome)}"></div>
+            <div class="vstrip-nome">${escapeHtml(firstName(p.nome))}</div>
+            <div class="vstrip-fn">${escapeHtml(p.funcao)}</div>
           </div>
         `).join('')}
       </div>
@@ -7883,9 +8049,48 @@ function renderEmpDashboard(){
 function vitrineFilter(btn, cargo){
   document.querySelectorAll('.vf-pill').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('#vitrineGrid .vcard').forEach(c => {
+  document.querySelectorAll('#vitrineGrid .vstripitem').forEach(c => {
     c.style.display = (cargo === 'todos' || c.dataset.funcao === cargo) ? '' : 'none';
   });
+}
+
+function vitrineExpand(proId){
+  const p = db.users.find(u => u.id === proId);
+  if(!p) return;
+  const nivelKey = (p.nivel||'').toLowerCase().replace('á','a').replace('é','e');
+  const existing = document.getElementById('vitrineModalOverlay');
+  if(existing) existing.remove();
+  const overlay = document.createElement('div');
+  overlay.id = 'vitrineModalOverlay';
+  overlay.className = 'vmodal-overlay';
+  overlay.onclick = function(e){ if(e.target === overlay) vitrineCloseModal(); };
+  overlay.innerHTML = `
+    <div class="vmodal-card">
+      <button class="vmodal-close" onclick="vitrineCloseModal()"><i data-lucide="x" style="width:16px;height:16px"></i></button>
+      <div class="vmodal-foto"><img src="${p.foto}" alt="${escapeHtml(p.nome)}" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="vmodal-body">
+        <div class="vmodal-nome">${escapeHtml(p.nome)}</div>
+        <div class="vmodal-funcao">${escapeHtml(p.funcao)}${p.funcao2?' · '+escapeHtml(p.funcao2):''}${p.funcao3?' · '+escapeHtml(p.funcao3):''}</div>
+        ${p.nivel ? `<div class="vmodal-nivel nivel-${nivelKey}">${escapeHtml(p.nivel)}</div>` : ''}
+        <div class="vmodal-meta">
+          ${p.score ? `<div class="vmodal-meta-item"><i data-lucide="star" style="color:#F8C860"></i> ${p.score} · ${p.turnos} turnos</div>` : ''}
+          ${p.precoHora ? `<div class="vmodal-meta-item"><i data-lucide="banknote"></i> R$ ${p.precoHora}/h</div>` : ''}
+          ${p.bairro ? `<div class="vmodal-meta-item"><i data-lucide="map-pin"></i> ${escapeHtml(p.bairro.split('·')[0].trim())}</div>` : ''}
+          ${p.raio ? `<div class="vmodal-meta-item"><i data-lucide="navigation"></i> raio ${p.raio}km</div>` : ''}
+        </div>
+        ${p.bio ? `<div class="vmodal-bio">${escapeHtml(p.bio)}</div>` : ''}
+      </div>
+      <div class="vmodal-actions">
+        <a class="btn-primary" href="#/contratante/vagas/nova" style="flex:1;text-align:center" onclick="vitrineCloseModal()"><i data-lucide="plus"></i> Convidar para turno</a>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  if(window.lucide) lucide.createIcons();
+}
+
+function vitrineCloseModal(){
+  const el = document.getElementById('vitrineModalOverlay');
+  if(el) el.remove();
 }
 
 function renderVagaRow(v){
@@ -9213,7 +9418,8 @@ function getNavPro(u, active){
     {label:'Feed de vagas', icon:'compass', hash:'#/profissional/feed', active:active==='feed'},
     {label:'Candidaturas', icon:'send', hash:'#/profissional/candidaturas', count:minhasCands, active:active==='cand'},
     {label:'Turnos', icon:'list', hash:'#/profissional/turnos', count:ativosOuConf, active:active==='turnos'},
-    {label:'Financeiro', icon:'wallet', hash:'#/profissional/financeiro', active:active==='financeiro'}
+    {label:'Financeiro', icon:'wallet', hash:'#/profissional/financeiro', active:active==='financeiro'},
+    {label:'Empresas', icon:'building-2', hash:'#/profissional/empresas', active:active==='empresas'}
   ];
 }
 
@@ -9827,6 +10033,40 @@ function renderProDashboard(){
       <a class="btn-primary" href="#/profissional/feed"><i data-lucide="compass"></i> Buscar turnos · ${minhasCandidaturas} candidaturas ativas</a>
       <a class="btn-secondary" href="#/profissional/financeiro"><i data-lucide="wallet"></i> Ver financeiro</a>
     </div>
+
+    ${(() => {
+      if(!db.posts || !db.follows) return '';
+      const seguindo = db.follows.filter(f => f.proId === u.id).map(f => f.estabId);
+      if(seguindo.length === 0) return '';
+      const recentes = db.posts
+        .filter(p => seguindo.includes(p.estabId))
+        .sort((a,b) => new Date(b.criadoEm) - new Date(a.criadoEm))
+        .slice(0, 3);
+      if(recentes.length === 0) return '';
+      return `
+        <div class="mini-feed" style="margin-top:28px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--t-tertiary)">Novidades das empresas que você segue</div>
+            <a href="#/profissional/empresas" style="font-family:var(--M);font-size:10px;letter-spacing:1px;color:var(--fhp)">Ver tudo</a>
+          </div>
+          ${recentes.map(p => {
+            const emp = db.users.find(e => e.id === p.estabId);
+            if(!emp) return '';
+            const pal = paletteFor(emp);
+            const dt = new Date(p.criadoEm);
+            const timeStr = dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});
+            return `
+              <div class="mini-feed-post" onclick="location.hash='#/profissional/empresas'">
+                <div class="mini-feed-head">
+                  <div class="mini-feed-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(emp)}</div>
+                  <div class="mini-feed-estab">${escapeHtml(emp.estabelecimento)}</div>
+                  <div class="mini-feed-time">${timeStr}</div>
+                </div>
+                <div class="mini-feed-text">${escapeHtml(p.texto)}</div>
+              </div>`;
+          }).join('')}
+        </div>`;
+    })()}
   `;
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavPro(u, 'dash'));
@@ -10241,6 +10481,120 @@ function renderProTurnos(){
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavPro(u, 'turnos'));
   refreshIcons();
+}
+
+// ── EMPRESAS · seguir empresas + feed de novidades ──
+function renderProEmpresas(){
+  const u = Session.user();
+  if(!u.ativo){ location.hash='#/profissional'; return; }
+  if(!db.follows) db.follows = [];
+  if(!db.posts) db.posts = [];
+
+  const emps = db.users.filter(e => e.role === 'emp' && e.ativo);
+  const seguindo = new Set(db.follows.filter(f => f.proId === u.id).map(f => f.estabId));
+
+  // Feed: posts de empresas seguidas (ou todas se não segue ninguém)
+  const feedEmps = seguindo.size > 0 ? [...seguindo] : emps.map(e => e.id);
+  const feedPosts = db.posts
+    .filter(p => feedEmps.includes(p.estabId))
+    .sort((a,b) => new Date(b.criadoEm) - new Date(a.criadoEm));
+
+  function empCardHTML(emp){
+    const pal = paletteFor(emp);
+    const isFollowing = seguindo.has(emp.id);
+    const postCount = db.posts.filter(p => p.estabId === emp.id).length;
+    return `
+      <div class="emp-follow-card">
+        <div class="emp-follow-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(emp)}</div>
+        <div class="emp-follow-info">
+          <div class="emp-follow-nome">${escapeHtml(emp.estabelecimento)}</div>
+          <div class="emp-follow-seg">${escapeHtml(emp.segmento||'Hospitalidade')} · ${postCount} publicaç${postCount===1?'ão':'ões'}</div>
+        </div>
+        <button class="follow-btn ${isFollowing?'seguindo':'nao-seguindo'}" onclick="proToggleFollow('${emp.id}')">
+          ${isFollowing ? '<i data-lucide="check"></i> Seguindo' : '+ Seguir'}
+        </button>
+      </div>`;
+  }
+
+  function postCardHTML(p){
+    const emp = db.users.find(e => e.id === p.estabId);
+    if(!emp) return '';
+    const pal = paletteFor(emp);
+    const curtido = (p.curtidas||[]).includes(u.id);
+    const dt = new Date(p.criadoEm);
+    const timeStr = dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}) + ' · ' + String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+    return `
+      <div class="feed-post" id="fp-${p.id}">
+        <div class="feed-post-head">
+          <div class="feed-post-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(emp)}</div>
+          <div class="feed-post-meta">
+            <div class="feed-post-estab">${escapeHtml(emp.estabelecimento)}</div>
+            <div class="feed-post-time">${timeStr}</div>
+          </div>
+        </div>
+        <div class="feed-post-text">${escapeHtml(p.texto)}</div>
+        ${p.linkUrl ? `<a class="feed-post-link" href="${escapeHtml(p.linkUrl)}" target="_blank" rel="noopener">
+          <i data-lucide="external-link" style="width:16px;height:16px;flex-shrink:0;opacity:.6"></i>
+          <div><div class="feed-post-link-title">${escapeHtml(p.linkTitle||p.linkUrl)}</div><div class="feed-post-link-url">${escapeHtml(p.linkUrl)}</div></div>
+        </a>` : ''}
+        <div class="feed-post-actions">
+          <button class="feed-like-btn ${curtido?'curtido':''}" onclick="proCurtir('${p.id}')">
+            <i data-lucide="${curtido?'heart':'heart'}"></i> ${curtido?'Curtido':'Curtir'} · ${(p.curtidas||[]).length}
+          </button>
+        </div>
+      </div>`;
+  }
+
+  const content = `
+    <div class="main-head">
+      <div>
+        <h1 class="main-h">Empresas</h1>
+        <div class="main-d">Siga as empresas que te interessam · acompanhe as novidades no seu feed</div>
+      </div>
+    </div>
+
+    <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--t-tertiary);margin-bottom:12px">
+      ${emps.length} empresas na rede · ${seguindo.size} seguidas
+    </div>
+    <div class="emp-follow-list" id="empFollowList">
+      ${emps.map(empCardHTML).join('')}
+    </div>
+
+    <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--t-tertiary);margin-bottom:14px;padding-top:4px;border-top:1px solid rgba(255,255,255,.07)">
+      ${seguindo.size > 0 ? 'Feed · empresas que você segue' : 'Feed · todas as empresas'} · ${feedPosts.length} publicaç${feedPosts.length===1?'ão':'ões'}
+    </div>
+    <div id="proFeedList">
+      ${feedPosts.length === 0
+        ? `<div class="feed-empty"><i data-lucide="rss"></i><p>Nenhuma novidade por aqui ainda · siga empresas para ver o feed delas</p></div>`
+        : feedPosts.map(postCardHTML).join('')}
+    </div>
+  `;
+
+  document.getElementById('app').innerHTML = shellHTML(u, content, getNavPro(u, 'empresas'));
+  refreshIcons();
+}
+
+function proToggleFollow(estabId){
+  const u = Session.user();
+  if(!db.follows) db.follows = [];
+  const idx = db.follows.findIndex(f => f.proId === u.id && f.estabId === estabId);
+  if(idx >= 0) db.follows.splice(idx, 1);
+  else db.follows.push({proId: u.id, estabId});
+  DB.save(db);
+  renderProEmpresas();
+}
+
+function proCurtir(postId){
+  const u = Session.user();
+  if(!db.posts) return;
+  const post = db.posts.find(p => p.id === postId);
+  if(!post) return;
+  if(!post.curtidas) post.curtidas = [];
+  const idx = post.curtidas.indexOf(u.id);
+  if(idx >= 0) post.curtidas.splice(idx, 1);
+  else post.curtidas.push(u.id);
+  DB.save(db);
+  renderProEmpresas();
 }
 
 // ── Financeiro · painel de controle do que faturou (dia / semana / quinzena / mês) ──
