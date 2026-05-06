@@ -4797,7 +4797,7 @@ function empLogoHTML(emp){
 
 // ── SEED DATA ──────────────────────────────────────────────────
 // Schema version · incrementar quando o SEED ganhar campos novos · força reseed dos clientes
-const SEED_SCHEMA_VERSION = 6;
+const SEED_SCHEMA_VERSION = 7;
 const SEED = {
   _schemaVersion: SEED_SCHEMA_VERSION,
   // 1 SUPER ADMIN
@@ -4813,7 +4813,7 @@ const SEED = {
      estabelecimento:'A Pizza da Mooca', estabelecimentoApelido:'Pizza da Mooca · Mooca',
      cnpj:'12.345.678/0001-90', plano:'Member', avatar:'R',
      logo:'img/10-logo-parceiro-1.png', logoLight:'img/10-logo-parceiro-1.png',
-     foto:'https://i.pravatar.cc/240?img=11', ativo:true, criadoEm:'2026-02-10',
+     foto:'https://i.pravatar.cc/240?img=11', ativo:true, welcomeSeen:true, cadastroCompleto:true, criadoEm:'2026-02-10',
      // Dados completos da empresa
      endereco:{
        logradouro:'Rua da Mooca, 1234',
@@ -8265,12 +8265,14 @@ function renderEmpDashboard(){
 
   // feed: últimos 2 posts do contratante
   if(!db.posts) db.posts = [];
+  if(!db.posts) db.posts = [];
+  if(!db.candidaturas) db.candidaturas = [];
   const meusPostsRecentes = db.posts.filter(p => p.estabId === u.id)
     .sort((a,b)=>new Date(b.criadoEm)-new Date(a.criadoEm)).slice(0,2);
 
   const pal = paletteFor(u);
 
-  const totalCands = vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0);
+  const totalCands = vagasAbertas.reduce((s,v)=>s+(v.candidatos||[]).length,0);
 
   // ── Horas ──
   const horasAbertas = vagasAbertas.reduce((s,v) => s + (new Date(v.dataFim)-new Date(v.dataIni))/3600000, 0);
