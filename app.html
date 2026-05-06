@@ -4339,6 +4339,110 @@
     .agt-quick{padding-left:0}
   }
 
+  /* ═══ COCKPIT CONTRATANTE ═══ */
+  .cp-identity{display:flex;align-items:center;gap:16px;background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:14px 20px;margin-bottom:20px;flex-wrap:wrap}
+  .cp-identity-logo{width:48px;height:48px;border-radius:12px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px}
+  .cp-identity-name{font-family:var(--F);font-size:17px;font-weight:600;line-height:1.2}
+  .cp-identity-meta{font-family:var(--M);font-size:10px;color:var(--t-secondary);letter-spacing:1px;margin-top:2px}
+  .cp-identity-badge{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .cp-badge{font-family:var(--M);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .cp-badge-green{background:rgba(0,168,104,.12);border:1px solid rgba(0,168,104,.28);color:var(--fhp)}
+  .cp-badge-amber{background:rgba(217,164,65,.12);border:1px solid rgba(217,164,65,.28);color:#D9A441}
+
+  .cockpit-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
+  .cockpit-main{display:flex;flex-direction:column;gap:16px}
+  .cockpit-side{display:flex;flex-direction:column;gap:16px}
+
+  /* Métricas */
+  .cp-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .cp-metric{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px 16px;cursor:pointer;transition:border-color .2s,transform .15s}
+  .cp-metric:hover{border-color:rgba(255,255,255,.16);transform:translateY(-1px)}
+  .cp-metric-num{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;margin-bottom:2px}
+  .cp-metric-label{font-family:var(--M);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t-secondary)}
+  .cp-metric-sub{font-size:11px;color:var(--t-tertiary);margin-top:6px}
+  .cp-metric-green .cp-metric-num{color:var(--fhp)}
+  .cp-metric-orange .cp-metric-num{color:var(--orange)}
+  .cp-metric-blue .cp-metric-num{color:#7EA8E8}
+
+  /* Escala cockpit */
+  .cp-escala{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden}
+  .cp-escala-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .cp-escala-title{font-family:var(--F);font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .cp-escala-body{padding:4px 0}
+  .cp-day-row{display:flex;align-items:center;gap:12px;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s}
+  .cp-day-row:last-child{border-bottom:none}
+  .cp-day-row:hover{background:rgba(255,255,255,.025)}
+  .cp-day-label{font-family:var(--M);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--t-secondary);width:34px;flex-shrink:0}
+  .cp-day-date{font-family:var(--M);font-size:11px;color:var(--t-tertiary);width:32px;flex-shrink:0}
+  .cp-day-slots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+  .cp-slot{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:5px 10px;font-size:12px}
+  .cp-slot-ativo{border-color:rgba(255,160,0,.3);background:rgba(255,160,0,.07)}
+  .cp-slot-conf{border-color:rgba(0,168,104,.25);background:rgba(0,168,104,.06)}
+  .cp-slot-foto{width:20px;height:20px;border-radius:50%;object-fit:cover}
+  .cp-day-add{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t-tertiary);transition:all .2s;font-size:18px;line-height:1}
+  .cp-day-add:hover{background:rgba(0,168,104,.1);border-color:var(--fhp);color:var(--fhp)}
+  .cp-day-today .cp-day-label{color:var(--fhp)}
+  .cp-day-today .cp-day-date{color:var(--fhp)}
+
+  /* Pool rotativo */
+  .cp-pool{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden}
+  .cp-pool-head{padding:14px 18px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
+  .cp-pool-title{font-family:var(--F);font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+  .cp-pool-ticker{font-family:var(--M);font-size:9px;color:var(--fhp);letter-spacing:1.5px;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .cp-pool-body{padding:12px 18px 16px}
+  .cp-pool-slide{display:none;animation:fadeIn .3s ease}
+  .cp-pool-slide.active{display:flex;flex-direction:column;gap:10px}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+  .cp-pool-pro{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:border-color .2s}
+  .cp-pool-pro:hover{border-color:rgba(0,168,104,.35)}
+  .cp-pool-foto{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0}
+  .cp-pool-info{flex:1;min-width:0}
+  .cp-pool-nome{font-family:var(--F);font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cp-pool-fn{font-size:11px;color:var(--t-secondary)}
+  .cp-pool-score{font-family:var(--M);font-size:10px;color:var(--fhp);flex-shrink:0}
+  .cp-pool-fav-btn{width:26px;height:26px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+  .cp-pool-fav-btn.favoritado{background:rgba(217,164,65,.15);border-color:rgba(217,164,65,.4)}
+  .cp-pool-fav-btn svg{width:13px;height:13px;color:rgba(255,255,255,.35)}
+  .cp-pool-fav-btn.favoritado svg{color:#D9A441}
+  .cp-pool-dots{display:flex;gap:5px;justify-content:center;margin-top:12px}
+  .cp-pool-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;transition:background .2s}
+  .cp-pool-dot.active{background:var(--fhp)}
+
+  /* Feed cockpit */
+  .cp-feed{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden}
+  .cp-feed-head{padding:14px 18px 12px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
+  .cp-feed-title{font-family:var(--F);font-size:13px;font-weight:600}
+  .cp-feed-body{padding:14px 18px}
+  .cp-feed-ta{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;font-family:var(--F);font-size:13px;color:var(--w);resize:none;height:72px;box-sizing:border-box;transition:border-color .2s}
+  .cp-feed-ta:focus{outline:none;border-color:rgba(217,164,65,.4)}
+  .cp-feed-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px}
+
+  /* Favoritos */
+  .cp-favs{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:16px 18px}
+  .cp-favs-title{font-family:var(--F);font-size:13px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+  .cp-favs-grid{display:flex;gap:10px;flex-wrap:wrap}
+  .cp-fav-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;position:relative}
+  .cp-fav-foto{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(217,164,65,.4)}
+  .cp-fav-nome{font-family:var(--M);font-size:9px;letter-spacing:.3px;color:var(--t-secondary);text-align:center;max-width:48px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cp-fav-star{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:#D9A441;display:flex;align-items:center;justify-content:center;font-size:8px;color:#000}
+  .cp-favs-empty{font-size:12px;color:var(--t-tertiary);font-style:italic}
+
+  /* Audiência da vaga */
+  .radio-group{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+  .radio-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:border-color .2s}
+  .radio-opt:has(input:checked){border-color:rgba(0,168,104,.4);background:rgba(0,168,104,.06)}
+  .radio-opt input{accent-color:var(--fhp);width:16px;height:16px}
+  .radio-opt-label{font-size:14px}
+  .radio-opt-sub{font-size:11px;color:var(--t-secondary);margin-top:2px}
+
+  @media(max-width:860px){
+    .cockpit-grid{grid-template-columns:1fr}
+    .cockpit-side{grid-row:1}
+  }
+  @media(max-width:560px){
+    .cp-metrics{grid-template-columns:1fr 1fr}
+  }
   /* ═══ SOCIAL FEED ═══ */
   .feed-compose{background:var(--s1);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px 22px;margin-bottom:28px}
   .feed-compose-textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;font-family:var(--F);font-size:15px;color:var(--w);resize:vertical;min-height:80px;transition:border-color .2s;box-sizing:border-box}
@@ -4591,7 +4695,7 @@ function empLogoHTML(emp){
 
 // ── SEED DATA ──────────────────────────────────────────────────
 // Schema version · incrementar quando o SEED ganhar campos novos · força reseed dos clientes
-const SEED_SCHEMA_VERSION = 4;
+const SEED_SCHEMA_VERSION = 5;
 const SEED = {
   _schemaVersion: SEED_SCHEMA_VERSION,
   // 1 SUPER ADMIN
@@ -4823,6 +4927,12 @@ const SEED = {
     {proId:'pro-1', estabId:'emp-2'},
     {proId:'pro-4', estabId:'emp-2'},
     {proId:'pro-6', estabId:'emp-1'}
+  ],
+
+  favoritos:[
+    {empId:'emp-1', proId:'pro-1'},
+    {empId:'emp-1', proId:'pro-4'},
+    {empId:'emp-1', proId:'pro-8'}
   ]
 };
 
@@ -4881,6 +4991,7 @@ const Session = {
 
 // ── ROUTER ─────────────────────────────────────────────────────
 function route(){
+  clearInterval(window._poolTimer);
   const hash = (location.hash || '#/login').replace('#','');
   const [path, query] = hash.split('?');
   console.log('[Turni] route ·', path, query || '');
@@ -7881,169 +7992,248 @@ function renderEmpEmpresa(){
   refreshIcons();
 }
 
-// ── Dashboard contratante · CRACHÁ DA EMPRESA (logo + endereço + escala) ──
+// ── Dashboard contratante · COCKPIT ──
 function renderEmpDashboard(){
   const u = Session.user();
   const e = u.endereco || {};
-  const enderecoLinha1 = e.logradouro
-    ? `${escapeHtml(e.logradouro)}${e.complemento?', '+escapeHtml(e.complemento):''}`
-    : 'Endereço não cadastrado';
-  const enderecoLinha2 = e.bairro
-    ? `${escapeHtml(e.bairro)} · ${escapeHtml(e.cidade||'')}/${escapeHtml(e.uf||'')} · CEP ${escapeHtml(e.cep||'—')}`
-    : '';
 
-  const minhasVagas = db.vagas.filter(v => v.estabId === u.id);
-  const minhasAtivas = minhasVagas.filter(v => v.status === 'aberta');
-  const totalCands = minhasAtivas.reduce((s,v)=>s+v.candidatos.length,0);
-  const meusTurnos = db.turnos.filter(t => t.estabId === u.id);
+  // métricas
+  const meusTurnos   = db.turnos.filter(t => t.estabId === u.id);
   const turnosAtivos = meusTurnos.filter(t => t.status === 'ativo');
-  const turnosConfirmados = meusTurnos.filter(t => t.status === 'confirmado');
-  const turnosFinalizados = meusTurnos.filter(t => t.status === 'finalizado');
+  const turnosConf   = meusTurnos.filter(t => t.status === 'confirmado');
+  const turnosFin    = meusTurnos.filter(t => t.status === 'finalizado');
+  const minhasVagas  = db.vagas.filter(v => v.estabId === u.id);
+  const vagasAbertas = minhasVagas.filter(v => v.status === 'aberta');
 
-  // Escala compacta · próximos 5 turnos (ativos + confirmados, ordenados por data)
-  const proximosTurnos = [...turnosAtivos, ...turnosConfirmados]
-    .map(t => ({ t, vaga: db.vagas.find(v => v.id === t.vagaId), pro: db.users.find(x => x.id === t.proId) }))
-    .filter(x => x.vaga)
-    .sort((a,b) => new Date(a.vaga.dataIni) - new Date(b.vaga.dataIni))
-    .slice(0,5);
-
-  const dias = ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
-
+  // pool de profissionais
   const prosAtivos = db.users.filter(p => p.role === 'pro' && p.ativo === true);
-  const totalTurnosEco = prosAtivos.reduce((s, p) => s + (p.turnos || 0), 0);
-  const totalEmps = db.users.filter(u2 => u2.role === 'emp' && u2.ativo).length;
-  const funcoesUnicas = [...new Set(prosAtivos.map(p => p.funcao))].sort();
+
+  // favoritos do contratante
+  if(!db.favoritos) db.favoritos = [];
+  const favSet = new Set(db.favoritos.filter(f => f.empId === u.id).map(f => f.proId));
+  const favPros = prosAtivos.filter(p => favSet.has(p.id));
+
+  // escala: próximos 7 dias com slots
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const dias7 = Array.from({length:7}, (_,i) => { const d = new Date(hoje); d.setDate(hoje.getDate()+i); return d; });
+  const diasSem = ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
+  const escalaTurnos = [...turnosAtivos, ...turnosConf]
+    .map(t => ({ t, vaga: db.vagas.find(v => v.id === t.vagaId), pro: db.users.find(p => p.id === t.proId) }))
+    .filter(x => x.vaga);
+
+  function escalaDayHTML(dia){
+    const fim = new Date(dia); fim.setDate(dia.getDate()+1);
+    const slots = escalaTurnos.filter(x => {
+      const d = new Date(x.vaga.dataIni);
+      return d >= dia && d < fim;
+    });
+    const isHoje = dia.getTime() === hoje.getTime();
+    return `
+      <div class="cp-day-row ${isHoje?'cp-day-today':''}">
+        <div class="cp-day-label">${diasSem[dia.getDay()]}</div>
+        <div class="cp-day-date">${String(dia.getDate()).padStart(2,'0')}/${String(dia.getMonth()+1).padStart(2,'0')}</div>
+        <div class="cp-day-slots">
+          ${slots.map(x => `
+            <div class="cp-slot ${x.t.status==='ativo'?'cp-slot-ativo':'cp-slot-conf'}"
+                 onclick="location.hash='#/contratante/turno?id=${x.t.id}'" style="cursor:pointer">
+              <img class="cp-slot-foto" src="${x.pro?.foto||''}" alt="">
+              <span style="font-size:11px">${escapeHtml(x.pro?firstName(x.pro.nome):'—')} · ${escapeHtml(x.vaga.funcao)}</span>
+            </div>`).join('')}
+        </div>
+        <div class="cp-day-add" onclick="location.hash='#/contratante/vagas/nova'" title="Agendar turno">+</div>
+      </div>`;
+  }
+
+  // Pool: slides de 2 em 2
+  const poolSlides = [];
+  for(let i=0; i<prosAtivos.length; i+=2) poolSlides.push(prosAtivos.slice(i,i+2));
+
+  function poolProHTML(p){
+    const fav = favSet.has(p.id);
+    return `
+      <div class="cp-pool-pro">
+        <img class="cp-pool-foto" src="${p.foto}" alt="${escapeHtml(p.nome)}">
+        <div class="cp-pool-info">
+          <div class="cp-pool-nome">${escapeHtml(p.nome)}</div>
+          <div class="cp-pool-fn">${escapeHtml(p.funcao)}${p.nivel?' · '+escapeHtml(p.nivel):''}</div>
+        </div>
+        ${p.score ? `<div class="cp-pool-score">★ ${p.score}</div>` : ''}
+        <button class="cp-pool-fav-btn ${fav?'favoritado':''}" onclick="empToggleFavorito('${p.id}')" title="${fav?'Remover favorito':'Adicionar favorito'}">
+          <svg viewBox="0 0 24 24" fill="${fav?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+      </div>`;
+  }
+
+  // feed: últimos 2 posts do contratante
+  if(!db.posts) db.posts = [];
+  const meusPostsRecentes = db.posts.filter(p => p.estabId === u.id)
+    .sort((a,b)=>new Date(b.criadoEm)-new Date(a.criadoEm)).slice(0,2);
+
+  const pal = paletteFor(u);
 
   const content = `
-    <div class="main-head">
+    <!-- ══ IDENTITY STRIP ══ -->
+    <div class="cp-identity">
+      <div class="cp-identity-logo" style="background:${pal.bg};color:${pal.text}">${getInitials(u)}</div>
       <div>
-        <h1 class="main-h">${greeting()}, ${escapeHtml(firstName(u.nome))}</h1>
-        <div class="main-d">Crachá da casa · a identidade da ${escapeHtml(u.estabelecimento)} na rede TURN<span class="di">I</span><span class="de">.</span></div>
+        <div class="cp-identity-name">${escapeHtml(u.estabelecimento)}</div>
+        <div class="cp-identity-meta">${escapeHtml(u.segmento||'Hospitalidade')} · CNPJ ${escapeHtml(u.cnpj||'—')}</div>
       </div>
-      <div class="page-actions">
-        <a class="btn-secondary" href="#/contratante/empresa"><i data-lucide="edit-3"></i> Editar identidade</a>
-      </div>
-    </div>
-
-    <!-- ═══ VITRINE DE PROFISSIONAIS ═══ -->
-    <div class="vitrine-wrap">
-      <div class="vitrine-eco">
-        <div class="eco-widget">
-          <div class="eco-num">${prosAtivos.length}</div>
-          <div class="eco-label">Profissionais ativos</div>
-        </div>
-        <div class="eco-widget">
-          <div class="eco-num">${totalEmps}</div>
-          <div class="eco-label">Empresas parceiras</div>
-        </div>
-        <div class="eco-widget">
-          <div class="eco-num">${totalTurnosEco}</div>
-          <div class="eco-label">Turnos realizados</div>
-        </div>
-        <div class="eco-cta">
-          <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,168,104,.6);margin-bottom:6px">Força disponível</div>
-          <div class="eco-cta-text">São Paulo · Grande SP</div>
-          <div class="eco-cta-sub" style="margin-top:6px">Talentos prontos para o seu próximo turno</div>
-        </div>
-      </div>
-
-      <div class="vitrine-header">
-        <div>
-          <h2 class="vitrine-title"><i data-lucide="users"></i> Vitrine de Profissionais</h2>
-          <div class="vitrine-sub">Toque em um perfil para ver detalhes e convidar</div>
-        </div>
-        <a class="btn-secondary" href="#/contratante/vagas/nova"><i data-lucide="plus"></i> Abrir vaga</a>
-      </div>
-
-      <div class="vitrine-filters">
-        <button class="vf-pill active" onclick="vitrineFilter(this,'todos')">Todos <span style="opacity:.5;margin-left:2px">${prosAtivos.length}</span></button>
-        ${funcoesUnicas.map(f => {
-          const count = prosAtivos.filter(p => p.funcao === f).length;
-          return `<button class="vf-pill" onclick="vitrineFilter(this,'${f}')">${escapeHtml(f)} <span style="opacity:.5;margin-left:2px">${count}</span></button>`;
-        }).join('')}
-      </div>
-
-      <div class="vitrine-strip" id="vitrineGrid">
-        ${prosAtivos.map(p => `
-          <div class="vstripitem" data-funcao="${escapeHtml(p.funcao)}" data-proid="${p.id}" onclick="vitrineExpand('${p.id}')">
-            <div class="vstrip-foto"><img src="${p.foto}" loading="lazy" alt="${escapeHtml(p.nome)}"></div>
-            <div class="vstrip-nome">${escapeHtml(firstName(p.nome))}</div>
-            <div class="vstrip-fn">${escapeHtml(p.funcao)}</div>
-          </div>
-        `).join('')}
+      <div class="cp-identity-badge">
+        <span class="cp-badge cp-badge-green">Pagar.me ativo</span>
+        <span class="cp-badge cp-badge-amber">Plano ${escapeHtml(u.plano||'Essencial')}</span>
+        <span style="font-family:var(--M);font-size:11px;color:var(--t-secondary)">${greeting()}, ${escapeHtml(firstName(u.nome))}</span>
+        <a class="btn-secondary" href="#/contratante/empresa" style="padding:6px 14px;font-size:11px"><i data-lucide="edit-3"></i> Editar</a>
       </div>
     </div>
 
-    <!-- ═══ CRACHÁ DA EMPRESA · logo + identidade + endereço ═══ -->
-    <div class="profile">
-      <div class="profile-header">
-        <div class="profile-avatar emp-logo lg" style="width:120px;height:120px;background:transparent;box-shadow:none">${empLogoHTML(u)}</div>
-        <div class="profile-info" style="flex:1">
-          <div class="pn">${escapeHtml(u.estabelecimento)}</div>
-          <div class="ps">${escapeHtml(u.segmento || '—')} · plano ${escapeHtml(u.plano || 'Essencial')}</div>
-          <div class="pd" style="display:flex;flex-direction:column;gap:4px;margin-top:10px">
-            <span style="display:flex;align-items:center;gap:8px"><i data-lucide="map-pin" style="width:14px;height:14px"></i>${enderecoLinha1}</span>
-            ${enderecoLinha2 ? `<span style="display:flex;align-items:center;gap:8px;padding-left:22px;font-size:12px;opacity:.75">${enderecoLinha2}</span>` : ''}
-            <span style="display:flex;align-items:center;gap:8px;margin-top:2px"><i data-lucide="hash" style="width:14px;height:14px"></i>CNPJ ${escapeHtml(u.cnpj||'—')}</span>
+    <!-- ══ COCKPIT 2 COLUNAS ══ -->
+    <div class="cockpit-grid">
+
+      <!-- COLUNA PRINCIPAL -->
+      <div class="cockpit-main">
+
+        <!-- Métricas -->
+        <div class="cp-metrics">
+          <div class="cp-metric cp-metric-green" onclick="location.hash='#/contratante/vagas'">
+            <div class="cp-metric-num">${vagasAbertas.length}</div>
+            <div class="cp-metric-label">Vagas abertas</div>
+            <div class="cp-metric-sub">${vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0)} candidatura${vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0)!==1?'s':''} recebida${vagasAbertas.reduce((s,v)=>s+v.candidatos.length,0)!==1?'s':''}</div>
+          </div>
+          <div class="cp-metric cp-metric-orange" onclick="location.hash='#/contratante/turnos'">
+            <div class="cp-metric-num">${turnosAtivos.length + turnosConf.length}</div>
+            <div class="cp-metric-label">Em andamento</div>
+            <div class="cp-metric-sub">${turnosAtivos.length} ativo${turnosAtivos.length!==1?'s':''} · ${turnosConf.length} confirmado${turnosConf.length!==1?'s':''}</div>
+          </div>
+          <div class="cp-metric cp-metric-blue" onclick="location.hash='#/contratante/turnos'">
+            <div class="cp-metric-num">${turnosFin.length}</div>
+            <div class="cp-metric-label">Turnos realizados</div>
+            <div class="cp-metric-sub">${fmtMoney(turnosFin.reduce((s,t)=>s+t.valor,0))} pagos via Pix</div>
           </div>
         </div>
-      </div>
 
-      <!-- Mini-meta institucional · 1 linha · perfil da casa -->
-      <div class="form-card" style="margin-bottom:0;padding:18px 22px">
-        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-          <div style="flex:1;min-width:160px">
-            <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Operação</div>
-            <div style="font-family:var(--F);font-size:16px;font-weight:500;letter-spacing:-.2px">${escapeHtml(u.turnosOperacao || 'Almoço · Jantar')}</div>
+        <!-- Escala da semana -->
+        <div class="cp-escala">
+          <div class="cp-escala-head">
+            <div class="cp-escala-title"><i data-lucide="calendar-days"></i> Escala dos próximos 7 dias</div>
+            <a class="btn-secondary" href="#/contratante/vagas/nova" style="padding:6px 14px;font-size:11px"><i data-lucide="plus"></i> Agendar</a>
           </div>
-          <div style="flex:1;min-width:140px">
-            <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Fundação</div>
-            <div style="font-family:var(--F);font-size:16px;font-weight:500;letter-spacing:-.2px">${escapeHtml(u.fundacao || '—')}</div>
-          </div>
-          <div style="flex:1;min-width:140px">
-            <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Time</div>
-            <div style="font-family:var(--F);font-size:16px;font-weight:500;letter-spacing:-.2px">${u.funcionarios||'—'} pessoas</div>
-          </div>
-          <div style="flex:1;min-width:140px">
-            <div style="font-family:var(--M);font-size:10px;color:var(--t-tertiary);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Pagamento</div>
-            <div style="font-family:var(--F);font-size:16px;font-weight:500;color:var(--fhp)">Pagar.me ATIVO</div>
+          <div class="cp-escala-body">
+            ${dias7.map(d => escalaDayHTML(d)).join('')}
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ═══ A CASA EM MOVIMENTO · próximos turnos como identidade viva ═══ -->
-    <div class="section" style="margin-top:18px">
-      <div class="section-h">
-        <h2><i data-lucide="calendar"></i> A casa em movimento</h2>
-        <span class="meta">próximos turnos · ${proximosTurnos.length} agendado${proximosTurnos.length!==1?'s':''}</span>
       </div>
-      <div class="section-body hist-list">
-        ${proximosTurnos.length === 0 ? `
-          <div class="empty"><i data-lucide="moon"></i><p>Sua escala ainda está em silêncio · vá em <b>Vagas</b> quando quiser convocar reforço</p></div>
-        ` : proximosTurnos.map(({t, vaga, pro}) => {
-          const dataIni = t.checkIn ? new Date(t.checkIn) : new Date(vaga.dataIni);
-          const isAtivo = t.status === 'ativo';
-          return `
-            <div class="hist-row" onclick="location.hash='#/contratante/turno?id=${t.id}'">
-              <div class="hist-data">
-                <div class="hist-data-d">${dias[dataIni.getDay()]} ${dataIni.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}</div>
-                <div class="hist-data-y">${String(dataIni.getHours()).padStart(2,'0')}:${String(dataIni.getMinutes()).padStart(2,'0')}</div>
-              </div>
-              <div class="hist-info">
-                <div class="hist-fn">${escapeHtml(vaga.funcao||'—')} · <span class="hist-emp">${escapeHtml(pro?.nome||'—')}</span></div>
-                <div class="hist-fb"><i data-lucide="${isAtivo?'play-circle':'check-circle'}" style="color:var(--${isAtivo?'orange':'fhp'})"></i> ${isAtivo?'Em curso':'Confirmado'}</div>
-              </div>
-              <div class="hist-valor">${fmtMoney(t.valor)}</div>
+
+      <!-- COLUNA LATERAL -->
+      <div class="cockpit-side">
+
+        <!-- Pool de Profissionais TURNI -->
+        <div class="cp-pool">
+          <div class="cp-pool-head">
+            <div class="cp-pool-title"><i data-lucide="users"></i> Pool TURN<span class="di">I</span><span class="de">.</span></div>
+            <span class="cp-pool-ticker">● AO VIVO</span>
+          </div>
+          <div class="cp-pool-body">
+            ${poolSlides.map((slide, idx) => `
+              <div class="cp-pool-slide ${idx===0?'active':''}" data-slide="${idx}">
+                ${slide.map(p => poolProHTML(p)).join('')}
+              </div>`).join('')}
+            <div class="cp-pool-dots">
+              ${poolSlides.map((_,i) => `<div class="cp-pool-dot ${i===0?'active':''}" data-dot="${i}" onclick="poolGoTo(${i})"></div>`).join('')}
             </div>
-          `;
-        }).join('')}
+          </div>
+        </div>
+
+        <!-- Publicar no Feed -->
+        <div class="cp-feed">
+          <div class="cp-feed-head">
+            <i data-lucide="rss" style="width:15px;height:15px;color:var(--t-secondary)"></i>
+            <div class="cp-feed-title">Publicar novidade</div>
+          </div>
+          <div class="cp-feed-body">
+            <textarea class="cp-feed-ta" id="cpFeedTa" placeholder="Compartilhe uma novidade com os profissionais da rede…"></textarea>
+            <div class="cp-feed-row">
+              <span style="font-family:var(--M);font-size:10px;color:var(--t-tertiary)">Vai para o feed dos profissionais</span>
+              <button class="btn-primary" onclick="cockpitPublicar()" style="padding:8px 18px;font-size:12px"><i data-lucide="send"></i> Publicar</button>
+            </div>
+            ${meusPostsRecentes.length > 0 ? `
+              <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)">
+                ${meusPostsRecentes.map(p => `
+                  <div style="font-size:12px;color:var(--t-secondary);margin-bottom:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escapeHtml(p.texto)}</div>
+                `).join('')}
+                <a href="#/contratante/novidades" style="font-family:var(--M);font-size:10px;color:var(--fhp);letter-spacing:1px">Ver todos →</a>
+              </div>` : ''}
+          </div>
+        </div>
+
+        <!-- Favoritos -->
+        <div class="cp-favs">
+          <div class="cp-favs-title"><i data-lucide="star" style="width:14px;height:14px;color:#D9A441"></i> Favoritos · ${favPros.length}</div>
+          ${favPros.length === 0
+            ? `<div class="cp-favs-empty">Marque a ★ nos profissionais do Pool para adicioná-los aqui e usar na publicação de vagas.</div>`
+            : `<div class="cp-favs-grid">
+                ${favPros.map(p => `
+                  <div class="cp-fav-item" onclick="vitrineExpand('${p.id}')">
+                    <div class="cp-fav-star">★</div>
+                    <img class="cp-fav-foto" src="${p.foto}" alt="${escapeHtml(p.nome)}">
+                    <div class="cp-fav-nome">${escapeHtml(firstName(p.nome))}</div>
+                  </div>`).join('')}
+              </div>`}
+          ${favPros.length > 0 ? `<a href="#/contratante/vagas/nova" class="btn-secondary" style="display:inline-flex;margin-top:12px;padding:7px 14px;font-size:11px"><i data-lucide="briefcase"></i> Vaga para favoritos</a>` : ''}
+        </div>
+
       </div>
     </div>
   `;
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'dash'));
   refreshIcons();
+
+  // Pool auto-rotate · limpa timer anterior antes de criar novo
+  clearInterval(window._poolTimer);
+  let poolIdx = 0;
+  const poolTotal = poolSlides.length;
+  if(poolTotal > 1){
+    window._poolTimer = setInterval(() => { poolIdx = (poolIdx+1) % poolTotal; poolGoTo(poolIdx); }, 3500);
+  }
+}
+
+function poolGoTo(idx){
+  document.querySelectorAll('.cp-pool-slide').forEach((el,i) => el.classList.toggle('active', i===idx));
+  document.querySelectorAll('.cp-pool-dot').forEach((el,i) => el.classList.toggle('active', i===idx));
+}
+
+function empToggleFavorito(proId){
+  if(!db.favoritos) db.favoritos = [];
+  const u = Session.user();
+  const idx = db.favoritos.findIndex(f => f.empId === u.id && f.proId === proId);
+  if(idx >= 0) db.favoritos.splice(idx, 1);
+  else db.favoritos.push({empId: u.id, proId});
+  DB.save(db);
+  // Se estiver no cockpit, re-renderiza; se no modal, só atualiza o botão
+  const btn = document.querySelector(`.cp-pool-fav-btn`);
+  if(document.getElementById('vitrineModalOverlay') || btn){
+    clearInterval(window._poolTimer);
+    renderEmpDashboard();
+  }
+}
+
+function cockpitPublicar(){
+  const u = Session.user();
+  const ta = document.getElementById('cpFeedTa');
+  const texto = (ta?.value||'').trim();
+  if(!texto){ showToast('Escreva algo para publicar','error'); return; }
+  if(texto.length > 400){ showToast('Máximo 400 caracteres','error'); return; }
+  if(!db.posts) db.posts = [];
+  db.posts.unshift({
+    id:'post-'+Date.now(), estabId:u.id, tipo:'texto', texto,
+    linkUrl:null, linkTitle:null, criadoEm:new Date().toISOString(), curtidas:[]
+  });
+  DB.save(db);
+  showToast('Novidade publicada · profissionais já podem ver no feed');
+  clearInterval(window._poolTimer);
+  renderEmpDashboard();
 }
 
 function vitrineFilter(btn, cargo){
@@ -8407,6 +8597,25 @@ function renderEmpVagaNova(){
               <label>Observações (opcional)</label>
               <textarea id="f-obs" placeholder="Uniforme escuro · entrada pelo portão lateral · pergunte por Roberto">${escapeHtml(obsDef)}</textarea>
             </div>
+            <div class="field full">
+              <label>Divulgar vaga para</label>
+              <div class="radio-group">
+                <label class="radio-opt">
+                  <input type="radio" name="audiencia" value="todos" checked>
+                  <div>
+                    <div class="radio-opt-label">Todos os profissionais disponíveis</div>
+                    <div class="radio-opt-sub">A vaga aparece no feed de todos com a função compatível</div>
+                  </div>
+                </label>
+                <label class="radio-opt">
+                  <input type="radio" name="audiencia" value="favoritos">
+                  <div>
+                    <div class="radio-opt-label">Apenas meus favoritos ★</div>
+                    <div class="radio-opt-sub">Somente os profissionais marcados como favorito recebem esta vaga</div>
+                  </div>
+                </label>
+              </div>
+            </div>
           </div>
           <div class="wiz-summary" id="wizSummary"></div>
         </div>
@@ -8526,6 +8735,8 @@ function createVaga(e){
   const valorHora = parseFloat(document.getElementById('f-valorHora').value);
   const vagas = parseInt(document.getElementById('f-vagas').value);
   const obs = document.getElementById('f-obs').value.trim();
+  const audienciaEl = document.querySelector('input[name="audiencia"]:checked');
+  const audiencia = audienciaEl ? audienciaEl.value : 'todos';
 
   const ini = new Date(dataIni);
   const fim = new Date(dataFim);
@@ -8543,6 +8754,7 @@ function createVaga(e){
     vagas,
     candidatos: [],
     status: 'aberta',
+    audiencia,
     obs: obs || null,
     criadoEm: new Date().toISOString()
   };
@@ -10164,7 +10376,15 @@ function renderProFeed(params){
   const filter = params.f || 'todas';
 
   // Pool: vagas abertas com vaga.vagas > 0
-  const pool = db.vagas.filter(v => v.status === 'aberta' && v.vagas > 0);
+  // Filtra vagas com audiencia='favoritos' para só mostrar ao profissional se ele for favorito do contratante
+  if(!db.favoritos) db.favoritos = [];
+  const pool = db.vagas.filter(v => {
+    if(v.status !== 'aberta' || v.vagas <= 0) return false;
+    if(v.audiencia === 'favoritos'){
+      return db.favoritos.some(f => f.empId === v.estabId && f.proId === u.id);
+    }
+    return true;
+  });
   const enriched = pool.map(v => ({v, match: calcMatch(u, v), candidatou: v.candidatos.includes(u.id)}));
 
   // Função primária + extras (funcao2, funcao3) entram no filtro "minha função"
