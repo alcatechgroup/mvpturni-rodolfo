@@ -4338,6 +4338,45 @@
     .agt-chat{padding:16px 14px}
     .agt-quick{padding-left:0}
   }
+
+  /* ═══ VITRINE DE PROFISSIONAIS ═══ */
+  .vitrine-wrap{margin-bottom:32px}
+  .vitrine-eco{display:grid;grid-template-columns:repeat(3,1fr) 2fr;gap:12px;margin-bottom:24px}
+  .eco-widget{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:20px 18px}
+  .eco-num{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:var(--fhp)}
+  .eco-label{font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--t-secondary);margin-top:4px}
+  .eco-cta{background:linear-gradient(135deg,rgba(0,168,104,.12),rgba(0,168,104,.04));border:1px solid rgba(0,168,104,.25);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
+  .eco-cta-text{font-family:var(--F);font-size:18px;font-weight:600;color:var(--fhp);margin-bottom:4px}
+  .eco-cta-sub{font-size:12px;color:var(--t-secondary)}
+  .vitrine-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .vitrine-title{font-family:var(--F);font-size:18px;font-weight:600;display:flex;align-items:center;gap:8px;margin:0}
+  .vitrine-sub{font-size:12px;color:var(--t-secondary);margin-top:3px}
+  .vitrine-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .vf-pill{font-family:var(--M);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--t-secondary);cursor:pointer;transition:all .2s}
+  .vf-pill.active,.vf-pill:hover{background:var(--fhp);border-color:var(--fhp);color:#fff}
+  .vitrine-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+  .vcard{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+  .vcard:hover{border-color:rgba(0,168,104,.35);transform:translateY(-2px)}
+  .vcard-foto{width:100%;aspect-ratio:1;overflow:hidden}
+  .vcard-foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .vcard-body{padding:12px 14px 8px;flex:1}
+  .vcard-nome{font-family:var(--F);font-size:15px;font-weight:600;margin-bottom:2px}
+  .vcard-funcao{font-size:12px;color:var(--t-secondary);margin-bottom:6px}
+  .vcard-nivel{display:inline-block;font-family:var(--M);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:6px}
+  .nivel-elite{background:rgba(0,168,104,.15);color:var(--fhp);border:1px solid rgba(0,168,104,.3)}
+  .nivel-destaque{background:rgba(248,198,96,.12);color:#F8C860;border:1px solid rgba(248,198,96,.3)}
+  .nivel-confiável{background:rgba(100,149,237,.12);color:#7EA8E8;border:1px solid rgba(100,149,237,.25)}
+  .nivel-iniciante{background:rgba(255,255,255,.06);color:var(--t-secondary);border:1px solid rgba(255,255,255,.1)}
+  .vcard-score{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--t-secondary);margin-bottom:4px}
+  .vcard-score i{width:12px;height:12px;color:#F8C860}
+  .vcard-bairro{font-size:11px;color:var(--t-tertiary)}
+  .vcard-preco{font-family:var(--M);font-size:10px;color:var(--fhp);margin-top:4px}
+  .vcard-btn{margin:8px 14px 14px;padding:8px;background:rgba(0,168,104,.1);border:1px solid rgba(0,168,104,.25);border-radius:10px;color:var(--fhp);font-family:var(--M);font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:background .2s}
+  .vcard-btn:hover{background:rgba(0,168,104,.2)}
+  @media(max-width:640px){
+    .vitrine-eco{grid-template-columns:1fr 1fr}
+    .vitrine-grid{grid-template-columns:repeat(2,1fr)}
+  }
 </style>
 </head>
 <body>
@@ -7697,6 +7736,11 @@ function renderEmpDashboard(){
 
   const dias = ['DOM','SEG','TER','QUA','QUI','SEX','SÁB'];
 
+  const prosAtivos = db.users.filter(p => p.role === 'pro' && p.ativo === true);
+  const totalTurnosEco = prosAtivos.reduce((s, p) => s + (p.turnos || 0), 0);
+  const totalEmps = db.users.filter(u2 => u2.role === 'emp' && u2.ativo).length;
+  const funcoesUnicas = [...new Set(prosAtivos.map(p => p.funcao))].sort();
+
   const content = `
     <div class="main-head">
       <div>
@@ -7705,6 +7749,62 @@ function renderEmpDashboard(){
       </div>
       <div class="page-actions">
         <a class="btn-secondary" href="#/contratante/empresa"><i data-lucide="edit-3"></i> Editar identidade</a>
+      </div>
+    </div>
+
+    <!-- ═══ VITRINE DE PROFISSIONAIS ═══ -->
+    <div class="vitrine-wrap">
+      <div class="vitrine-eco">
+        <div class="eco-widget">
+          <div class="eco-num">${prosAtivos.length}</div>
+          <div class="eco-label">Profissionais ativos</div>
+        </div>
+        <div class="eco-widget">
+          <div class="eco-num">${totalEmps}</div>
+          <div class="eco-label">Empresas parceiras</div>
+        </div>
+        <div class="eco-widget">
+          <div class="eco-num">${totalTurnosEco}</div>
+          <div class="eco-label">Turnos realizados</div>
+        </div>
+        <div class="eco-cta">
+          <div style="font-family:var(--M);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,168,104,.6);margin-bottom:6px">Força disponível</div>
+          <div class="eco-cta-text">São Paulo · Grande SP</div>
+          <div class="eco-cta-sub" style="margin-top:6px">Talentos prontos para o seu próximo turno · match em minutos</div>
+        </div>
+      </div>
+
+      <div class="vitrine-header">
+        <div>
+          <h2 class="vitrine-title"><i data-lucide="users"></i> Vitrine de Profissionais</h2>
+          <div class="vitrine-sub">Talentos disponíveis · clique em <b>Convidar</b> para abrir uma vaga</div>
+        </div>
+        <a class="btn-secondary" href="#/contratante/vagas/nova"><i data-lucide="plus"></i> Abrir vaga</a>
+      </div>
+
+      <div class="vitrine-filters">
+        <button class="vf-pill active" onclick="vitrineFilter(this,'todos')">Todos <span style="opacity:.5;margin-left:2px">${prosAtivos.length}</span></button>
+        ${funcoesUnicas.map(f => {
+          const count = prosAtivos.filter(p => p.funcao === f).length;
+          return `<button class="vf-pill" onclick="vitrineFilter(this,'${f}')">${escapeHtml(f)} <span style="opacity:.5;margin-left:2px">${count}</span></button>`;
+        }).join('')}
+      </div>
+
+      <div class="vitrine-grid" id="vitrineGrid">
+        ${prosAtivos.map(p => `
+          <div class="vcard" data-funcao="${escapeHtml(p.funcao)}">
+            <div class="vcard-foto"><img src="${p.foto}" loading="lazy" alt="${escapeHtml(p.nome)}"></div>
+            <div class="vcard-body">
+              <div class="vcard-nome">${escapeHtml(firstName(p.nome))}</div>
+              <div class="vcard-funcao">${escapeHtml(p.funcao)}${p.funcao2 ? ' · ' + escapeHtml(p.funcao2) : ''}</div>
+              ${p.nivel ? `<div class="vcard-nivel nivel-${p.nivel.toLowerCase().replace('á','a').replace('é','e')}">${escapeHtml(p.nivel)}</div>` : ''}
+              ${p.score ? `<div class="vcard-score"><i data-lucide="star"></i> ${p.score} · ${p.turnos} turnos</div>` : ''}
+              <div class="vcard-bairro"><i data-lucide="map-pin" style="width:10px;height:10px;margin-right:3px"></i>${escapeHtml((p.bairro||'').split('·')[0].trim())}</div>
+              ${p.precoHora ? `<div class="vcard-preco">R$ ${p.precoHora}/h</div>` : ''}
+            </div>
+            <button class="vcard-btn" onclick="location.hash='#/contratante/vagas/nova'">Convidar para turno</button>
+          </div>
+        `).join('')}
       </div>
     </div>
 
@@ -7778,6 +7878,14 @@ function renderEmpDashboard(){
 
   document.getElementById('app').innerHTML = shellHTML(u, content, getNavEmp(u, 'dash'));
   refreshIcons();
+}
+
+function vitrineFilter(btn, cargo){
+  document.querySelectorAll('.vf-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#vitrineGrid .vcard').forEach(c => {
+    c.style.display = (cargo === 'todos' || c.dataset.funcao === cargo) ? '' : 'none';
+  });
 }
 
 function renderVagaRow(v){
