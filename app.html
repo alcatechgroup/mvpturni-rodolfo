@@ -4914,10 +4914,10 @@
   .mt-offline{position:fixed;left:0;right:0;top:0;z-index:9999;background:#16151A;color:#fff;font:600 14px/1.4 Inter,system-ui,sans-serif;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));text-align:center;display:none}
   .mt-offline.on{display:block}
   .zlist .zmatch.mid{color:#8A6410}
-  /* campo de senha dentro do drawer da demo */
-  .login-demo-pwd{display:flex;flex-direction:column;gap:6px;margin:4px 0 14px}
-  .login-demo-pwd[hidden]{display:none}
-  .login-demo-pwd label{font-size:12px;font-weight:600;color:var(--t2,#5c5866)}
+  /* persona da demo selecionada · login pré-preenchido */
+  .login-demo-row.selected{border-color:var(--orange);background:rgba(234,91,12,.08)}
+  .login-form-cta.pulse-cta{animation:mtPulseCta 1.2s ease 2}
+  @keyframes mtPulseCta{0%,100%{box-shadow:0 0 0 0 rgba(234,91,12,.5)}50%{box-shadow:0 0 0 8px rgba(234,91,12,0)}}
 </style>
 </head>
 <body>
@@ -6559,7 +6559,7 @@ function renderLogin(params){
       u.ativo ? `${escapeHtml(u.funcao||'')} · ${escapeHtml(u.nivel||'')} · ${(u.score||0).toFixed(1)}★ · ${u.turnos||0} turnos` :
       `${escapeHtml(u.funcao||'')} · cadastro pendente`;
     return `
-      <div class="login-demo-row ${cls}" onclick="demoLogin('${u.id}')">
+      <div class="login-demo-row ${cls}" data-id="${u.id}" onclick="demoLogin('${u.id}')">
         <div class="login-demo-avatar">${avatarHTML(u)}</div>
         <div class="login-demo-info">
           <div class="login-demo-name">${escapeHtml(u.nome)}</div>
@@ -6647,10 +6647,6 @@ function renderLogin(params){
               <i data-lucide="chevron-down"></i>
             </button>
             <div class="login-demo-content">
-              <div class="login-demo-pwd" id="demoPwdRow" ${window.demoUnlocked && window.demoUnlocked() ? 'hidden' : ''}>
-                <label for="demoPwd">Senha da demo</label>
-                <input type="password" id="demoPwd" class="login-form-input" placeholder="digite a senha e escolha uma persona" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();demoUnlockFromDrawer()}">
-              </div>
               <div class="login-demo-tabs">
                 <div class="login-demo-tab ${initialTab==='all'?'active':''}" onclick="filterDemoPersonas('all', this)">Todas <span class="badge">${db.users.length}</span></div>
                 <div class="login-demo-tab ${initialTab==='emp'?'active':''}" onclick="filterDemoPersonas('emp', this)">Contratantes <span class="badge">${emps.length}</span></div>
@@ -6695,31 +6691,31 @@ function renderLogin(params){
 
   window.demoGate = function(){
     if(window.demoUnlocked()) return true;
-    const fDemo = document.getElementById('demoPwd');
     const fLogin = document.getElementById('loginPwd');
-    const pwd = (fDemo?.value || fLogin?.value || '').trim();
+    const pwd = (fLogin?.value || '').trim();
     if(pwd === DEMO_PASSWORD){
       try { sessionStorage.setItem('turni_demo_ok','1'); } catch(e){}
       return true;
     }
-    const alvo = fDemo || fLogin;
     showToast(pwd ? 'Senha da demo incorreta' : 'Digite a senha da demo para entrar', 'error');
-    alvo?.focus();
+    fLogin?.focus();
     return false;
   };
 
-  // Login por persona (drawer da demo) · passa pelo mesmo gate
+  // Persona da demo · preenche e-mail e senha; o usuário só clica em Entrar
   window.demoLogin = function(id){
-    if(!window.demoGate()) return;
-    login(id);
-  };
-
-  // Enter no campo da demo · libera e esconde o campo
-  window.demoUnlockFromDrawer = function(){
-    if(!window.demoGate()) return;
-    const row = document.getElementById('demoPwdRow');
-    if(row) row.hidden = true;
-    showToast('Demo liberada · escolha uma persona');
+    const u = db.users.find(x => x.id === id);
+    const fEmail = document.getElementById('loginEmail');
+    const fPwd = document.getElementById('loginPwd');
+    if(!u || !fEmail || !fPwd) return;
+    fEmail.value = u.email || '';
+    fPwd.value = DEMO_PASSWORD;
+    document.querySelectorAll('.login-demo-row.selected').forEach(r => r.classList.remove('selected'));
+    document.querySelector(`.login-demo-row[data-id="${id}"]`)?.classList.add('selected');
+    const cta = document.querySelector('#loginForm .login-form-cta');
+    document.getElementById('loginForm')?.scrollIntoView({behavior:'smooth', block:'center'});
+    if(cta){ cta.classList.remove('pulse-cta'); void cta.offsetWidth; cta.classList.add('pulse-cta'); cta.focus({preventScroll:true}); }
+    showToast(`${u.nome.split(' ')[0]} · clique em Entrar`);
   };
 
   // Login por e-mail + senha · busca user no SEED
