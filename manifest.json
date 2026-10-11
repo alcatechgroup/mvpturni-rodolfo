@@ -2,7 +2,7 @@
   "name": "MatchTurno · O ecossistema de turnos",
   "short_name": "MatchTurno",
   "description": "Ecossistema de turnos para hospitalidade, eventos e catering. Match IA, PIN bilateral e Pix em até 15 min.",
-  "start_url": "./app.html",
+  "start_url": "./app",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FAF8F5",
@@ -44,7 +44,7 @@
       "name": "Nova vaga",
       "short_name": "Vaga",
       "description": "Abrir uma nova vaga rapidamente",
-      "url": "./app.html#/contratante/vagas/nova",
+      "url": "./app#/contratante/vagas/nova",
       "icons": [
         {
           "src": "img/mt-icon-192.png",
@@ -56,7 +56,7 @@
       "name": "Feed de vagas",
       "short_name": "Feed",
       "description": "Ver oportunidades disponíveis",
-      "url": "./app.html#/profissional/feed",
+      "url": "./app#/profissional/feed",
       "icons": [
         {
           "src": "img/mt-icon-192.png",

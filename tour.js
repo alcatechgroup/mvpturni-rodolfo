@@ -8,7 +8,7 @@
   'use strict';
 
   const STATE_KEY = 'turni_tour_state';
-  const PAGE = location.pathname.includes('app.html') ? 'app' : 'index';
+  const PAGE = /\/app(\.html)?$/.test(location.pathname) ? 'app' : 'index';
 
   // ─── DEFINIÇÃO DOS STEPS DO TOUR INVESTIDOR (15 min) ───
   const STEPS = [
@@ -24,7 +24,7 @@
 
     // BLOCO 2 · Pré-cadastro contratante (2 min)
     { page:'index', kind:'caption', text:'Vamos cadastrar um <b>contratante novo</b>. Imagine o dono de um bar pequeno chegando à plataforma.', wait:3500 },
-    { page:'index', kind:'navigate', url:'app.html#/cadastro/emp', wait:1500 },
+    { page:'index', kind:'navigate', url:'app#/cadastro/emp', wait:1500 },
     { page:'app', kind:'caption', text:'Formulário de pré-cadastro do contratante. <b>2 minutos · grátis · sem contrato</b>.', wait:3500 },
     { page:'app', kind:'type', target:'#f_nome', text:'Marcos Demo', delay:60 },
     { page:'app', kind:'type', target:'#f_estab', text:'Bar do Demo · Itaim', delay:50 },
@@ -37,7 +37,7 @@
 
     // BLOCO 3 · Pré-cadastro trabalhador (1.5 min)
     { page:'app', kind:'caption', text:'Agora um <b>trabalhador</b>. A tese aqui é radical: trabalhar deixa de ser submissão e vira <b class="accent-orange">escolha</b>.', wait:4500 },
-    { page:'app', kind:'navigate', url:'app.html#/cadastro/wkr', wait:1500 },
+    { page:'app', kind:'navigate', url:'app#/cadastro/wkr', wait:1500 },
     { page:'app', kind:'type', target:'#f_nome', text:'Marina Demo Souza', delay:60 },
     { page:'app', kind:'type', target:'#f_email', text:'marina.demo@gmail.com', delay:40 },
     { page:'app', kind:'type', target:'#f_wpp', text:'(11) 99999-1111', delay:50 },
@@ -49,25 +49,25 @@
 
     // BLOCO 4 · Login admin · curadoria humana (1.5 min)
     { page:'app', kind:'caption', text:'Os 2 cadastros entraram na fila. Agora vamos para o <b>painel do admin</b> para aprovar.', wait:3500 },
-    { page:'app', kind:'navigate', url:'app.html#/login', wait:1500 },
+    { page:'app', kind:'navigate', url:'app#/login', wait:1500 },
     { page:'app', kind:'type', target:'#loginEmail', text:'rodolfo@matchturno.com.br', delay:55 },
     { page:'app', kind:'type', target:'#loginPwd', text:'••••••••', delay:40 },
     { page:'app', kind:'click', target:'#loginForm button[type="submit"]', wait:2200 },
-    { page:'app', kind:'navigate', url:'app.html#/admin/aprovacoes', wait:1500 },
+    { page:'app', kind:'navigate', url:'app#/admin/aprovacoes', wait:1500 },
     { page:'app', kind:'caption', text:'Fila de aprovação. <b>Cada liberação grava aprovadoPor + aprovadoEm</b> · trilha de auditoria completa para compliance trabalhista.', wait:4500 },
     { page:'app', kind:'clickFirst', target:'.btn-mini.approve', wait:2000 },
     { page:'app', kind:'caption', text:'Liberado em 1 clique. O profissional cai em uma tela de boas-vindas no próximo login e completa o cadastro com foto, raio, preço e Pix.', wait:5000 },
 
     // BLOCO 5 · Contratante real abre vaga (3 min)
     { page:'app', kind:'caption', text:'Vou agora logar como <b>Roberto da Cantina Lume</b>, pizzaria napolitana na Mooca · contratante da demo.', wait:4500 },
-    { page:'app', kind:'navigate', url:'app.html#/login', wait:1500 },
+    { page:'app', kind:'navigate', url:'app#/login', wait:1500 },
     { page:'app', kind:'type', target:'#loginEmail', text:'roberto@cantinalume.com.br', delay:45 },
     { page:'app', kind:'type', target:'#loginPwd', text:'••••••••', delay:40 },
     { page:'app', kind:'click', target:'#loginForm button[type="submit"]', wait:2500 },
     { page:'app', kind:'caption', text:'Início é <b>IDENTIDADE da casa</b> · não operação. Logo, endereço, segmento, plano. <b>"A casa em movimento"</b> mostra a escala dos próximos turnos.', wait:5500 },
-    { page:'app', kind:'navigate', url:'app.html#/contratante/vagas', wait:2000 },
+    { page:'app', kind:'navigate', url:'app#/contratante/vagas', wait:2000 },
     { page:'app', kind:'caption', text:'Vagas é onde a operação acontece. Cada card tem o ícone <b>duplicar</b> · vaga recorrente em 1 clique.', wait:4500 },
-    { page:'app', kind:'navigate', url:'app.html#/contratante/vagas/nova', wait:2000 },
+    { page:'app', kind:'navigate', url:'app#/contratante/vagas/nova', wait:2000 },
     { page:'app', kind:'caption', text:'Nova vaga em <b>3 passos</b>. A plataforma sugere o valor médio das suas últimas vagas dessa função.', wait:4500 },
     { page:'app', kind:'select', target:'#f-funcao', value:'Garçom' },
     { page:'app', kind:'type', target:'#f-valorHora', text:'35', delay:80, clear:true, optional:true },
@@ -75,12 +75,12 @@
 
     // BLOCO 6 · Trabalhador pega o turno (3.5 min)
     { page:'app', kind:'caption', text:'Agora o lado dele · <b>Carlos · Garçom Elite · 127 turnos sem ocorrência</b>.', wait:4000 },
-    { page:'app', kind:'navigate', url:'app.html#/login', wait:1500 },
+    { page:'app', kind:'navigate', url:'app#/login', wait:1500 },
     { page:'app', kind:'type', target:'#loginEmail', text:'carlos.silva@gmail.com', delay:45 },
     { page:'app', kind:'type', target:'#loginPwd', text:'••••••••', delay:40 },
     { page:'app', kind:'click', target:'#loginForm button[type="submit"]', wait:2500 },
     { page:'app', kind:'caption', text:'Início do trabalhador é o <b>crachá <span class="mt-wm-i">Match<b>Turno</b></span></b> · sua reputação. <b>4.9★ · 127 turnos · Elite</b>. Não é currículo · é histórico vivo na rede.', wait:5500 },
-    { page:'app', kind:'navigate', url:'app.html#/profissional/feed', wait:2000 },
+    { page:'app', kind:'navigate', url:'app#/profissional/feed', wait:2000 },
     { page:'app', kind:'caption', text:'Feed em <b>listagem zebrada compacta</b> · otimizado para celular simples. Cada linha mostra match%, valor, distância em segundos.', wait:5000 },
     { page:'app', kind:'caption', text:'O <b>match%</b> não é caixa-preta. Clica e mostra a fórmula: função, distância, score, nível, preço. <b>Transparência do algoritmo</b> = base de confiança.', wait:5500 },
     { page:'app', kind:'caption', text:'Para finalizar: <b>quando Carlos chegar no local</b>, ele gera PIN. Roberto valida (geofence 100m). Cronômetro bilateral. Check-out gera novo PIN. Pix em 15 min via Asaas. <b>Feedback bilateral obrigatório</b> libera a próxima candidatura.', wait:7000 },
@@ -301,7 +301,7 @@
       _state.step = idx + 1;
       saveState(_state);
       // Se mudar de arquivo (index→app), carrega URL · senão muda hash
-      if(step.url.startsWith('app.html') && PAGE === 'index'){
+      if(step.url.startsWith('app') && PAGE === 'index'){
         location.href = step.url;
         return new Promise(() => {}); // pendura · página vai recarregar
       }
@@ -480,7 +480,7 @@
       if(end) end.remove();
       document.body.classList.remove('tour-active');
       // Volta para a landing
-      if(PAGE !== 'index') location.href = 'index.html';
+      if(PAGE !== 'index') location.href = './';
     },
     restart(){
       const end = document.querySelector('.tour-end');
@@ -489,7 +489,7 @@
       // Pequeno delay para a transição da landing carregar
       setTimeout(() => {
         if(PAGE === 'index') this.start();
-        else location.href = 'index.html?tour=1';
+        else location.href = './?tour=1';
       }, 400);
     }
   };

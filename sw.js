@@ -1,5 +1,5 @@
 // MatchTurno · Service Worker — network-first para HTML, cache-first para assets
-const CACHE = 'matchturno-v3';
+const CACHE = 'matchturno-v4';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -21,7 +21,12 @@ self.addEventListener('fetch', e => {
   if(e.request.mode === 'navigate' || url.pathname.endsWith('.html')){
     e.respondWith(
       fetch(e.request.url, { cache: 'no-cache', credentials: 'same-origin' })
-        .then(r => { const c = r.clone(); caches.open(CACHE).then(ch => ch.put(e.request, c)); return r; })
+        .then(r => {
+          // Navegação não aceita resposta redirecionada (ex.: app.html → /app):
+          // devolve um redirect de verdade para o navegador seguir
+          if(r.redirected) return Response.redirect(r.url, 301);
+          const c = r.clone(); caches.open(CACHE).then(ch => ch.put(e.request, c)); return r;
+        })
         .catch(() => caches.match(e.request))
     );
     return;
