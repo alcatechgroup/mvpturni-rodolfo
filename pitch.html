@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MatchTurno · Tese Estratégica 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0D11;
+  --s1:#1B1A20;
+  --s2:#24232A;
+  --s3:#2D2C34;
+  --b1:#2C2B33;
+  --b2:#3B3A43;
+  --lime:#EA5B0C;
+  --lime2:#FF8A4C;
+  --orange:#FF8A4C;
+  --w:#F3F1EE;
+  --t2:#B8B4BE;
+  --t3:#9A95A3;
+  --t4:#6E6979;
+  --F:'Inter',-apple-system,sans-serif;
+  --M:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;
+  --D:'MT Display Condensed','MT Display',Inter,sans-serif;
+}
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  background:var(--bg);color:var(--w);
+  font-family:var(--F);
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--lime);color:#fff}
+
+/* ── Atmospheric glows ── */
+.glow{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+.glow-a{
+  width:800px;height:800px;top:-280px;right:-240px;
+  background:radial-gradient(circle,rgba(234,91,12,.055) 0%,transparent 65%);
+}
+.glow-b{
+  width:560px;height:560px;bottom:-220px;left:-120px;
+  background:radial-gradient(circle,rgba(232,225,240,.04) 0%,transparent 65%);
+}
+.glow-c{
+  width:320px;height:320px;top:45%;left:42%;
+  background:radial-gradient(circle,rgba(234,91,12,.022) 0%,transparent 70%);
+  transform:translate(-50%,-50%);
+}
+
+/* ── Topbar ── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;
+  padding:24px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:50;
+}
+.logo{
+  font-family:var(--D);font-size:24px;letter-spacing:5px;
+  color:var(--w);user-select:none;line-height:1;
+}
+.logo .li{color:var(--lime2)}
+.logo .dot{color:var(--orange);opacity:.45;margin-left:1px}
+.counter{
+  font-family:var(--M);font-size:10px;font-weight:500;
+  color:var(--t4);letter-spacing:2px;
+  background:var(--s1);border:1px solid var(--b1);
+  padding:6px 14px;border-radius:999px;
+  transition:opacity .3s;
+}
+
+/* ── Deck ── */
+.deck{width:100%;height:100vh;position:relative;overflow:hidden}
+.slide{
+  position:absolute;inset:0;
+  display:flex;align-items:center;
+  padding:90px 84px 90px;
+  opacity:0;transform:translateY(22px);
+  pointer-events:none;
+  transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1);
+  z-index:1;
+}
+.slide.active{opacity:1;transform:translateY(0);pointer-events:all;z-index:10}
+.slide.cover{align-items:flex-end;padding:0 84px 96px}
+
+/* ── Nav ── */
+.nav{
+  position:fixed;bottom:28px;left:0;right:0;
+  display:flex;align-items:center;justify-content:center;gap:16px;z-index:50;
+}
+.nav-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--s1);border:1px solid var(--b1);color:var(--t3);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-family:var(--M);font-size:13px;
+  transition:all .2s;outline:none;
+}
+.nav-btn:hover{background:var(--s2);border-color:var(--b2);color:var(--w)}
+.nav-btn:disabled{color:var(--t4);cursor:default}
+.dots{display:flex;gap:6px;align-items:center}
+.dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--b2);cursor:pointer;
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+.dot.active{width:22px;border-radius:3px;background:var(--lime)}
+.key-hint{
+  position:fixed;bottom:34px;right:48px;
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--M);font-size:9px;color:var(--t4);letter-spacing:.5px;
+}
+kbd{
+  padding:2px 7px;background:var(--s1);
+  border:1px solid var(--b1);border-radius:5px;
+  font-family:var(--M);font-size:9px;color:var(--t3);
+}
+
+/* ── Shared atoms ── */
+
+.label{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.label-num{
+  font-family:var(--M);font-size:9px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--orange);
+}
+.label-line{height:1px;flex:1;background:var(--b1)}
+.label-txt{
+  font-family:var(--M);font-size:9px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;color:var(--t4);
+}
+
+.divider{width:44px;height:3px;background:var(--lime);border-radius:2px;margin-bottom:30px}
+
+.tag{
+  padding:5px 14px;border-radius:999px;
+  font-family:var(--M);font-size:9px;font-weight:500;
+  background:var(--s2);border:1px solid var(--b2);color:var(--t2);letter-spacing:.5px;
+}
+.tag.o{background:rgba(232,225,240,.1);border-color:rgba(232,225,240,.25);color:var(--orange)}
+.tag.l{background:rgba(234,91,12,.1);border-color:rgba(234,91,12,.25);color:var(--lime2)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+
+.card{
+  flex:1;background:var(--s1);
+  border:1px solid var(--b1);border-radius:16px;padding:24px 22px;
+}
+.card-icon{font-size:20px;margin-bottom:14px;line-height:1}
+.card-t{font-size:13px;font-weight:700;color:var(--w);margin-bottom:7px;letter-spacing:-.1px}
+.card-d{font-size:12px;color:var(--t2);line-height:1.72}
+
+.feat{
+  display:flex;align-items:flex-start;gap:16px;
+  background:var(--s1);border:1px solid var(--b1);
+  border-radius:14px;padding:18px 22px;
+}
+.feat-ic{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.feat-ic.o{background:rgba(232,225,240,.12)}.feat-ic.l{background:rgba(234,91,12,.11)}
+.feat-t{font-size:13px;font-weight:700;color:var(--w);margin-bottom:3px;letter-spacing:-.1px}
+.feat-d{font-size:12px;color:var(--t2);line-height:1.65}
+
+.trow{padding:20px 22px;border-radius:14px;border:1px solid var(--b1);background:var(--s1)}
+.trow.hi{background:rgba(234,91,12,.05);border-color:rgba(234,91,12,.2)}
+.ts{font-family:var(--M);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:7px}
+.ts.g{color:var(--lime2)} .ts.y{color:var(--orange)} .ts.n{color:var(--t4)}
+.tt{font-size:13px;font-weight:700;color:var(--w);margin-bottom:5px;letter-spacing:-.1px}
+.td{font-size:11.5px;color:var(--t2);line-height:1.65}
+
+.why{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--s1);border:1px solid var(--b1);
+  border-radius:14px;padding:18px 20px;
+}
+.wdot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.wt strong{display:block;font-size:13px;font-weight:700;color:var(--w);margin-bottom:4px;letter-spacing:-.1px}
+.wt span{font-size:12px;color:var(--t2);line-height:1.62}
+
+.req{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 18px;
+  background:var(--s1);border:1px solid var(--b1);border-radius:12px;
+}
+.req-num{font-family:var(--M);font-size:11px;font-weight:700;flex-shrink:0;width:26px;margin-top:1px}
+.req-t{font-size:12px;font-weight:700;color:var(--w);margin-bottom:3px;letter-spacing:-.1px}
+.req-d{font-size:11px;color:var(--t2);line-height:1.62}
+
+/* Stat display (Bebas Neue numbers) */
+.stat-n{
+  font-family:var(--D);font-size:clamp(42px,5.5vw,64px);
+  color:var(--orange);line-height:1;letter-spacing:1px;
+}
+.stat-l{
+  font-family:var(--M);font-size:9px;font-weight:500;
+  color:var(--t3);margin-top:6px;letter-spacing:.5px;
+}
+
+/* Live pulse dot */
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--lime2);flex-shrink:0;
+  animation:pulse-dot 2.2s ease-in-out infinite;
+}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* Horizontal rule with gradient */
+.hr-grad{height:1px;background:linear-gradient(90deg,var(--lime),transparent);margin:24px 0;opacity:.3}
+
+  /* ════ MatchTurno ════ */
+  @font-face{font-family:'MT Display';src:url('assets/fonts/mt-display.woff2') format('woff2');font-weight:400 800;font-display:swap}@font-face{font-family:'MT Display Condensed';src:url('assets/fonts/mt-display-condensed.woff2') format('woff2');font-weight:400 800;font-display:swap}
+  .mt-wm{font-family:'MT Display',Inter,sans-serif;font-weight:800;letter-spacing:-.03em;text-transform:none;white-space:nowrap;font-stretch:100%}
+  .mt-wm b{font-weight:800;color:#EA5B0C}
+  .mt-wm-i{font-weight:700;white-space:nowrap;letter-spacing:-.01em;text-transform:none}
+  .mt-wm-i b{font-weight:700;color:inherit}
+  .logo .mt-wm::before,.cover-mark .mt-wm::before{content:'';display:inline-block;width:1.2em;height:.42em;margin-right:.3em;vertical-align:.06em;background:#EA5B0C;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='2.5%2016.5%2043%2015'%3E%3Cpath%20d='M10%2024%20C%2018%2037,%2027%2011,%2038%2024'%20fill='none'%20stroke='black'%20stroke-width='5.5'%20stroke-linecap='round'/%3E%3Ccircle%20cx='10'%20cy='24'%20r='7.5'/%3E%3Ccircle%20cx='38'%20cy='24'%20r='7.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='2.5%2016.5%2043%2015'%3E%3Cpath%20d='M10%2024%20C%2018%2037,%2027%2011,%2038%2024'%20fill='none'%20stroke='black'%20stroke-width='5.5'%20stroke-linecap='round'/%3E%3Ccircle%20cx='10'%20cy='24'%20r='7.5'/%3E%3Ccircle%20cx='38'%20cy='24'%20r='7.5'/%3E%3C/svg%3E") center/contain no-repeat}
+  .mt-cover-wm{font-size:.62em}
+  .mt-cover-wm::before{content:'';display:inline-block;width:1.2em;height:.42em;margin-right:.3em;vertical-align:.06em;background:#EA5B0C;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='2.5%2016.5%2043%2015'%3E%3Cpath%20d='M10%2024%20C%2018%2037,%2027%2011,%2038%2024'%20fill='none'%20stroke='black'%20stroke-width='5.5'%20stroke-linecap='round'/%3E%3Ccircle%20cx='10'%20cy='24'%20r='7.5'/%3E%3Ccircle%20cx='38'%20cy='24'%20r='7.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='2.5%2016.5%2043%2015'%3E%3Cpath%20d='M10%2024%20C%2018%2037,%2027%2011,%2038%2024'%20fill='none'%20stroke='black'%20stroke-width='5.5'%20stroke-linecap='round'/%3E%3Ccircle%20cx='10'%20cy='24'%20r='7.5'/%3E%3Ccircle%20cx='38'%20cy='24'%20r='7.5'/%3E%3C/svg%3E") center/contain no-repeat}
+</style>
+</head>
+<body>
+<div class="glow glow-a"></div>
+<div class="glow glow-b"></div>
+<div class="glow glow-c"></div>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="logo"><span class="mt-wm">Match<b>Turno</b></span></div>
+  <div class="counter" id="ctr" style="opacity:0">01 / 07</div>
+</div>
+
+<div class="deck">
+
+  <!-- 0 · COVER -->
+  <div class="slide cover active" data-i="0">
+    <!-- top rule -->
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(234,91,12,.22),transparent);pointer-events:none"></div>
+    <!-- cover tint -->
+    <div style="position:absolute;inset:0;
+      background:linear-gradient(155deg,rgba(234,91,12,.055) 0%,transparent 48%);pointer-events:none"></div>
+
+    <div style="position:relative;z-index:1;width:100%">
+      <!-- Wordmark -->
+      <div style="font-family:var(--D);font-size:clamp(82px,14vw,168px);
+        letter-spacing:-1px;line-height:.88;color:var(--w);
+        margin-bottom:22px;user-select:none">
+        <span class="mt-wm mt-cover-wm">Match<b>Turno</b></span>
+      </div>
+
+      <!-- Eyebrow live -->
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:30px">
+        <div class="live-dot"></div>
+        <span style="font-family:var(--M);font-size:9px;letter-spacing:3px;
+          text-transform:uppercase;color:var(--lime2)">
+          O ecossistema de turnos · Brasil · 2026
+        </span>
+      </div>
+
+      <!-- Tag pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:52px">
+        <span class="tag l">Match IA</span>
+        <span class="tag l">PIN Bilateral</span>
+        <span class="tag o">Pix em 15 min</span>
+        <span class="tag o">MEI Formal</span>
+      </div>
+
+      <!-- Footer credits -->
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:var(--M);font-size:9px;letter-spacing:2px;
+          text-transform:uppercase;color:var(--t4)">
+          Tese de apresentação · Rodolfo Nascimento · Fundador
+        </span>
+        <span style="font-family:var(--M);font-size:9px;letter-spacing:2px;
+          text-transform:uppercase;color:var(--t4)">
+          demo mediante NDA
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 00 · ABERTURA / QUEM SOMOS -->
+  <div class="slide" data-i="00">
+    <div style="max-width:960px;width:100%">
+
+      <div class="label">
+        <span class="label-num">00</span>
+        <div class="label-line"></div>
+        <span class="label-txt">Abertura</span>
+      </div>
+      <div class="divider"></div>
+
+      <!-- Por que estamos aqui -->
+      <div style="margin-bottom:28px">
+        <div style="font-family:var(--M);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+          color:var(--t3);margin-bottom:10px">Por que estamos aqui?</div>
+        <div style="font-size:clamp(18px,2.2vw,26px);font-weight:800;color:var(--w);
+          letter-spacing:-.3px;line-height:1.3">
+          Estamos buscando um parceiro que nos ajude a construir a
+          <span style="color:var(--orange)">maior plataforma de workforce do Brasil.</span>
+        </div>
+      </div>
+
+      <!-- Fundador -->
+      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:22px 26px;margin-bottom:16px;display:flex;align-items:flex-start;gap:24px">
+        <div style="flex:1">
+          <div style="font-family:var(--M);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+            color:var(--orange);margin-bottom:10px">Fundador</div>
+          <div style="font-size:18px;font-weight:800;color:var(--w);margin-bottom:5px;letter-spacing:-.3px">Rodolfo Nascimento</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.68;max-width:520px">
+            Empreendedor serial em tech com histórico de exits. Construiu a MatchTurno do zero — produto, stack, UX e modelo de negócio — com IA como motor de velocidade de execução. Expertise em produto digital aplicado ao setor de hospitalidade.
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:var(--M);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+            color:var(--t4);margin-bottom:6px">Contato</div>
+          <div style="font-family:var(--M);font-size:10px;color:var(--lime2);letter-spacing:.5px">rodolfo@matchturno.com.br</div>
+        </div>
+      </div>
+
+      <!-- Visão MatchTurno -->
+      <div style="background:var(--s2);border:1px solid var(--b2);border-radius:14px;
+        padding:20px 26px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+            <span style="font-family:var(--D);font-size:30px;color:var(--lime2);letter-spacing:3px;line-height:1"><span class="mt-wm-i">Match<b>Turno</b></span></span>
+            <div style="height:22px;width:1px;background:var(--b2)"></div>
+            <span style="font-family:var(--M);font-size:9px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase">
+              Marketplace de Turnos · Hospitalidade &amp; Eventos
+            </span>
+          </div>
+          <div style="font-size:12.5px;color:var(--t2);line-height:1.6;font-weight:500">
+            A plataforma que conecta profissionais de hospitalidade com quem precisa de equipe — agora e em escala.
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;max-width:280px">
+          <div style="font-family:var(--M);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+            color:var(--t4);margin-bottom:6px">Visão</div>
+          <div style="font-size:13px;font-weight:700;color:var(--w);line-height:1.45;letter-spacing:-.1px">
+            Redefinir como o setor de hospitalidade vai crescer com IA
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 1 · TENSÃO -->
+  <div class="slide" data-i="1">
+    <div style="max-width:840px">
+      <div class="label">
+        <span class="label-num">01</span>
+        <div class="label-line"></div>
+        <span class="label-txt">A dor</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-family:var(--D);font-size:clamp(38px,5.8vw,72px);
+        letter-spacing:.5px;line-height:1.04;color:var(--w);
+        border-left:3px solid var(--orange);padding-left:28px;margin-bottom:32px">
+        Mão de obra é a dor nº 1<br>de <span style="color:var(--orange)">qualquer empresário.</span>
+      </div>
+
+      <div style="font-size:13.5px;color:var(--t2);line-height:1.82;max-width:580px;margin-bottom:42px">
+        Todo sábado à noite, 140 mil bares e restaurantes no Brasil torcem para que o reforço apareça. Do lado do estabelecimento: escala furada às 22h, gerente no salão servindo mesa, cliente esperando.
+        Do lado do profissional: qualificado, com MEI ativo, disponível — mas invisível para quem precisa dele agora.
+        O encontro entre eles ainda acontece por WhatsApp, à meia-noite de sexta.
+      </div>
+
+      <div style="display:flex;gap:52px">
+        <div>
+          <div class="stat-n">140k</div>
+          <div class="stat-l">operações em São Paulo</div>
+        </div>
+        <div>
+          <div class="stat-n">2M+</div>
+          <div class="stat-l">profissionais no informal</div>
+        </div>
+        <div>
+          <div class="stat-n" style="color:var(--lime2)">R$0</div>
+          <div class="stat-l">de garantia de pagamento hoje</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A VIRADA · Uber, iFood e a nova geração -->
+  <div class="slide" data-i="v">
+    <div style="max-width:1000px;width:100%">
+      <div class="label">
+        <span class="label-num">02</span>
+        <div class="label-line"></div>
+        <span class="label-txt">A virada</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-size:clamp(22px,2.9vw,38px);font-weight:800;color:var(--w);
+        margin-bottom:28px;letter-spacing:-.4px;line-height:1.12">
+        Uber e iFood reescreveram a relação de trabalho.<br><span style="color:var(--orange)">A nova geração quer escolher.</span>
+      </div>
+
+      <div style="display:flex;gap:14px">
+        <div class="card">
+          <div class="card-t" style="font-family:var(--D);font-size:30px;color:var(--t3)">1943</div>
+          <div class="card-t">CLT · o mês</div>
+          <div class="card-d">Ponto, escala fixa e folha. A hospitalidade ainda contrata assim.</div>
+        </div>
+        <div class="card">
+          <div class="card-t" style="font-family:var(--D);font-size:30px;color:var(--t3)">2014</div>
+          <div class="card-t">Uber · a corrida</div>
+          <div class="card-d">A tarefa vira unidade de trabalho. Renda por corrida, paga na hora.</div>
+        </div>
+        <div class="card">
+          <div class="card-t" style="font-family:var(--D);font-size:30px;color:var(--t3)">2020</div>
+          <div class="card-t">iFood · a entrega</div>
+          <div class="card-d">Delivery em escala. Quem trabalha escolhe quando e quanto.</div>
+        </div>
+        <div class="card" style="border-color:var(--orange)">
+          <div class="card-t" style="font-family:var(--D);font-size:30px;color:var(--orange)">2026</div>
+          <div class="card-t">MatchTurno · o turno</div>
+          <div class="card-d">Até 4h, com checklist, Pix em 15 min. Quem nasceu escolhendo não vai bater ponto.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 · POR QUE AGORA -->
+  <div class="slide" data-i="2">
+    <div style="max-width:980px;width:100%">
+      <div class="label">
+        <span class="label-num">03</span>
+        <div class="label-line"></div>
+        <span class="label-txt">Por que agora</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-size:clamp(22px,2.9vw,38px);font-weight:800;color:var(--w);
+        margin-bottom:28px;letter-spacing:-.4px;line-height:1.12">
+        Três forças convergiram.<br><span style="color:var(--orange)">A janela é agora.</span>
+      </div>
+
+      <div style="display:flex;gap:14px">
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <div class="card-t">MEI universalizado</div>
+          <div class="card-d">Pela primeira vez, o trabalhador por turno tem CNPJ, nota fiscal e proteção previdenciária. A contratação formal sem encargo CLT virou realidade jurídica — e o mercado ainda não aproveitou.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <div class="card-t">Pix em tempo real</div>
+          <div class="card-d">O pagamento no mesmo dia virou infraestrutura nacional. O profissional recebe em 15 minutos após o turno — sem banco, sem intermediário, sem os 30 dias de espera.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">📉</div>
+          <div class="card-t">F&B pós-pandemia</div>
+          <div class="card-d">As operações encolheram o quadro fixo e criaram dependência estrutural de reforço qualificado. A demanda existe. O modelo de contratação não evoluiu junto.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A LACUNA · agências vendem diárias -->
+  <div class="slide" data-i="l">
+    <div style="max-width:1000px;width:100%">
+      <div class="label">
+        <span class="label-num">04</span>
+        <div class="label-line"></div>
+        <span class="label-txt">A lacuna</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-size:clamp(22px,2.9vw,38px);font-weight:800;color:var(--w);
+        margin-bottom:28px;letter-spacing:-.4px;line-height:1.12">
+        Agências vendem diárias.<br><span style="color:var(--orange)">A operação precisa de turnos.</span>
+      </div>
+
+      <div style="display:flex;gap:14px">
+        <div class="card">
+          <div class="card-t">CLT · o mês</div>
+          <div class="card-d">220 horas por mês, escala fixa e encargos. Paga o salão vazio da tarde para ter gente no pico da noite.</div>
+        </div>
+        <div class="card">
+          <div class="card-t">Agência · a diária</div>
+          <div class="card-d">Dia cheio de 8 a 12 horas para cobrir 3 horas de movimento. Sem tarefa definida, sem prova de entrega.</div>
+        </div>
+        <div class="card" style="border-color:var(--orange)">
+          <div class="card-t" style="color:var(--orange)">MatchTurno · o turno</div>
+          <div class="card-d">Jornada de até 4 horas, com checklist configurável por função. O empresário paga o pico e recebe entrega.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 · TESE CENTRAL -->
+  <div class="slide" data-i="3">
+    <div style="max-width:860px">
+      <div class="label">
+        <span class="label-num">05</span>
+        <div class="label-line"></div>
+        <span class="label-txt">Tese central</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-family:var(--D);font-size:clamp(40px,6.2vw,84px);
+        letter-spacing:.5px;line-height:1.04;margin-bottom:4px">
+        <span style="color:var(--t3)">O mercado acha que<br>é um problema de </span><span style="color:var(--w)">logística.</span>
+      </div>
+
+      <div style="height:20px"></div>
+
+      <div style="font-family:var(--D);font-size:clamp(40px,6.2vw,84px);
+        letter-spacing:.5px;line-height:1.04">
+        <span style="color:var(--t3)">Nós acreditamos que<br>é um problema de </span>
+        <span style="color:var(--lime2);position:relative;display:inline-block">confiança
+          <span style="position:absolute;bottom:-4px;left:0;right:0;height:3px;
+            background:var(--lime);border-radius:2px;opacity:.35"></span>
+        </span>
+        <span style="color:var(--w)"> —</span>
+        <br><span style="color:var(--orange)">e confiança pode ser engenheirada.</span>
+      </div>
+
+      <div style="font-size:15px;color:var(--t2);line-height:1.7;margin-top:30px;max-width:640px">
+        O turno de até 4h, com checklist configurável e PIN bilateral, é como a confiança vira produto: tarefa definida, entrega comprovada, pagamento em 15 minutos.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 · O QUE ESTAMOS CONSTRUINDO -->
+  <div class="slide" data-i="4">
+    <div style="max-width:900px;width:100%">
+      <div class="label">
+        <span class="label-num">06</span>
+        <div class="label-line"></div>
+        <span class="label-txt">O que estamos construindo</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-size:clamp(18px,2.3vw,28px);font-weight:800;color:var(--w);
+        margin-bottom:20px;letter-spacing:-.3px">
+        MatchTurno · jornadas de até 4h com checklist configurável
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="feat">
+          <div class="feat-ic l">✅</div>
+          <div>
+            <div class="feat-t">Checklist configurável</div>
+            <div class="feat-d">A empresa define as tarefas por função · bar, cozinha, salão, recepção. O profissional marca cada uma no app. Check-out só com o checklist cumprido ou com justificativa registrada.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-ic o">🤖</div>
+          <div>
+            <div class="feat-t">Match IA</div>
+            <div class="feat-d">Algoritmo cruza função, score, histórico de no-show, certificações e raio geográfico. Profissional certo, em tempo real, sem curadoria manual.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-ic l">🔐</div>
+          <div>
+            <div class="feat-t">PIN Bilateral</div>
+            <div class="feat-d">Check-in e check-out confirmados por ambas as partes. Disputa resolvida no app. Zero margem para fraude de presença ou horas trabalhadas.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-ic o">⚡</div>
+          <div>
+            <div class="feat-t">Pix em 15 minutos</div>
+            <div class="feat-d">Pagamento liberado após check-out validado. Asaas reserva o valor no cartão do contratante. Profissional recebe em minutos, não em 30 dias.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag o">Modelo: 15% sobre o valor do turno</span>
+        <span class="tag">Retenção pelo contratante</span>
+        <span class="tag l">Zero custo para o profissional</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 · TRAÇÃO HONESTA -->
+  <div class="slide" data-i="5">
+    <div style="max-width:920px;width:100%">
+      <div class="label">
+        <span class="label-num">07</span>
+        <div class="label-line"></div>
+        <span class="label-txt">Prova de tração · honesta</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-family:var(--M);font-size:11px;color:var(--t3);
+        margin-bottom:20px;line-height:1.7;letter-spacing:.3px">
+        Nenhum número inflado. Aqui está exatamente onde estamos.
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="trow hi">
+          <div class="ts g">✓ Entregue</div>
+          <div class="tt">MVP funcional live</div>
+          <div class="td">Multi-persona (admin, contratante, trabalhador). Match, PIN bilateral, cálculo Asaas. Demo navegável mediante NDA.</div>
+        </div>
+        <div class="trow hi">
+          <div class="ts g">✓ Estruturando</div>
+          <div class="tt">Parceiro âncora contratante</div>
+          <div class="td">Validação com operações multi-unidade F&B em São Paulo — âncora da demanda na fase de MVP.</div>
+        </div>
+        <div class="trow">
+          <div class="ts y">→ Em negociação</div>
+          <div class="tt">Infraestrutura de pagamento</div>
+          <div class="td">Asaas. Condições preferenciais para marketplace em discussão ativa.</div>
+        </div>
+        <div class="trow" style="opacity:.65">
+          <div class="ts n">○ Próxima etapa</div>
+          <div class="tt">Receita real</div>
+          <div class="td">Primeiros turnos faturados planejados para o piloto com parceiros âncora. Sem receita real ainda — sem inflar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 · POR QUE NÓS -->
+  <div class="slide" data-i="6">
+    <div style="max-width:920px;width:100%">
+      <div class="label">
+        <span class="label-num">08</span>
+        <div class="label-line"></div>
+        <span class="label-txt">Por que nós</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-size:clamp(22px,2.7vw,34px);font-weight:800;color:var(--w);
+        margin-bottom:24px;letter-spacing:-.3px;line-height:1.12">
+        Vantagem que não se copia em 6 meses.
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="why">
+          <div class="wdot" style="background:var(--orange)"></div>
+          <div class="wt">
+            <strong>Rodolfo Nascimento · Fundador MatchTurno</strong>
+            <span>Construção de produtos digitais com IA aplicada. Capacidade de iterar rápido sem depender de time externo.</span>
+          </div>
+        </div>
+        <div class="why">
+          <div class="wdot" style="background:var(--lime)"></div>
+          <div class="wt">
+            <strong>Acesso estrutural ao setor</strong>
+            <span>Validação real com operações de hospitalidade em São Paulo — o produto foi desenhado de dentro do setor, não para ele.</span>
+          </div>
+        </div>
+        <div class="why">
+          <div class="wdot" style="background:var(--orange)"></div>
+          <div class="wt">
+            <strong>Mapa regulatório dominado</strong>
+            <span>MEI × F&B × Pix × Asaas. Entendemos as fricções jurídicas e fiscais antes de codar a primeira tela.</span>
+          </div>
+        </div>
+        <div class="why">
+          <div class="wdot" style="background:var(--lime)"></div>
+          <div class="wt">
+            <strong>Produto que o setor usa hoje</strong>
+            <span>MVP validado com personas reais. Não é mockup — é plataforma funcional com fluxos completos rodando.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 · O CONVITE → PAGAR.ME -->
+  <div class="slide" data-i="7">
+    <div style="max-width:840px">
+      <div class="label">
+        <span class="label-num">09</span>
+        <div class="label-line"></div>
+        <span class="label-txt">O convite · Asaas</span>
+      </div>
+      <div class="divider"></div>
+
+      <div style="font-family:var(--M);font-size:11px;color:var(--t3);
+        margin-bottom:22px;line-height:1.8;letter-spacing:.3px">
+        Não estamos pedindo uma parceria genérica. Estamos propondo uma operação nova.
+      </div>
+
+      <div style="font-size:clamp(18px,2.4vw,28px);font-weight:800;color:var(--w);
+        line-height:1.45;margin-bottom:28px;letter-spacing:-.25px">
+        Quantas plataformas de trabalho a Asaas tem hoje onde o gatilho de
+        <span style="color:var(--lime2);border-bottom:2px solid rgba(255,138,76,.28);
+          padding-bottom:1px">liberação do split</span>
+        não é um pedido entregue — mas um
+        <span style="color:var(--orange)">PIN confirmado por duas pessoas no mesmo instante?</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:22px">
+        <div class="req">
+          <span class="req-num" style="color:var(--orange)">01</span>
+          <div>
+            <div class="req-t">Pré-autorização no cartão do contratante</div>
+            <div class="req-d">Reserva do valor do turno + 25% de margem antes do início. Liberação real só após check-out validado bilateralmente.</div>
+          </div>
+        </div>
+        <div class="req">
+          <span class="req-num" style="color:var(--orange)">02</span>
+          <div>
+            <div class="req-t">Split automático por evento humano</div>
+            <div class="req-d">Ao PIN final: 85% para o profissional via Pix em &lt;15 min · 15% MatchTurno. Sem liquidação manual, sem D+30, sem intermediário.</div>
+          </div>
+        </div>
+        <div class="req">
+          <span class="req-num" style="color:var(--lime2)">→</span>
+          <div>
+            <div class="req-t">Um vertical novo para o produto de marketplace da Asaas</div>
+            <div class="req-d">F&B staffing on-demand é um caso de uso que o mercado de pagamentos ainda não tem. MatchTurno quer ser o primeiro — e construir isso com a Asaas como parceira estrutural.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag o">Gateway · Split · Pix instantâneo</span>
+        <span class="tag l">Novo vertical F&B</span>
+        <span class="tag">demo mediante NDA</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Nav -->
+<div class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="go(cur-1)">←</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="go(cur+1)">→</button>
+</div>
+<div class="key-hint"><kbd>←</kbd> <kbd>→</kbd> navegar</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let cur=0;
+const dotsEl=document.getElementById('dots');
+const ctrEl=document.getElementById('ctr');
+const prevEl=document.getElementById('prevBtn');
+const nextEl=document.getElementById('nextBtn');
+for(let i=0;i<total;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.onclick=()=>go(i);
+  dotsEl.appendChild(d);
+}
+function go(n){
+  if(n<0||n>=total)return;
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  ctrEl.style.opacity=cur===0?'0':'1';
+  ctrEl.textContent=String(cur).padStart(2,'0')+' / '+String(total-1).padStart(2,'0');
+  prevEl.disabled=cur===0;
+  nextEl.disabled=cur===total-1;
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(cur-1);
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-50)go(cur+1);
+  if(dx>50)go(cur-1);
+});
+go(0);
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TURNI · Demo Tour · navegação automática com legendas
+   MatchTurno · Demo Tour · navegação automática com legendas
    Funciona em index.html (landing) e app.html (plataforma)
    Estado persistido em localStorage para sobreviver às navegações
    ════════════════════════════════════════════════════════════════ */
@@ -13,20 +13,20 @@
   // ─── DEFINIÇÃO DOS STEPS DO TOUR INVESTIDOR (15 min) ───
   const STEPS = [
     // BLOCO 1 · Tese visual da landing (3 min)
-    { page:'index', kind:'caption', text:'A <b>TURN<span class="di">I</span><span class="de">.</span></b> é a infraestrutura que faltava para o food service brasileiro encontrar gente em horas.', sub:'Vamos navegar pela plataforma como se você fosse um usuário real.', wait:5500 },
+    { page:'index', kind:'caption', text:'A <b><span class="mt-wm-i">Match<b>Turno</b></span></b> é a infraestrutura que faltava para o food service brasileiro encontrar gente em horas.', sub:'Vamos navegar pela plataforma como se você fosse um usuário real.', wait:5500 },
     { page:'index', kind:'scroll', target:'.hero-diagonal-stage, .hero-stage, header', wait:1500 },
-    { page:'index', kind:'caption', text:'No alto temos o <b>empresário</b> ↗ e na base o <b>profissional</b> ↘. Eles se encontram no centro, no símbolo da TURN<span class="di">I</span><span class="de">.</span>', sub:'A landing é construída como dois lados de uma mesma equação.', wait:5000 },
+    { page:'index', kind:'caption', text:'No alto temos o <b>empresário</b> ↗ e na base o <b>profissional</b> ↘. Eles se encontram no centro, no símbolo da <span class="mt-wm-i">Match<b>Turno</b></span>', sub:'A landing é construída como dois lados de uma mesma equação.', wait:5000 },
     { page:'index', kind:'scroll', target:'#manifesto, .sobre-manifesto', wait:1800 },
     { page:'index', kind:'caption', text:'Nosso <b>manifesto</b>: o que rejeitamos vs o que defendemos. <b>Match IA · PIN Bilateral · Pix em 15min</b> não é slogan — é compromisso.', wait:5000 },
     { page:'index', kind:'scroll', target:'#quem-turnifica, .apoio-row, footer', wait:1800 },
-    { page:'index', kind:'caption', text:'<b>Stone, Pagar.me e Grupo Noiz</b> já no ecossistema. Não é prospecção · é parceria validada.', wait:4500 },
+    { page:'index', kind:'caption', text:'<b>Pagamentos via Asaas</b>, checklist por função e PIN bilateral. Não é promessa · é produto rodando.', wait:4500 },
     { page:'index', kind:'scrollTop', wait:1200 },
 
     // BLOCO 2 · Pré-cadastro contratante (2 min)
     { page:'index', kind:'caption', text:'Vamos cadastrar um <b>contratante novo</b>. Imagine o dono de um bar pequeno chegando à plataforma.', wait:3500 },
     { page:'index', kind:'navigate', url:'app.html#/cadastro/emp', wait:1500 },
     { page:'app', kind:'caption', text:'Formulário de pré-cadastro do contratante. <b>2 minutos · grátis · sem contrato</b>.', wait:3500 },
-    { page:'app', kind:'type', target:'#f_nome', text:'Felipe Demo', delay:60 },
+    { page:'app', kind:'type', target:'#f_nome', text:'Marcos Demo', delay:60 },
     { page:'app', kind:'type', target:'#f_estab', text:'Bar do Demo · Itaim', delay:50 },
     { page:'app', kind:'type', target:'#f_email', text:'demo@bardodemo.com.br', delay:40 },
     { page:'app', kind:'type', target:'#f_wpp', text:'(11) 99999-0000', delay:50 },
@@ -50,7 +50,7 @@
     // BLOCO 4 · Login admin · curadoria humana (1.5 min)
     { page:'app', kind:'caption', text:'Os 2 cadastros entraram na fila. Agora vamos para o <b>painel do admin</b> para aprovar.', wait:3500 },
     { page:'app', kind:'navigate', url:'app.html#/login', wait:1500 },
-    { page:'app', kind:'type', target:'#loginEmail', text:'rodolfo@turni.app', delay:55 },
+    { page:'app', kind:'type', target:'#loginEmail', text:'rodolfo@matchturno.com.br', delay:55 },
     { page:'app', kind:'type', target:'#loginPwd', text:'••••••••', delay:40 },
     { page:'app', kind:'click', target:'#loginForm button[type="submit"]', wait:2200 },
     { page:'app', kind:'navigate', url:'app.html#/admin/aprovacoes', wait:1500 },
@@ -59,9 +59,9 @@
     { page:'app', kind:'caption', text:'Liberado em 1 clique. O profissional cai em uma tela de boas-vindas no próximo login e completa o cadastro com foto, raio, preço e Pix.', wait:5000 },
 
     // BLOCO 5 · Contratante real abre vaga (3 min)
-    { page:'app', kind:'caption', text:'Vou agora logar como <b>Roberto da Pizza da Mooca</b>. 7ª melhor pizzaria do Brasil pela Folha 2024 · piloto real da operação.', wait:4500 },
+    { page:'app', kind:'caption', text:'Vou agora logar como <b>Roberto da Cantina Lume</b>, pizzaria napolitana na Mooca · contratante da demo.', wait:4500 },
     { page:'app', kind:'navigate', url:'app.html#/login', wait:1500 },
-    { page:'app', kind:'type', target:'#loginEmail', text:'roberto@apizzadamooca.com.br', delay:45 },
+    { page:'app', kind:'type', target:'#loginEmail', text:'roberto@cantinalume.com.br', delay:45 },
     { page:'app', kind:'type', target:'#loginPwd', text:'••••••••', delay:40 },
     { page:'app', kind:'click', target:'#loginForm button[type="submit"]', wait:2500 },
     { page:'app', kind:'caption', text:'Início é <b>IDENTIDADE da casa</b> · não operação. Logo, endereço, segmento, plano. <b>"A casa em movimento"</b> mostra a escala dos próximos turnos.', wait:5500 },
@@ -79,11 +79,11 @@
     { page:'app', kind:'type', target:'#loginEmail', text:'carlos.silva@gmail.com', delay:45 },
     { page:'app', kind:'type', target:'#loginPwd', text:'••••••••', delay:40 },
     { page:'app', kind:'click', target:'#loginForm button[type="submit"]', wait:2500 },
-    { page:'app', kind:'caption', text:'Início do trabalhador é o <b>crachá TURN<span class="di">I</span><span class="de">.</span></b> · sua reputação. <b>4.9★ · 127 turnos · Elite</b>. Não é currículo · é histórico vivo na rede.', wait:5500 },
+    { page:'app', kind:'caption', text:'Início do trabalhador é o <b>crachá <span class="mt-wm-i">Match<b>Turno</b></span></b> · sua reputação. <b>4.9★ · 127 turnos · Elite</b>. Não é currículo · é histórico vivo na rede.', wait:5500 },
     { page:'app', kind:'navigate', url:'app.html#/profissional/feed', wait:2000 },
     { page:'app', kind:'caption', text:'Feed em <b>listagem zebrada compacta</b> · otimizado para celular simples. Cada linha mostra match%, valor, distância em segundos.', wait:5000 },
     { page:'app', kind:'caption', text:'O <b>match%</b> não é caixa-preta. Clica e mostra a fórmula: função, distância, score, nível, preço. <b>Transparência do algoritmo</b> = base de confiança.', wait:5500 },
-    { page:'app', kind:'caption', text:'Para finalizar: <b>quando Carlos chegar no local</b>, ele gera PIN. Roberto valida (geofence 100m). Cronômetro bilateral. Check-out gera novo PIN. Pix em 15 min via Pagar.me. <b>Feedback bilateral obrigatório</b> libera a próxima candidatura.', wait:7000 },
+    { page:'app', kind:'caption', text:'Para finalizar: <b>quando Carlos chegar no local</b>, ele gera PIN. Roberto valida (geofence 100m). Cronômetro bilateral. Check-out gera novo PIN. Pix em 15 min via Asaas. <b>Feedback bilateral obrigatório</b> libera a próxima candidatura.', wait:7000 },
     { page:'app', kind:'end' }
   ];
 
@@ -124,7 +124,7 @@
     bar.id = 'tourBar';
     bar.innerHTML = `
       <div class="tour-meta">
-        <span class="tour-meta-logo">TURN<span class="di">I</span><span class="de">.</span></span>
+        <span class="tour-meta-logo"><span class="mt-wm">Match<b>Turno</b></span></span>
         <span class="tour-meta-rec">REC</span>
         <span class="tour-meta-tag">DEMO GUIADA · 15 MIN</span>
         <span class="tour-meta-step">PASSO <b id="tourStepIdx">1</b> / <b id="tourStepTotal">${STEPS.length}</b></span>
@@ -177,7 +177,7 @@
       splash.className = 'tour-splash';
       splash.id = 'tourSplash';
       splash.innerHTML = `
-        <div class="tour-splash-logo">TURN<span class="di">I</span><span class="de">.</span></div>
+        <div class="tour-splash-logo"><span class="mt-wm">Match<b>Turno</b></span></div>
         <div class="tour-splash-tag">demo guiada · 15 minutos</div>
         <div class="tour-splash-count" id="tourCount">3</div>
       `;
@@ -204,9 +204,9 @@
     const end = document.createElement('div');
     end.className = 'tour-end';
     end.innerHTML = `
-      <div class="tour-end-logo">TURN<span class="di">I</span><span class="de">.</span></div>
+      <div class="tour-end-logo"><span class="mt-wm">Match<b>Turno</b></span></div>
       <h2 class="tour-end-h">Match IA · PIN Bilateral · Pix em 15min</h2>
-      <p class="tour-end-d">Você acabou de ver o ciclo completo: pré-cadastros · curadoria humana · contratante abrindo vaga · trabalhador dando match. Stone, Pagar.me e Grupo Noiz já no ecossistema. Pronto para escalar.</p>
+      <p class="tour-end-d">Você acabou de ver o ciclo completo: pré-cadastros · curadoria humana · contratante abrindo vaga · trabalhador dando match. Pagamentos via Asaas, checklist por função e PIN bilateral. Pronto para escalar.</p>
       <div class="tour-end-actions">
         <button class="tour-end-btn" onclick="Tour.restart()">↻ Rever a demo</button>
         <button class="tour-end-btn primary" onclick="Tour.exit()">Explorar livre <svg viewBox='0 0 24 24' fill='none' stroke='currentColor'><path d='M5 12h14M13 5l7 7-7 7'/></svg></button>

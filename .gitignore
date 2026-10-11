@@ -7,3 +7,7 @@ firebase-debug.log
 .env.*
 img-optimized/
 turni-demo-mvp-COMPLETO.zip
+
+# Fora do repositório público
+TURNI_MVP_Acessos.html
+turni-claude-code-kit.zip

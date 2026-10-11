@@ -40,7 +40,7 @@ firebase deploy --only hosting
 
 echo ""
 echo "✅ Deploy completo!"
-echo "🌐 URL: https://mvpturni.web.app"
+echo "🌐 URL: https://matchturno.web.app"
 echo ""
 echo "Para deploy automático em cada push:"
 echo "1. firebase init hosting:github (cria service account)"

@@ -3,7 +3,7 @@
 Plataforma de hospitalidade on-demand · **Match IA · PIN Bilateral · Pix em 15min**
 
 ## 🚀 Demo ao vivo
-https://mvpturni.web.app
+https://matchturno.web.app
 
 ## 📁 Estrutura
 
@@ -26,7 +26,7 @@ https://mvpturni.web.app
 Acesse a landing → clique no botão verde **"▶ Demo guiada · 15min"** no canto inferior direito.
 
 O tour navega automaticamente pela plataforma com legendas estilo screencast, simulando um usuário real:
-1. **Tese visual** (3 min) — landing, manifesto, parceiros Stone/Pagar.me/Noiz
+1. **Tese visual** (3 min) — landing, manifesto, parceiros Stone/Asaas/Noiz
 2. **Pré-cadastros** (2 min) — contratante + trabalhador
 3. **Curadoria admin** (1.5 min) — Rodolfo aprova
 4. **Contratante abre vaga** (3 min) — Roberto da Pizza da Mooca
@@ -57,4 +57,4 @@ Lista completa em `TURNI_MVP_Acessos.html` (não publicado).
 - `README-DEPLOY.md` · Passo-a-passo Firebase
 
 ---
-Operada pelo **Grupo Alcatech.ia** em parceria com **Grupo Noiz · Pagar.me · Stone**
+Operada pelo **Grupo Alcatech.ia** em parceria com **Grupo Noiz · Asaas · Stone**

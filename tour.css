@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TURNI · Demo Tour · Overlay com legenda no rodapé
+   MatchTurno · Demo Tour · Overlay com legenda no rodapé
    Estilo screencast premium · não invasivo · controles glass blur
    ════════════════════════════════════════════════════════════════ */
 
@@ -17,13 +17,13 @@ body.tour-active .demo-bar{ display:none !important }
 .tour-cursor::before{
   content:''; display:block; width:24px; height:24px;
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff' stroke='%23000' stroke-width='1.4'><path d='M3 2l8 18 2-7 7-2z'/></svg>") no-repeat center/contain;
-  filter:drop-shadow(0 4px 8px rgba(0,168,104,.45));
+  filter:drop-shadow(0 4px 8px rgba(234,91,12,.45));
 }
 .tour-cursor.show{ opacity:1 }
 .tour-cursor.click::after{
   content:''; position:absolute; top:50%; left:50%;
   width:60px; height:60px; margin:-30px 0 0 -30px;
-  border-radius:50%; border:2px solid rgba(0,168,104,.7);
+  border-radius:50%; border:2px solid rgba(234,91,12,.7);
   animation:tour-click-ring .55s ease-out;
 }
 @keyframes tour-click-ring{
@@ -36,14 +36,14 @@ body.tour-active .demo-bar{ display:none !important }
   position:fixed; z-index:9997; pointer-events:none;
   border-radius:14px;
   box-shadow:
-    0 0 0 4px rgba(0,168,104,.45),
+    0 0 0 4px rgba(234,91,12,.45),
     0 0 0 9999px rgba(0,0,0,.32);
   transition:all .35s cubic-bezier(.2,.7,.3,1);
   animation:tour-spot-pulse 2s ease-in-out infinite;
 }
 @keyframes tour-spot-pulse{
-  0%,100%{ box-shadow:0 0 0 4px rgba(0,168,104,.45), 0 0 0 9999px rgba(0,0,0,.32) }
-  50%{ box-shadow:0 0 0 8px rgba(0,168,104,.65), 0 0 0 9999px rgba(0,0,0,.32) }
+  0%,100%{ box-shadow:0 0 0 4px rgba(234,91,12,.45), 0 0 0 9999px rgba(0,0,0,.32) }
+  50%{ box-shadow:0 0 0 8px rgba(234,91,12,.65), 0 0 0 9999px rgba(0,0,0,.32) }
 }
 
 /* Caption bar fixa no rodapé · estilo screencast premium */
@@ -65,16 +65,16 @@ body.tour-active .demo-bar{ display:none !important }
 /* Linha 1 · meta + logo + progress */
 .tour-meta{
   display:flex; align-items:center; gap:14px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  font-family:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;
+  font-size:11.5px; letter-spacing:2px; text-transform:uppercase;
   color:rgba(255,255,255,.55);
 }
 .tour-meta-logo{
-  font-family:'Bebas Neue',sans-serif; font-size:18px;
+  font-family:'MT Display Condensed','MT Display',Inter,sans-serif; font-size:18px;
   letter-spacing:1px; color:#fff; line-height:1;
 }
-.tour-meta-logo .di{ color:#7BC299 }
-.tour-meta-logo .de{ -webkit-text-stroke:1px #7BC299; color:transparent }
+.tour-meta-logo .di{ color:#FF8A4C }
+.tour-meta-logo .de{ -webkit-text-stroke:1px #FF8A4C; color:transparent }
 .tour-meta-rec{
   display:inline-flex; align-items:center; gap:6px;
   color:#E84545; font-weight:500;
@@ -94,7 +94,7 @@ body.tour-active .demo-bar{ display:none !important }
   border-radius:3px; overflow:hidden; margin-top:-2px;
 }
 .tour-progress-fill{
-  height:100%; background:linear-gradient(90deg, #00A868 0%, #7BC299 100%);
+  height:100%; background:linear-gradient(90deg, #EA5B0C 0%, #FF8A4C 100%);
   width:0%; transition:width .45s cubic-bezier(.2,.7,.3,1);
 }
 
@@ -105,7 +105,7 @@ body.tour-active .demo-bar{ display:none !important }
   gap:24px; align-items:center;
 }
 .tour-caption{
-  font-family:'Fraunces','Georgia',serif;
+  font-family:'MT Display','Georgia',serif;
   font-size:22px; font-weight:400; letter-spacing:-.4px;
   line-height:1.35; color:#fff;
   animation:tour-caption-in .45s ease-out;
@@ -114,10 +114,10 @@ body.tour-active .demo-bar{ display:none !important }
   from{ opacity:0; transform:translateY(8px) }
   to{ opacity:1; transform:translateY(0) }
 }
-.tour-caption b{ color:#7BC299; font-weight:500 }
+.tour-caption b{ color:#FF8A4C; font-weight:500 }
 .tour-caption .accent-orange{ color:#F4A04C }
 .tour-subcaption{
-  font-family:'JetBrains Mono',monospace;
+  font-family:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;
   font-size:11px; letter-spacing:.3px;
   color:rgba(255,255,255,.55);
   margin-top:6px;
@@ -140,10 +140,10 @@ body.tour-active .demo-bar{ display:none !important }
 .tour-btn svg{ width:16px; height:16px; stroke-width:2 }
 .tour-btn-primary{
   width:auto; padding:0 18px; border-radius:999px; gap:8px;
-  background:#00A868; border-color:#00A868;
+  background:#EA5B0C; border-color:#EA5B0C;
   font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:.1px;
 }
-.tour-btn-primary:hover{ background:#019257; border-color:#019257 }
+.tour-btn-primary:hover{ background:#B8460A; border-color:#B8460A }
 .tour-btn-exit{
   background:transparent; border-color:rgba(255,255,255,.18);
 }
@@ -154,10 +154,10 @@ body.tour-active .demo-bar{ display:none !important }
   position:fixed; right:24px; bottom:24px; z-index:80;
   display:inline-flex; align-items:center; gap:10px;
   padding:14px 22px; border-radius:999px;
-  background:#00A868; color:#fff;
+  background:#EA5B0C; color:#fff;
   font-family:'Inter',sans-serif; font-size:14px; font-weight:500; letter-spacing:.1px;
   border:none; cursor:pointer;
-  box-shadow:0 8px 28px rgba(0,168,104,.42);
+  box-shadow:0 8px 28px rgba(234,91,12,.42);
   transition:all .2s;
   animation:tour-fab-bob 3s ease-in-out infinite;
 }
@@ -165,7 +165,7 @@ body.tour-active .demo-bar{ display:none !important }
   0%,100%{ transform:translateY(0) }
   50%{ transform:translateY(-4px) }
 }
-.tour-fab:hover{ box-shadow:0 12px 36px rgba(0,168,104,.55) }
+.tour-fab:hover{ box-shadow:0 12px 36px rgba(234,91,12,.55) }
 .tour-fab svg{ width:16px; height:16px; stroke-width:2 }
 body.tour-active .tour-fab{ display:none }
 
@@ -179,19 +179,19 @@ body.tour-active .tour-fab{ display:none }
 }
 @keyframes tour-splash-in{ from{ opacity:0 } to{ opacity:1 } }
 .tour-splash-logo{
-  font-family:'Bebas Neue',sans-serif; font-size:88px;
+  font-family:'MT Display Condensed','MT Display',Inter,sans-serif; font-size:88px;
   letter-spacing:6px; line-height:1; margin-bottom:24px;
 }
-.tour-splash-logo .di{ color:#7BC299 }
-.tour-splash-logo .de{ -webkit-text-stroke:2.5px #7BC299; color:transparent }
+.tour-splash-logo .di{ color:#FF8A4C }
+.tour-splash-logo .de{ -webkit-text-stroke:2.5px #FF8A4C; color:transparent }
 .tour-splash-tag{
-  font-family:'JetBrains Mono',monospace;
+  font-family:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;
   font-size:12px; letter-spacing:3px; text-transform:uppercase;
   color:rgba(255,255,255,.6); margin-bottom:48px;
 }
 .tour-splash-count{
-  font-family:'Bebas Neue',sans-serif; font-size:140px;
-  letter-spacing:2px; line-height:1; color:#7BC299;
+  font-family:'MT Display Condensed','MT Display',Inter,sans-serif; font-size:140px;
+  letter-spacing:2px; line-height:1; color:#FF8A4C;
   animation:tour-count-pulse 1s ease-in-out;
 }
 @keyframes tour-count-pulse{
@@ -209,13 +209,13 @@ body.tour-active .tour-fab{ display:none }
   animation:tour-splash-in .55s ease-out;
 }
 .tour-end-logo{
-  font-family:'Bebas Neue',sans-serif; font-size:64px;
+  font-family:'MT Display Condensed','MT Display',Inter,sans-serif; font-size:64px;
   letter-spacing:5px; line-height:1; margin-bottom:18px;
 }
-.tour-end-logo .di{ color:#7BC299 }
-.tour-end-logo .de{ -webkit-text-stroke:1.8px #7BC299; color:transparent }
+.tour-end-logo .di{ color:#FF8A4C }
+.tour-end-logo .de{ -webkit-text-stroke:1.8px #FF8A4C; color:transparent }
 .tour-end-h{
-  font-family:'Fraunces',serif; font-size:42px; font-weight:400;
+  font-family:'MT Display',Inter,sans-serif; font-size:42px; font-weight:400;
   letter-spacing:-.6px; line-height:1.15; max-width:680px; margin-bottom:18px;
 }
 .tour-end-d{
@@ -230,8 +230,8 @@ body.tour-active .tour-fab{ display:none }
   border:1px solid rgba(255,255,255,.18); background:transparent; color:#fff;
 }
 .tour-end-btn:hover{ background:rgba(255,255,255,.1); transform:translateY(-1px) }
-.tour-end-btn.primary{ background:#00A868; border-color:#00A868 }
-.tour-end-btn.primary:hover{ background:#019257; border-color:#019257; box-shadow:0 8px 24px rgba(0,168,104,.5) }
+.tour-end-btn.primary{ background:#EA5B0C; border-color:#EA5B0C }
+.tour-end-btn.primary:hover{ background:#B8460A; border-color:#B8460A; box-shadow:0 8px 24px rgba(234,91,12,.5) }
 .tour-end-btn svg{ width:14px; height:14px; stroke-width:2 }
 
 /* Espaço vertical no body para o caption não cobrir conteúdo · só durante tour */

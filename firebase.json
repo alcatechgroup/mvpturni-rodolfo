@@ -1,31 +1,74 @@
 {
-  "hosting": {
-    "public": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**",
-      "README*.md",
-      ".github/**"
-    ],
-    "rewrites": [
-      { "source": "**", "destination": "/index.html" }
-    ],
-    "headers": [
-      {
-        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|avif|woff|woff2|ico)",
-        "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }]
-      },
-      {
-        "source": "**/*.@(html|json)",
-        "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
-      },
-      {
-        "source": "**/*.@(css|js)",
-        "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
-      }
-    ],
-    "cleanUrls": true,
-    "trailingSlash": false
-  }
+  "hosting": [
+    {
+      "site": "matchturno",
+      "public": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "README*.md",
+        ".github/**",
+        "**/*.md",
+        "**/*.docx",
+        "**/*.zip",
+        "**/*.log",
+        "**/*.bak*",
+        "**/*.pre-mt",
+        "TURNI_MVP_Acessos.html",
+        "setup.sh",
+        "turnioficial_files/**",
+        "**/.DS_Store",
+        "_redirect/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|avif|woff|woff2|ico)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=2592000, immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(html|json)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=300"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(css|js)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=3600"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false
+    },
+    {
+      "site": "mvpturni",
+      "public": "_redirect",
+      "redirects": [
+        {
+          "regex": "^/(?P<path>.*)$",
+          "destination": "https://matchturno.web.app/:path",
+          "type": 301
+        }
+      ]
+    }
+  ]
 }

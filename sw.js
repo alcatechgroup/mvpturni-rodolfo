@@ -1,5 +1,5 @@
-// TURNI · Service Worker — network-first para HTML, cache-first para assets
-const CACHE = 'turni-v3';
+// MatchTurno · Service Worker — network-first para HTML, cache-first para assets
+const CACHE = 'matchturno-v3';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -20,7 +20,7 @@ self.addEventListener('fetch', e => {
   // HTML sempre da rede — garante versão mais recente
   if(e.request.mode === 'navigate' || url.pathname.endsWith('.html')){
     e.respondWith(
-      fetch(e.request)
+      fetch(e.request.url, { cache: 'no-cache', credentials: 'same-origin' })
         .then(r => { const c = r.clone(); caches.open(CACHE).then(ch => ch.put(e.request, c)); return r; })
         .catch(() => caches.match(e.request))
     );

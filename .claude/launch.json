@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "matchturno-brand-kit",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/rodolfonascimento/Documents/Claude/Projects/Noiz Food Tech/matchturno-brand-kit' && npx vite dev --port 5174 --strictPort"
+      ],
+      "port": 5174
+    },
+    {
+      "name": "matchturno-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "5180",
+        "--directory",
+        "/Users/rodolfonascimento/Documents/Claude/Projects/Noiz Food Tech/turni-demo-mvp/deploy"
+      ],
+      "port": 5180
+    }
+  ]
+}
