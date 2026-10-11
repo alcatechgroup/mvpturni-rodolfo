@@ -23,6 +23,10 @@
       ],
       "rewrites": [
         {
+          "source": "/app/pitchdeck",
+          "destination": "/pitchdeck.html"
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
