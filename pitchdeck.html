@@ -3937,6 +3937,32 @@
   html body .mcd-word,html body .mcd-word span{font-family:'MT Display Condensed','MT Display',Inter,sans-serif !important;font-weight:800 !important;letter-spacing:.01em !important}
   html body .mcd-brand{bottom:15%}
   html body .mcd-br{bottom:15%}
+
+  /* ── slides novos · por quê, princípios, rivais, prova, sócios ── */
+  .mt-verbs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:100%;max-width:1400px;margin-top:10px}
+  .mt-verb{background:#16151A;border:1px solid rgba(255,255,255,.08);border-top:3px solid #EA5B0C;border-radius:16px;padding:26px 24px;text-align:left}
+  .mt-verb b{display:block;font-family:'MT Display Condensed','MT Display',sans-serif !important;font-weight:800;font-size:clamp(34px,2.8vw,48px);text-transform:uppercase;color:#FF8A4C;line-height:1}
+  .mt-verb span{display:block;font-family:'MT Display',Inter,sans-serif !important;font-weight:700;font-size:clamp(16px,1.25vw,21px);color:#fff;margin:8px 0 12px}
+  .mt-verb p{font-size:clamp(14px,1.05vw,17px);line-height:1.55;color:rgba(255,255,255,.72)}
+  .mt-card-on{border-color:rgba(234,91,12,.5) !important;background:linear-gradient(160deg,rgba(234,91,12,.16),#16151A 70%) !important}
+  .mt-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;max-width:1400px;margin-top:6px}
+  .mt-pf{background:#16151A;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 22px;text-align:left}
+  .mt-pf h3{font-family:'MT Display',Inter,sans-serif !important;font-size:clamp(19px,1.5vw,25px);font-weight:700;color:#fff;margin:6px 0 10px}
+  .mt-pf p{font-size:clamp(14px,1.05vw,17px);line-height:1.55;color:rgba(255,255,255,.72)}
+  .mt-pf.ok{border-top:3px solid #3FB97A} .mt-pf.ok .mt-k{color:#6FD6A0}
+  .mt-pf.go{border-top:3px solid #EA5B0C}
+  .mt-pf.next{border-top:3px solid rgba(255,255,255,.3);opacity:.85} .mt-pf.next .mt-k{color:rgba(255,255,255,.55)}
+  .mt-socios{display:grid;grid-template-columns:1fr 1fr;gap:22px;width:100%;max-width:1400px;margin-top:6px}
+  .mt-socio{display:flex;gap:22px;align-items:flex-start;background:#16151A;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;text-align:left}
+  .mt-socio img{width:clamp(96px,8vw,140px);height:clamp(96px,8vw,140px);border-radius:50%;object-fit:cover;flex:none;border:3px solid rgba(234,91,12,.6)}
+  .mt-socio-b h3{font-family:'MT Display',Inter,sans-serif !important;font-size:clamp(22px,1.9vw,32px);font-weight:800;letter-spacing:-.02em;color:#fff;margin:4px 0 6px}
+  .mt-socio-l{font-size:clamp(14px,1.05vw,17px);color:rgba(255,255,255,.7);margin-bottom:12px}
+  .mt-socio ul{list-style:none;display:flex;flex-direction:column;gap:8px;padding:0;margin:0}
+  .mt-socio li{font-size:clamp(14px,1.05vw,17px);line-height:1.45;color:rgba(255,255,255,.78);padding-left:16px;position:relative;text-align:left}
+  .mt-socio li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:#EA5B0C}
+  .mt-socio li b{color:#fff;font-weight:600}
+  @media (max-height:820px){.mt-socio{padding:18px}.mt-socio ul{gap:5px}.mt-verb,.mt-pf{padding:18px}}
+  html body .slide .mt-chain div.on .mt-wm-i b{color:#16151A !important}
 </style>
 </head>
 <body>
@@ -3972,64 +3998,12 @@
     </div>
   </section>
 
-  <!-- ─── SLIDE 2 · POR QUE ESTAMOS AQUI ─── -->
-  <section class="slide slide-porque" data-label="POR QUE ESTAMOS AQUI">
-    <div class="eyebrow muted">abertura · objetivo da reunião</div>
-    <h2 class="h2">POR QUE ESTAMOS<br><span class="accent">AQUI.</span></h2>
-    <div class="answer-block">
-      <p class="answer-h">Estamos buscando um <b>parceiro</b> que nos ajude a construir a <b>melhor</b> e <b>maior</b> plataforma de <b>workforce</b> para o <b>setor de Hospitalidade</b> do <b>Brasil</b>.</p>
-    </div>
+  <section class="slide mt-s" data-label="POR QUÊ">
+    <div class="mt-eye">por que existimos</div>
+    <h2 class="mt-h mt-h-xl">ACREDITAMOS QUE TRABALHO BOM<br>É <span class="mt-acc">COMBINADO, CUMPRIDO</span><br>E <span class="mt-acc">PAGO NO MESMO DIA.</span></h2>
+    <p class="mt-lead">Hoje o empresário paga pelo tempo e torce pela entrega. O profissional entrega e espera o mês para receber. A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> existe para que o turno seja justo para os dois lados.</p>
   </section>
 
-  <!-- ─── SLIDE 3 · QUEM SOMOS ─── -->
-  <section class="slide" data-label="QUEM SOMOS">
-    <div class="eyebrow">quem está na sala</div>
-    <h2 class="h2">UM FUNDADOR.<br>UMA <span class="accent">TESE.</span></h2>
-    <div class="team-grid" style="grid-template-columns:1fr">
-      <div class="team-card alcatech">
-        <div class="team-tag">fundador · produto · operação</div>
-        <h3 class="team-h">RODOLFO NASCIMENTO</h3>
-        <div class="team-sub">tecnologia · produto · go-to-market</div>
-        <p class="team-desc">Empreendedor serial em tecnologia com histórico de exits. Construiu a MatchTurno do zero — produto, stack, UX e modelo de negócio — com IA como motor de velocidade de execução. <b>O lado que transforma dor de mercado em produto escalável.</b></p>
-        <div class="team-stamp">visão tecnológica + profundidade em hospitalidade</div>
-
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;align-items:start">
-        <div class="founder-row">
-          <div class="founder-tag">trajetória</div>
-          <div class="founder-name">30 ANOS EM TECNOLOGIA E PRODUTO</div>
-          <ul class="founder-list">
-            <li><b>15 anos</b> · Product Owner e Diretor de Marketing em software house</li>
-            <li><b>15 anos</b> · Empreendedor · <b>2 exits em Benefícios (Vale Transporte)</b></li>
-            <li><b>Clientes</b> · Walmart · Extrafarma · Profarma · Alelo · VR</li>
-          </ul>
-        </div>
-
-        <div class="founder-row">
-          <div class="founder-tag">validação de mercado</div>
-          <div class="founder-name">OPERAÇÕES REAIS COMO LABORATÓRIO</div>
-          <ul class="founder-list">
-            <li><b>Multi-unidade F&amp;B</b> em São Paulo · piloto operacional da MatchTurno</li>
-            <li><b>Produto desenhado de dentro</b> do setor, não para ele</li>
-            <li><b>Match IA · PIN bilateral · Pix em 15 min</b> · testados em operação viva</li>
-          </ul>
-        </div>
-
-        <div class="founder-row">
-          <div class="founder-tag">o que busco</div>
-          <div class="founder-name">PARCEIRO PARA ESCALAR</div>
-          <ul class="founder-list">
-            <li><b>Capital e estrutura</b> para acelerar a expansão comercial</li>
-            <li><b>Acesso a rede</b> de hospitalidade, eventos e catering</li>
-            <li><b>Sócio operacional</b>, não apenas investidor financeiro</li>
-          </ul>
-        </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 4 · SOMOS FHP ─── -->
-    <!-- ─── TESE 1 · A DOR ─── -->
   <section class="slide mt-s" data-label="A DOR">
     <div class="mt-eye">a tese · 01 · a dor</div>
     <h2 class="mt-h">MÃO DE OBRA É A DOR Nº 1<br>DE <span class="mt-acc">QUALQUER EMPRESÁRIO.</span></h2>
@@ -4037,12 +4011,11 @@
     <div class="mt-cards3">
       <div class="mt-card"><div class="mt-k">falta</div><h3>Sexta, 19h. Dois faltaram.</h3><p>Não existe reposição em 2 horas. A casa abre desfalcada no pico da semana.</p></div>
       <div class="mt-card"><div class="mt-k">custo</div><h3>Paga o dia para cobrir o pico.</h3><p>Para 3 horas de movimento, o mercado só oferece diária cheia ou contrato mensal.</p></div>
-      <div class="mt-card"><div class="mt-k">risco</div><h3>Extra informal vira passivo.</h3><p>Sem registro, sem tarefa definida, sem prova de entrega. O risco trabalhista fica no balcão.</p></div>
+      <div class="mt-card"><div class="mt-k">risco</div><h3>Extra informal não tem prova de entrega.</h3><p>Sem registro e sem tarefa definida, ninguém sabe o que foi combinado, nem o que foi feito.</p></div>
     </div>
     <div class="mt-strip"><span><b>3º</b> maior empregador do país</span><span><b>7,9 mi</b> trabalhadores no setor</span><span><b>3,6 mi</b> na informalidade</span><span class="mt-src">CAGED/MTur · PNAD/IBGE · 2025</span></div>
   </section>
 
-  <!-- ─── TESE 2 · O TRABALHO MUDOU ─── -->
   <section class="slide mt-s" data-label="A VIRADA">
     <div class="mt-eye">a tese · 02 · a virada</div>
     <h2 class="mt-h">UBER E IFOOD JÁ REESCREVERAM<br><span class="mt-acc">A RELAÇÃO DE TRABALHO.</span></h2>
@@ -4055,7 +4028,6 @@
     </div>
   </section>
 
-  <!-- ─── TESE 3 · A NOVA GERAÇÃO ─── -->
   <section class="slide mt-s mt-split" data-label="A NOVA GERAÇÃO">
     <div class="mt-photo" style="background-image:url('/img/mt-hero-profissional.webp')"><div class="mt-quote">“Quem nasceu escolhendo não vai trabalhar batendo ponto.”</div></div>
     <div class="mt-side">
@@ -4070,7 +4042,6 @@
     </div>
   </section>
 
-  <!-- ─── TESE 4 · AGÊNCIAS VENDEM DIÁRIAS ─── -->
   <section class="slide mt-s" data-label="A LACUNA">
     <div class="mt-eye">a tese · 04 · a lacuna</div>
     <h2 class="mt-h">AGÊNCIAS VENDEM DIÁRIAS.<br><span class="mt-acc">A OPERAÇÃO PRECISA DE TURNOS.</span></h2>
@@ -4084,7 +4055,17 @@
     </div>
   </section>
 
-  <!-- ─── TESE 5 · A SOLUÇÃO ─── -->
+  <section class="slide mt-s" data-label="COMO">
+    <div class="mt-eye">como fazemos · os princípios</div>
+    <h2 class="mt-h">QUATRO VERBOS QUE<br><span class="mt-acc">TORNAM O TURNO JUSTO.</span></h2>
+    <div class="mt-verbs">
+      <div class="mt-verb"><b>Combinar</b><span>a entrega antes do turno</span><p>Checklist configurável por função. O empresário define as tarefas; o profissional sabe o que vai fazer antes de chegar.</p></div>
+      <div class="mt-verb"><b>Comprovar</b><span>a presença dos dois lados</span><p>Check-in e check-out com PIN bilateral. Ninguém precisa confiar na palavra do outro.</p></div>
+      <div class="mt-verb"><b>Pagar</b><span>quem trabalhou no mesmo dia</span><p>Split Asaas no check-out validado. Pix ao profissional em até 15 minutos.</p></div>
+      <div class="mt-verb"><b>Dimensionar</b><span>pelo pico, não pelo dia</span><p>Turnos de até 4 horas. O empresário paga o movimento que tem, não o dia inteiro.</p></div>
+    </div>
+  </section>
+
   <section class="slide mt-s mt-sol" data-label="A SOLUÇÃO">
     <div class="mt-sol-phone"><img src="/img/mt-app-checklist.webp" alt="App MatchTurno · checklist de tarefas do turno"></div>
     <div class="mt-side">
@@ -4101,7 +4082,12 @@
     </div>
   </section>
 
-  <!-- ─── TESE · SÍNTESE ─── -->
+  <section class="slide slide-cta" data-label="COMO FUNCIONA">
+    <div class="cta-final">
+      <h1 class="ttl">COMO<br><span class="accent">FUNCIONA.</span></h1>
+    </div>
+  </section>
+
   <section class="slide mt-s" data-label="A TESE">
     <div class="mt-eye">a tese em uma frase</div>
     <h2 class="mt-h mt-h-xl">O TURNO É A NOVA<br><span class="mt-acc">UNIDADE DE TRABALHO.</span></h2>
@@ -4115,20 +4101,6 @@
     <p class="mt-lead mt-bridge">E cada turno fechado é uma <b>transação</b> · é daí que vem o potencial financeiro.</p>
   </section>
 
-  <section class="slide" data-label="MatchTurno">
-    <div class="eyebrow">quem somos</div>
-    <div class="fhp-hero">
-      <div class="fhp-mark"><span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span></div>
-      <div class="fhp-name">ECOSSISTEMA DE TURNOS · HOSPITALIDADE, EVENTOS &amp; CATERING</div>
-      <p class="fhp-tag">A plataforma que conecta profissionais de hospitalidade com quem precisa de <span class="accent">equipe</span> — agora e em escala.</p>
-    </div>
-    <div class="visao-block">
-      <div class="visao-tag">visão</div>
-      <h2 class="visao-h">REDEFINIR COMO O SETOR DE HOSPITALIDADE<br><span class="accent">VAI CRESCER COM IA.</span></h2>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 5 · UM POUCO SOBRE HOSPITALIDADE ─── -->
   <section class="slide slide-sector" data-label="O SETOR">
     <div class="eyebrow">contexto · o setor</div>
     <h2 class="h2">UM POUCO SOBRE O SETOR<br>DE <span class="accent">HOSPITALIDADE.</span></h2>
@@ -4186,150 +4158,6 @@
     </div>
   </section>
 
-  <!-- ─── SLIDE 6 · MatchTurno · O QUE É ─── -->
-  
-
-  <!-- ─── SLIDE 7 · POR QUE A MatchTurno EXISTE ─── -->
-  <section class="slide slide-why" data-label="POR QUE EXISTE">
-    <div class="eyebrow">a tese em detalhe</div>
-    <h2 class="h2">POR QUE A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span><br><span class="accent">EXISTE?</span></h2>
-    <p class="lead">A hospitalidade brasileira é um setor de <b>R$ 597 bilhões</b> que opera com <b>ferramentas do século passado</b>.</p>
-
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-num"><b>01</b>geração</div>
-        <h3 class="why-h">A nova geração não quer mais CLT</h3>
-        <div class="why-quote">Quem nasceu escolhendo não vai trabalhar batendo ponto.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>02</b>oferta invisível</div>
-        <h3 class="why-h">Força de trabalho invisível querendo entrar</h3>
-        <div class="why-quote">A oferta existe. A conexão é o que falta.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>03</b>contratação</div>
-        <h3 class="why-h">A empresa não sabe contratar extra direito</h3>
-        <div class="why-quote">A plataforma faz o gerente acertar mesmo quando ele não sabe.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>04</b>caixa</div>
-        <h3 class="why-h">Pagar extra destrói o caixa da empresa</h3>
-        <div class="why-quote">O caixa do bar não é cofre de pagamento de mão de obra.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>05</b>compliance</div>
-        <h3 class="why-h">A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> mitiga risco trabalhista — automaticamente</h3>
-        <div class="why-quote">A plataforma é o seu compliance trabalhista 24/7.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>06</b>gestão</div>
-        <h3 class="why-h">Gestão profissional do custo de labor</h3>
-        <div class="why-quote">Quem não mede o labor, não controla a margem.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>07</b>turnover</div>
-        <h3 class="why-h">Turnover do setor está fora do controle</h3>
-        <div class="why-quote">Se o ciclo é curto, a contratação tem que ser curta também.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>08</b>talento</div>
-        <h3 class="why-h">Mão de obra qualificada está cada vez mais rara</h3>
-        <div class="why-quote">O talento que existe está disperso. A MatchTurno junta.</div>
-      </div>
-
-      <div class="why-card">
-        <div class="why-num"><b>09</b>regulatório</div>
-        <h3 class="why-h">Escala <span class="accent">5×2</span> vai detonar a margem do setor</h3>
-        <div class="why-quote">Quando a lei muda, quem tem a infraestrutura certa ganha mercado.</div>
-      </div>
-    </div>
-  </section>
-  <!-- ─── SLIDE 8 · COMO FUNCIONA · transição cinematográfica para demo ─── -->
-  <section class="slide slide-cta" data-label="COMO FUNCIONA">
-    <div class="cta-final">
-      <h1 class="ttl">COMO<br><span class="accent">FUNCIONA.</span></h1>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 9 · O QUE DESEJAMOS ─── -->
-  <section class="slide slide-desejo" data-label="O QUE DESEJAMOS">
-    <div class="eyebrow">o que desejamos</div>
-    <h2 class="h2">O QUE<br><span class="accent">DESEJAMOS.</span></h2>
-    <div class="match-brands">
-      <div class="brand-block tn">
-        <div class="brand-word"><span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span></div>
-      </div>
-      <div class="match-sign">
-        <svg class="match-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <radialGradient id="sparkGradDesejo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
-              <stop offset="40%" stop-color="#E8E1F0" stop-opacity="1"/>
-              <stop offset="100%" stop-color="#3A3842" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <circle cx="88" cy="70" r="48" fill="rgba(255,138,76,.10)" stroke="rgba(255,138,76,.65)" stroke-width="1.5"/>
-          <circle cx="132" cy="70" r="48" fill="rgba(0,175,85,.12)" stroke="rgba(0,175,85,.55)" stroke-width="1.5"/>
-          <circle cx="110" cy="70" r="22" fill="url(#sparkGradDesejo)" opacity=".75">
-            <animate attributeName="r" values="18;26;18" dur="2.4s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values=".55;.85;.55" dur="2.4s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="110" cy="70" r="6" fill="#E8E1F0">
-            <animate attributeName="r" values="6;8;6" dur="2.4s" repeatCount="indefinite"/>
-          </circle>
-          <line x1="40" y1="70" x2="62" y2="70" stroke="rgba(255,138,76,.5)" stroke-width="1" stroke-dasharray="3 3"/>
-          <line x1="158" y1="70" x2="180" y2="70" stroke="rgba(0,175,85,.4)" stroke-width="1" stroke-dasharray="3 3"/>
-        </svg>
-        <div class="match-lbl">match</div>
-      </div>
-      <div class="brand-block pm">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
-            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" aria-label="Gateway de pagamento">
-              <rect x="6" y="18" width="60" height="40" rx="7" stroke="#EA5B0C" stroke-width="2.5" fill="none"/>
-              <line x1="6" y1="31" x2="66" y2="31" stroke="#EA5B0C" stroke-width="2.5"/>
-              <circle cx="18" cy="45" r="3.5" fill="#FF8A4C"/>
-              <line x1="28" y1="45" x2="48" y2="45" stroke="rgba(255,138,76,.55)" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-            <div style="font-family:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:2.5px;
-              text-transform:uppercase;color:#FF8A4C">gateway</div>
-          </div>
-        </div>
-    </div>
-    <p class="desejo-tagline">Um <b>gateway de pagamento</b> integrado ao <b>Marketplace</b>.</p>
-  </section>
-
-  <!-- ─── SLIDE 10 · O CONVITE PAGAR.ME ─── -->
-  <section class="slide slide-gateway" data-label="O GATEWAY">
-    <div class="eyebrow">o gateway</div>
-    <h2 class="h2">OS 15 MINUTOS PEDEM UM<br><span class="accent">GATEWAY PRÓPRIO.</span></h2>
-    <p class="lead gateway-lead">O Marketplace precisa de um gateway de pagamento <b>integrado nativamente</b>, capaz de sustentar a promessa do <b>Pix em 15 minutos</b>.</p>
-    <div class="gateway-cards">
-      <div class="gw-card">
-        <div class="gw-num">01</div>
-        <h3 class="gw-h">Split nativo</h3>
-        <p class="gw-p">Cada turno gera <b>3 fluxos automáticos</b> · profissional, MatchTurno e gateway · em segundos após o check-out.</p>
-      </div>
-      <div class="gw-card">
-        <div class="gw-num">02</div>
-        <h3 class="gw-h">Marca consagrada</h3>
-        <p class="gw-p">A confiança nas duas pontas exige um gateway com <b>nome reconhecido no mercado</b> · marca valida promessa.</p>
-      </div>
-      <div class="gw-card">
-        <div class="gw-num">03</div>
-        <h3 class="gw-h">Alta disponibilidade</h3>
-        <p class="gw-p">Com <b>12,5× mais TPVs por profissional</b> que a CLT, a infraestrutura de alta disponibilidade é pré-requisito.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 11 · RACIONAL TRANSACIONAL · 1 CLT vs 1 MatchTurno ─── -->
   <section class="slide slide-tese" data-label="RACIONAL TPV">
     <div class="eyebrow">racional transacional · volume para o gateway</div>
     <h2 class="h2">TURNO NÃO É EMPREGO.<br>É <span class="accent">TRANSAÇÃO.</span></h2>
@@ -4364,7 +4192,6 @@
     </div>
   </section>
 
-  <!-- ─── SLIDE 12 · SIMULADOR · POTENCIAL DE MERCADO ─── -->
   <section class="slide slide-simulator" data-label="POTENCIAL DE MERCADO">
     <div class="eyebrow">simulador · potencial de mercado</div>
     <h2 class="h2">QUANTO A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> PODE<br><span class="accent">RETER DO MERCADO?</span></h2>
@@ -4451,143 +4278,6 @@
     </div>
   </section>
 
-  <script>
-    (function(){
-      // ═══ Estado global de simulações ═══
-      window.simResults = window.simResults || { turnos: null, assinaturas: null };
-
-      // ═══ Parâmetros fixos do modelo ═══
-      // Turnos potenciais/mês = 1,017 bilhão · base de mercado total no setor de hospitalidade
-      // Retenção é aplicada DIRETAMENTE sobre este volume de turnos (não sobre estabelecimentos)
-      var TAXA_TURNI = 29; // R$ por turno
-      var TURNOS_POTENCIAIS = 1017000000; // 1,017 BI turnos/mês · mercado total
-
-      // ═══ Elementos DOM ═══
-      var inputRet = document.getElementById('sim-pct-retencao');
-      var inputStone = document.getElementById('sim-pct-stone');
-      var elTurnos = document.getElementById('sim-turnos');
-      var elReceitaMes = document.getElementById('sim-receita-mes');
-      var elReceitaAno = document.getElementById('sim-receita-ano');
-      var elStoneMes = document.getElementById('sim-stone-mes');
-      var elStoneAno = document.getElementById('sim-stone-ano');
-      var btnSave = document.getElementById('sim12-save');
-
-      // ═══ Último cálculo (para o botão salvar) ═══
-      var ultimaCalc = null;
-
-      // ═══ Formatadores brasileiros · sem erro de arredondamento ═══
-      function fmtNum(n, dec){
-        return n.toLocaleString('pt-BR', {
-          minimumFractionDigits: dec,
-          maximumFractionDigits: dec
-        });
-      }
-
-      function fmtTurnos(n){
-        n = Math.round(n);
-        if(n >= 1000000) return fmtNum(n/1000000, 2) + ' Mi';
-        if(n >= 1000) return fmtNum(n/1000, 2) + ' mil';
-        return fmtNum(n, 0);
-      }
-
-      function fmtReais(n){
-        if(n >= 1000000000) return 'R$ ' + fmtNum(n/1000000000, 2) + ' Bi';
-        if(n >= 1000000) return 'R$ ' + fmtNum(n/1000000, 2) + ' Mi';
-        if(n >= 1000) return 'R$ ' + fmtNum(n/1000, 2) + ' mil';
-        return 'R$ ' + fmtNum(n, 2);
-      }
-
-      // ═══ Parse percentual aceitando vírgula ou ponto ═══
-      function parsePct(v){
-        if(v === null || v === undefined) return 0;
-        v = String(v).replace(',', '.').trim();
-        if(v === '') return 0;
-        var n = parseFloat(v);
-        if(isNaN(n) || n < 0) return 0;
-        if(n > 100) return 100;
-        return n;
-      }
-
-      function roundCents(n){ return Math.round(n * 100) / 100; }
-
-      function flash(el){
-        if(!el) return;
-        el.classList.add('flash');
-        setTimeout(function(){ el.classList.remove('flash'); }, 320);
-      }
-
-      function calcula(){
-        var retPct = parsePct(inputRet ? inputRet.value : 0);
-        var stonePct = parsePct(inputStone ? inputStone.value : 0);
-
-        var ret = retPct / 100;
-        var stone = stonePct / 100;
-
-        var turnos = Math.round(TURNOS_POTENCIAIS * ret);
-        var receitaMes = roundCents(turnos * TAXA_TURNI);
-        var receitaAno = roundCents(receitaMes * 12);
-        var stoneMes = roundCents(receitaMes * stone);
-        var stoneAno = roundCents(stoneMes * 12);
-
-        ultimaCalc = {
-          retencao: retPct,
-          taxa: stonePct,
-          turnos: turnos,
-          receitaMes: receitaMes,
-          receitaAno: receitaAno,
-          stoneMes: stoneMes,
-          stoneAno: stoneAno
-        };
-
-        if(elTurnos){ elTurnos.textContent = fmtTurnos(turnos); flash(elTurnos); }
-        if(elReceitaMes){ elReceitaMes.textContent = fmtReais(receitaMes); flash(elReceitaMes); }
-        if(elReceitaAno){ elReceitaAno.textContent = fmtReais(receitaAno); flash(elReceitaAno); }
-        if(elStoneMes){ elStoneMes.textContent = fmtReais(stoneMes); flash(elStoneMes); }
-        if(elStoneAno){ elStoneAno.textContent = fmtReais(stoneAno); flash(elStoneAno); }
-
-        // Modifica botão · saiu de estado "salvo" assim que usuário recalcula
-        if(btnSave && btnSave.classList.contains('saved')){
-          btnSave.classList.remove('saved');
-        }
-      }
-
-      function bindInput(el){
-        if(!el) return;
-        el.addEventListener('input', calcula);
-        el.addEventListener('blur', function(){
-          var v = parsePct(el.value);
-          el.value = String(v).replace('.', ',');
-          calcula();
-        });
-      }
-
-      // ═══ Salvar simulação · armazena em window.simResults.turnos ═══
-      if(btnSave){
-        btnSave.addEventListener('click', function(){
-          if(!ultimaCalc) return;
-          window.simResults.turnos = {
-            retencao: ultimaCalc.retencao,
-            taxa: ultimaCalc.taxa,
-            turnos: ultimaCalc.turnos,
-            receitaMes: ultimaCalc.receitaMes,
-            receitaAno: ultimaCalc.receitaAno,
-            stoneMes: ultimaCalc.stoneMes,
-            stoneAno: ultimaCalc.stoneAno
-          };
-          btnSave.classList.add('saved');
-          btnSave.setAttribute('data-saved-label', '✓ ' + fmtReais(ultimaCalc.receitaMes) + '/mês salvo');
-          window.dispatchEvent(new CustomEvent('simSave'));
-        });
-      }
-
-      bindInput(inputRet);
-      bindInput(inputStone);
-
-      calcula();
-    })();
-  </script>
-
-  <!-- ─── SLIDE 13 · SIMULADOR · POTENCIAL ASSINATURAS ─── -->
   <section class="slide slide-simulator" data-label="POTENCIAL ASSINATURAS">
     <div class="eyebrow">simulador · potencial de assinaturas</div>
     <h2 class="h2">FATURAMENTO POTENCIAL<br>EM <span class="accent">ASSINATURAS.</span></h2>
@@ -4728,181 +4418,20 @@
     </div>
   </section>
 
-  <script>
-    (function(){
-      // ═══ Estado global de simulações ═══
-      window.simResults = window.simResults || { turnos: null, assinaturas: null };
-
-      // ═══ Parâmetros fixos ═══
-      var MERCADO_EMP = 1695000;
-      var MERCADO_PROF = 7800000;
-      var PRECO_EMP = [0, 199, 399];
-      var PRECO_PROF = [0, 49, 99];
-
-      var ids = {
-        retencao: 'sub-retencao',
-        stone: 'sub-stone',
-        empG: 'sub-emp-grat',
-        empR: 'sub-emp-rec',
-        empE: 'sub-emp-ent',
-        profG: 'sub-prof-grat',
-        profM: 'sub-prof-mem',
-        profE: 'sub-prof-ent'
-      };
-
-      var outs = {
-        empSoma: document.getElementById('sub-emp-soma'),
-        profSoma: document.getElementById('sub-prof-soma'),
-        receitaMes: document.getElementById('sub-receita-mes'),
-        receitaAno: document.getElementById('sub-receita-ano'),
-        stoneMes: document.getElementById('sub-stone-mes'),
-        stoneAno: document.getElementById('sub-stone-ano')
-      };
-
-      var btnSave = document.getElementById('sim13-save');
-      var ultimaCalc = null;
-
-      // ═══ Parse robusto · aceita vírgula e ponto ═══
-      function parsePct(v){
-        if(v === null || v === undefined) return 0;
-        v = String(v).replace(',', '.').trim();
-        if(v === '') return 0;
-        var n = parseFloat(v);
-        if(isNaN(n) || n < 0) return 0;
-        if(n > 100) return 100;
-        return n;
-      }
-
-      function get(key){
-        var el = document.getElementById(ids[key]);
-        return el ? parsePct(el.value) : 0;
-      }
-
-      // ═══ Formatadores ═══
-      function fmtNum(n, dec){
-        return n.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
-      }
-      function fmtReais(n){
-        if(n >= 1e9) return 'R$ ' + fmtNum(n/1e9, 2) + ' Bi';
-        if(n >= 1e6) return 'R$ ' + fmtNum(n/1e6, 2) + ' Mi';
-        if(n >= 1e3) return 'R$ ' + fmtNum(n/1e3, 2) + ' mil';
-        return 'R$ ' + fmtNum(n, 2);
-      }
-
-      // ═══ Arredondamento em centavos ═══
-      function roundCents(n){ return Math.round(n * 100) / 100; }
-
-      function flash(el){
-        if(!el) return;
-        el.classList.add('flash');
-        setTimeout(function(){ el.classList.remove('flash'); }, 320);
-      }
-
-      function calcula(){
-        var ret = get('retencao') / 100;
-        var stoneT = get('stone') / 100;
-
-        var empG = get('empG');
-        var empR = get('empR');
-        var empE = get('empE');
-        var profG = get('profG');
-        var profM = get('profM');
-        var profE = get('profE');
-
-        // Somas para feedback visual
-        var empSomaVal = empG + empR + empE;
-        var profSomaVal = profG + profM + profE;
-
-        if(outs.empSoma){
-          outs.empSoma.textContent = fmtNum(empSomaVal, empSomaVal === Math.floor(empSomaVal) ? 0 : 1);
-          var empTag = outs.empSoma.parentElement;
-          if(empTag) empTag.classList.toggle('warn', Math.abs(empSomaVal - 100) > 0.5);
-        }
-        if(outs.profSoma){
-          outs.profSoma.textContent = fmtNum(profSomaVal, profSomaVal === Math.floor(profSomaVal) ? 0 : 1);
-          var profTag = outs.profSoma.parentElement;
-          if(profTag) profTag.classList.toggle('warn', Math.abs(profSomaVal - 100) > 0.5);
-        }
-
-        // Empresas e profissionais retidos
-        var empRet = MERCADO_EMP * ret;
-        var profRet = MERCADO_PROF * ret;
-
-        // ARPU = Σ(% × preço do plano)
-        var arpuEmp = (empG/100)*PRECO_EMP[0] + (empR/100)*PRECO_EMP[1] + (empE/100)*PRECO_EMP[2];
-        var arpuProf = (profG/100)*PRECO_PROF[0] + (profM/100)*PRECO_PROF[1] + (profE/100)*PRECO_PROF[2];
-
-        var receitaMes = roundCents(empRet * arpuEmp + profRet * arpuProf);
-        var receitaAno = roundCents(receitaMes * 12);
-
-        var stoneMes = roundCents(receitaMes * stoneT);
-        var stoneAno = roundCents(stoneMes * 12);
-
-        ultimaCalc = {
-          retencao: get('retencao'),
-          taxa: get('stone'),
-          empresas: Math.round(empRet),
-          profissionais: Math.round(profRet),
-          arpuEmp: roundCents(arpuEmp),
-          arpuProf: roundCents(arpuProf),
-          receitaMes: receitaMes,
-          receitaAno: receitaAno,
-          stoneMes: stoneMes,
-          stoneAno: stoneAno
-        };
-
-        if(outs.receitaMes){ outs.receitaMes.textContent = fmtReais(receitaMes); flash(outs.receitaMes); }
-        if(outs.receitaAno){ outs.receitaAno.textContent = fmtReais(receitaAno); flash(outs.receitaAno); }
-        if(outs.stoneMes){ outs.stoneMes.textContent = fmtReais(stoneMes); flash(outs.stoneMes); }
-        if(outs.stoneAno){ outs.stoneAno.textContent = fmtReais(stoneAno); flash(outs.stoneAno); }
-
-        if(btnSave && btnSave.classList.contains('saved')){
-          btnSave.classList.remove('saved');
-        }
-      }
-
-      // Salvar simulação · armazena em window.simResults.assinaturas
-      if(btnSave){
-        btnSave.addEventListener('click', function(){
-          if(!ultimaCalc) return;
-          window.simResults.assinaturas = JSON.parse(JSON.stringify(ultimaCalc));
-          btnSave.classList.add('saved');
-          btnSave.setAttribute('data-saved-label', '✓ ' + fmtReais(ultimaCalc.receitaMes) + '/mês salvo');
-          window.dispatchEvent(new CustomEvent('simSave'));
-        });
-      }
-
-      // Bind eventos · input ao vivo + blur para normalizar vírgula
-      Object.keys(ids).forEach(function(k){
-        var el = document.getElementById(ids[k]);
-        if(!el) return;
-        el.addEventListener('input', calcula);
-        el.addEventListener('blur', function(){
-          var v = parsePct(el.value);
-          el.value = String(v).replace('.', ',');
-          calcula();
-        });
-      });
-
-      calcula();
-    })();
-  </script>
-
-  <!-- ─── SLIDE 14 · CONSOLIDADO · totais salvos dos simuladores ─── -->
   <section class="slide slide-consolidado" data-label="CONSOLIDADO">
     <div class="eyebrow">consolidado · faturamento potencial</div>
     <h2 class="h2">POTENCIAL <span class="accent">CONSOLIDADO.</span></h2>
-    <p class="lead cons-lead">Soma das simulações salvas nos slides 17 e 18 · receita MatchTurno combinada e faturamento do gateway de pagamento.</p>
+    <p class="lead cons-lead">Soma das simulações salvas nos slides 13 e 14 · receita MatchTurno combinada e faturamento do gateway de pagamento.</p>
 
     <!-- 2 cards superiores · Receita Turnos + Receita Assinaturas -->
     <div class="cons-origem">
       <div class="cons-origem-card">
-        <div class="cons-origem-tag">slide 17 · turnos × take rate</div>
+        <div class="cons-origem-tag">slide 13 · turnos × take rate</div>
         <div class="cons-origem-h">Receita Turnos</div>
         <div class="cons-origem-v" id="cons-bd-turnos">R$ 0 / mês</div>
       </div>
       <div class="cons-origem-card">
-        <div class="cons-origem-tag">slide 18 · planos assinatura</div>
+        <div class="cons-origem-tag">slide 14 · planos assinatura</div>
         <div class="cons-origem-h">Receita Assinaturas</div>
         <div class="cons-origem-v" id="cons-bd-assin">R$ 0 / mês</div>
       </div>
@@ -4936,96 +4465,12 @@
 
     <!-- Status discreto rodapé -->
     <div class="cons-status-footer">
-      <div class="cons-status-pill" id="cons-st-turnos"><span>17</span> <em id="cons-st-turnos-txt">aguardando · slide 17</em></div>
-      <div class="cons-status-pill" id="cons-st-assinaturas"><span>18</span> <em id="cons-st-assinaturas-txt">aguardando · slide 18</em></div>
+      <div class="cons-status-pill" id="cons-st-turnos"><span>13</span> <em id="cons-st-turnos-txt">aguardando · slide 13</em></div>
+      <div class="cons-status-pill" id="cons-st-assinaturas"><span>14</span> <em id="cons-st-assinaturas-txt">aguardando · slide 14</em></div>
       <div class="cons-status-pill total"><span>Σ</span> <em><b id="cons-total-ano">R$ 0</b> · faturamento total / ano</em></div>
     </div>
   </section>
 
-  <script>
-    (function(){
-      function fmtNum(n, dec){
-        return n.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
-      }
-      function fmtReais(n){
-        if(n >= 1e9) return 'R$ ' + fmtNum(n/1e9, 2) + ' Bi';
-        if(n >= 1e6) return 'R$ ' + fmtNum(n/1e6, 2) + ' Mi';
-        if(n >= 1e3) return 'R$ ' + fmtNum(n/1e3, 2) + ' mil';
-        return 'R$ ' + fmtNum(n, 2);
-      }
-      function roundCents(n){ return Math.round(n * 100) / 100; }
-
-      function update(){
-        window.simResults = window.simResults || { turnos: null, assinaturas: null };
-        var t = window.simResults.turnos;
-        var a = window.simResults.assinaturas;
-
-        // Status cards
-        var stTurnos = document.getElementById('cons-st-turnos');
-        var stTurnosTxt = document.getElementById('cons-st-turnos-txt');
-        var stAssin = document.getElementById('cons-st-assinaturas');
-        var stAssinTxt = document.getElementById('cons-st-assinaturas-txt');
-
-        if(t){
-          if(stTurnos){ stTurnos.classList.remove('empty'); stTurnos.classList.add('saved'); }
-          if(stTurnosTxt) stTurnosTxt.textContent = 'retenção ' + fmtNum(t.retencao, 1).replace(',0','') + '% · ' + fmtReais(t.receitaMes) + '/mês';
-        } else {
-          if(stTurnos){ stTurnos.classList.add('empty'); stTurnos.classList.remove('saved'); }
-          if(stTurnosTxt) stTurnosTxt.textContent = 'aguardando · slide 17';
-        }
-        if(a){
-          if(stAssin){ stAssin.classList.remove('empty'); stAssin.classList.add('saved'); }
-          if(stAssinTxt) stAssinTxt.textContent = 'retenção ' + fmtNum(a.retencao, 1).replace(',0','') + '% · ' + fmtReais(a.receitaMes) + '/mês';
-        } else {
-          if(stAssin){ stAssin.classList.add('empty'); stAssin.classList.remove('saved'); }
-          if(stAssinTxt) stAssinTxt.textContent = 'aguardando · slide 18';
-        }
-
-        // Totais consolidados · soma dos meses (não multiplicar mês × 12 quando já temos t.receitaAno)
-        var turniMes = roundCents((t ? t.receitaMes : 0) + (a ? a.receitaMes : 0));
-        var turniAno = roundCents((t ? t.receitaAno : 0) + (a ? a.receitaAno : 0));
-        var stoneMes = roundCents((t ? t.stoneMes : 0) + (a ? a.stoneMes : 0));
-        var stoneAno = roundCents((t ? t.stoneAno : 0) + (a ? a.stoneAno : 0));
-        var totalAno = roundCents(turniAno + stoneAno);
-
-        function setText(id, val){
-          var el = document.getElementById(id);
-          if(el){
-            el.textContent = val;
-            el.classList.add('flash');
-            setTimeout(function(){ el.classList.remove('flash'); }, 320);
-          }
-        }
-
-        setText('cons-total-ano', fmtReais(totalAno));
-        setText('cons-turni-mes', fmtReais(turniMes));
-        setText('cons-turni-ano', fmtReais(turniAno));
-        setText('cons-stone-mes', fmtReais(stoneMes));
-        setText('cons-stone-ano', fmtReais(stoneAno));
-
-        var elBdT = document.getElementById('cons-bd-turnos');
-        var elBdA = document.getElementById('cons-bd-assin');
-        if(elBdT) elBdT.textContent = (t ? fmtReais(t.receitaMes) : 'R$ 0') + ' / mês';
-        if(elBdA) elBdA.textContent = (a ? fmtReais(a.receitaMes) : 'R$ 0') + ' / mês';
-      }
-
-      // Atualiza ao receber evento simSave dos slides 12 e 13
-      window.addEventListener('simSave', update);
-
-      // Atualiza ao virar slide ativo (caso usuário navegue diretamente)
-      var slide = document.querySelector('[data-label="CONSOLIDADO"]');
-      if(slide){
-        var obs = new MutationObserver(function(){
-          if(slide.classList.contains('active')) update();
-        });
-        obs.observe(slide, { attributes: true, attributeFilter: ['class'] });
-      }
-
-      update();
-    })();
-  </script>
-
-  <!-- ─── SLIDE 15 · OUTRAS RECEITAS MatchTurno ─── -->
   <section class="slide" data-label="OUTRAS RECEITAS">
     <div class="eyebrow">outras receitas MatchTurno</div>
     <h2 class="h2"><span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> NÃO PARA NO<br><span class="accent">PREENCHIMENTO DE VAGA.</span></h2>
@@ -5054,17 +4499,225 @@
     </div>
   </section>
 
-  <!-- ─── SLIDE 16 · CTA FINAL ─── -->
+  <section class="slide mt-s" data-label="RIVAIS">
+    <div class="mt-eye">rivais dignos</div>
+    <h2 class="mt-h">A CATEGORIA EXISTE.<br><span class="mt-acc">O DESENHO DO TURNO É O QUE MUDA.</span></h2>
+    <p class="mt-lead">Ter concorrente confirma que a dor é real. Cada um resolve um pedaço; ninguém vende o pico com a entrega combinada.</p>
+    <div class="mt-cards3">
+      <div class="mt-card"><div class="mt-k">agências de mão de obra</div><h3>Vendem a diária.</h3><p>Dia cheio de 8 a 12 horas, intermediação manual e pouca visibilidade sobre o que foi entregue.</p></div>
+      <div class="mt-card"><div class="mt-k">apps de turnos e freelas</div><h3>Conectam e pagam.</h3><p>TopDoer, StaffPRO, Closeer, Toopa, Estaff, Escala. Validam que o profissional aceita trabalhar por turno, com nota e Pix.</p></div>
+      <div class="mt-card mt-card-on"><div class="mt-k"><span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span></div><h3>Vende o turno com entrega combinada.</h3><p>Até 4 horas, checklist configurável, PIN bilateral e Pix em 15 minutos. O empresário compra entrega, não horas.</p></div>
+    </div>
+  </section>
+
+  <section class="slide mt-s" data-label="O QUE ESTÁ PROVADO">
+    <div class="mt-eye">o que já está provado · sem inflar</div>
+    <h2 class="mt-h">PRODUTO PRONTO.<br><span class="mt-acc">RECEITA, AINDA NÃO.</span></h2>
+    <div class="mt-proof">
+      <div class="mt-pf ok"><div class="mt-k">entregue</div><h3>Plataforma no ar</h3><p>Contratante, profissional e administração. Match, checklist configurável, PIN bilateral e cálculo do split Asaas · matchturno.web.app.</p></div>
+      <div class="mt-pf ok"><div class="mt-k">entregue</div><h3>Demo navegável</h3><p>Personas de restaurante, bar e eventos, com turnos ativos e histórico. Não é protótipo nem mockup.</p></div>
+      <div class="mt-pf go"><div class="mt-k">em validação</div><h3>Pilotos com operações</h3><p>Hospitalidade e eventos como primeiros parceiros, para medir turnos fechados, recorrência e entrega.</p></div>
+      <div class="mt-pf next"><div class="mt-k">próxima etapa</div><h3>Primeiros turnos faturados</h3><p>Receita real a partir dos pilotos. Não há faturamento hoje, e o deck não finge que há.</p></div>
+    </div>
+  </section>
+
+  <section class="slide mt-s" data-label="QUEM ESTÁ NA SALA">
+    <div class="mt-eye">quem está na sala</div>
+    <h2 class="mt-h">DOIS SÓCIOS.<br><span class="mt-acc">OS DOIS LADOS DO TURNO.</span></h2>
+    <div class="mt-socios">
+      <div class="mt-socio">
+        <img src="/img/socio-rodolfo.webp" alt="Rodolfo Nascimento">
+        <div class="mt-socio-b">
+          <div class="mt-k">fundador · CEO</div>
+          <h3>Rodolfo Nascimento</h3>
+          <p class="mt-socio-l">30 anos de mercado · 15 como executivo, 15 como empreendedor.</p>
+          <ul>
+            <li><b>2 exits em Benefícios</b> · Vale Transporte</li>
+            <li><b>RHHUB</b> · plataforma de benefícios com contrato com o <b>Grupo Elopar</b></li>
+            <li><b>Pizzab2b</b> · sócio da primeira fábrica de massas de pizza de longa fermentação para operações <b>sem pizzaiolo</b></li>
+            <li><b>RRevela</b> · co-fundador, com Fábio Barboni</li>
+            <li>Autor de <b>Não Peça Licença para Empreender</b> e <b>IAgora?</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-socio">
+        <img src="/img/socio-fabio.webp" alt="Fábio Barboni">
+        <div class="mt-socio-b">
+          <div class="mt-k">sócio estratégico · eventos</div>
+          <h3>Fábio Barboni</h3>
+          <p class="mt-socio-l">Estratégia, comunidade e experiências premium · o lado da demanda em eventos.</p>
+          <ul>
+            <li><b>Connect Fun</b> · CEO · experiências corporativas e eventos premium</li>
+            <li><b>Grupo TOP</b> · founder · holding do ecossistema</li>
+            <li><b>ONE Network for Experts</b> · founder · clube empresarial</li>
+            <li><b>Amalfi Gastronomia</b> · sócio</li>
+            <li><b>RRevela</b> · co-fundador, com Rodolfo · autor de <b>Receita Invisível</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="slide slide-cta" data-label="PRÓXIMOS PASSOS">
     <div class="cta-final">
       <div class="eyebrow" style="justify-content:center">próximos passos</div>
       <h1 class="ttl">VAMOS COMEÇAR<br>UMA <span class="accent">CONVERSA.</span></h1>
-      <p class="next">A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> está pronta para escalar. O que busco é um <b>parceiro operacional</b> · capital, rede e estrutura para transformar a tese em liderança de mercado.</p>
+      <p class="next">Procuramos um <b>parceiro que acredite que o turno pode ser justo para os dois lados</b> · e que traga rede, capital e estrutura para levar isso a <b>1,69 milhão de estabelecimentos</b>.</p>
       <div class="cta-actions">
         <a class="cta-btn primary" href="mailto:rodolfo@matchturno.com.br?subject=MatchTurno%20%C2%B7%20pr%C3%B3xima%20conversa">Agendar próxima conversa</a>
       </div>
       <div style="margin-top:64px;font-family:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:2px;color:var(--t3);text-transform:uppercase">
-        Rodolfo Nascimento · CEO <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> · rodolfo@matchturno.com.br
+        Rodolfo Nascimento · Fábio Barboni · <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> · rodolfo@matchturno.com.br
+      </div>
+    </div>
+  </section>
+
+  <section class="slide mt-s" data-label="APÊNDICE">
+    <div class="mt-eye">apêndice</div>
+    <h2 class="mt-h mt-h-xl">MATERIAL<br><span class="mt-acc">DE APOIO.</span></h2>
+    <p class="mt-lead">Quem somos · as 9 dores em detalhe · o gateway de pagamento que sustenta o Pix em 15 minutos.</p>
+  </section>
+
+  <section class="slide" data-label="MatchTurno">
+    <div class="eyebrow">quem somos</div>
+    <div class="fhp-hero">
+      <div class="fhp-mark"><span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span></div>
+      <div class="fhp-name">ECOSSISTEMA DE TURNOS · HOSPITALIDADE, EVENTOS &amp; CATERING</div>
+      <p class="fhp-tag">A plataforma que conecta profissionais de hospitalidade com quem precisa de <span class="accent">equipe</span> — agora e em escala.</p>
+    </div>
+    <div class="visao-block">
+      <div class="visao-tag">visão</div>
+      <h2 class="visao-h">REDEFINIR COMO O SETOR DE HOSPITALIDADE<br><span class="accent">VAI CRESCER COM IA.</span></h2>
+    </div>
+  </section>
+
+  <section class="slide slide-why" data-label="POR QUE EXISTE">
+    <div class="eyebrow">a tese em detalhe</div>
+    <h2 class="h2">POR QUE A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span><br><span class="accent">EXISTE?</span></h2>
+    <p class="lead">A hospitalidade brasileira é um setor de <b>R$ 597 bilhões</b> que opera com <b>ferramentas do século passado</b>.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num"><b>01</b>geração</div>
+        <h3 class="why-h">A nova geração não quer mais CLT</h3>
+        <div class="why-quote">Quem nasceu escolhendo não vai trabalhar batendo ponto.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>02</b>oferta invisível</div>
+        <h3 class="why-h">Força de trabalho invisível querendo entrar</h3>
+        <div class="why-quote">A oferta existe. A conexão é o que falta.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>03</b>contratação</div>
+        <h3 class="why-h">Contratar extra ainda é improviso</h3>
+        <div class="why-quote">A plataforma dá ao gerente um processo, não um grupo de WhatsApp.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>04</b>caixa</div>
+        <h3 class="why-h">Pagar extra destrói o caixa da empresa</h3>
+        <div class="why-quote">O caixa do bar não é cofre de pagamento de mão de obra.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>05</b>compliance</div>
+        <h3 class="why-h">A <span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span> reduz o risco trabalhista do extra</h3>
+        <div class="why-quote">Cada turno com registro, tarefa combinada e prova de entrega.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>06</b>gestão</div>
+        <h3 class="why-h">Gestão profissional do custo de labor</h3>
+        <div class="why-quote">Quem não mede o labor, não controla a margem.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>07</b>turnover</div>
+        <h3 class="why-h">Turnover do setor está fora do controle</h3>
+        <div class="why-quote">Se o ciclo é curto, a contratação tem que ser curta também.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>08</b>talento</div>
+        <h3 class="why-h">Mão de obra qualificada está cada vez mais rara</h3>
+        <div class="why-quote">O talento que existe está disperso. A MatchTurno junta.</div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num"><b>09</b>regulatório</div>
+        <h3 class="why-h">Escala <span class="accent">5×2</span> vai detonar a margem do setor</h3>
+        <div class="why-quote">Quando a lei muda, quem tem a infraestrutura certa ganha mercado.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-desejo" data-label="O QUE DESEJAMOS">
+    <div class="eyebrow">o que desejamos</div>
+    <h2 class="h2">O QUE<br><span class="accent">DESEJAMOS.</span></h2>
+    <div class="match-brands">
+      <div class="brand-block tn">
+        <div class="brand-word"><span class="bm"><span class="mt-wm-i">Match<b>Turno</b></span></span></div>
+      </div>
+      <div class="match-sign">
+        <svg class="match-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sparkGradDesejo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="40%" stop-color="#E8E1F0" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#3A3842" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="88" cy="70" r="48" fill="rgba(255,138,76,.10)" stroke="rgba(255,138,76,.65)" stroke-width="1.5"/>
+          <circle cx="132" cy="70" r="48" fill="rgba(0,175,85,.12)" stroke="rgba(0,175,85,.55)" stroke-width="1.5"/>
+          <circle cx="110" cy="70" r="22" fill="url(#sparkGradDesejo)" opacity=".75">
+            <animate attributeName="r" values="18;26;18" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".55;.85;.55" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="110" cy="70" r="6" fill="#E8E1F0">
+            <animate attributeName="r" values="6;8;6" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <line x1="40" y1="70" x2="62" y2="70" stroke="rgba(255,138,76,.5)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="158" y1="70" x2="180" y2="70" stroke="rgba(0,175,85,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="match-lbl">match</div>
+      </div>
+      <div class="brand-block pm">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" aria-label="Gateway de pagamento">
+              <rect x="6" y="18" width="60" height="40" rx="7" stroke="#EA5B0C" stroke-width="2.5" fill="none"/>
+              <line x1="6" y1="31" x2="66" y2="31" stroke="#EA5B0C" stroke-width="2.5"/>
+              <circle cx="18" cy="45" r="3.5" fill="#FF8A4C"/>
+              <line x1="28" y1="45" x2="48" y2="45" stroke="rgba(255,138,76,.55)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <div style="font-family:ui-monospace,'SF Mono','Roboto Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:2.5px;
+              text-transform:uppercase;color:#FF8A4C">gateway</div>
+          </div>
+        </div>
+    </div>
+    <p class="desejo-tagline">Um <b>gateway de pagamento</b> integrado ao <b>Marketplace</b>.</p>
+  </section>
+
+  <section class="slide slide-gateway" data-label="O GATEWAY">
+    <div class="eyebrow">o gateway</div>
+    <h2 class="h2">OS 15 MINUTOS PEDEM UM<br><span class="accent">GATEWAY PRÓPRIO.</span></h2>
+    <p class="lead gateway-lead">O Marketplace precisa de um gateway de pagamento <b>integrado nativamente</b>, capaz de sustentar a promessa do <b>Pix em 15 minutos</b>.</p>
+    <div class="gateway-cards">
+      <div class="gw-card">
+        <div class="gw-num">01</div>
+        <h3 class="gw-h">Split nativo</h3>
+        <p class="gw-p">Cada turno gera <b>3 fluxos automáticos</b> · profissional, MatchTurno e gateway · em segundos após o check-out.</p>
+      </div>
+      <div class="gw-card">
+        <div class="gw-num">02</div>
+        <h3 class="gw-h">Marca consagrada</h3>
+        <p class="gw-p">A confiança nas duas pontas exige um gateway com <b>nome reconhecido no mercado</b> · marca valida promessa.</p>
+      </div>
+      <div class="gw-card">
+        <div class="gw-num">03</div>
+        <h3 class="gw-h">Alta disponibilidade</h3>
+        <p class="gw-p">Com <b>12,5× mais TPVs por profissional</b> que a CLT, a infraestrutura de alta disponibilidade é pré-requisito.</p>
       </div>
     </div>
   </section>
