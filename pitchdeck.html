@@ -3998,6 +3998,43 @@
     </div>
   </section>
 
+  <section class="slide mt-s" data-label="QUEM ESTÁ NA SALA">
+    <div class="mt-eye">quem está na sala</div>
+    <h2 class="mt-h">DOIS SÓCIOS.<br><span class="mt-acc">OS DOIS LADOS DO TURNO.</span></h2>
+    <div class="mt-socios">
+      <div class="mt-socio">
+        <img src="/img/socio-rodolfo.webp" alt="Rodolfo Nascimento">
+        <div class="mt-socio-b">
+          <div class="mt-k">fundador · CEO</div>
+          <h3>Rodolfo Nascimento</h3>
+          <p class="mt-socio-l">30 anos de mercado · 15 como executivo, 15 como empreendedor.</p>
+          <ul>
+            <li><b>2 exits em Benefícios</b> · Vale Transporte</li>
+            <li><b>RHHUB</b> · plataforma de benefícios com contrato com o <b>Grupo Elopar</b></li>
+            <li><b>Pizzab2b</b> · sócio da primeira fábrica de massas de pizza de longa fermentação para operações <b>sem pizzaiolo</b></li>
+            <li><b>RRevela</b> · co-fundador, com Fábio Barboni</li>
+            <li>Autor de <b>Não Peça Licença para Empreender</b> e <b>IAgora?</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-socio">
+        <img src="/img/socio-fabio.webp" alt="Fábio Barboni">
+        <div class="mt-socio-b">
+          <div class="mt-k">sócio estratégico · eventos</div>
+          <h3>Fábio Barboni</h3>
+          <p class="mt-socio-l">Estratégia, comunidade e experiências premium · o lado da demanda em eventos.</p>
+          <ul>
+            <li><b>Connect Fun</b> · CEO · experiências corporativas e eventos premium</li>
+            <li><b>Grupo TOP</b> · founder · holding do ecossistema</li>
+            <li><b>ONE Network for Experts</b> · founder · clube empresarial</li>
+            <li><b>Amalfi Gastronomia</b> · sócio</li>
+            <li><b>RRevela</b> · co-fundador, com Rodolfo · autor de <b>Receita Invisível</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="slide mt-s" data-label="POR QUÊ">
     <div class="mt-eye">por que existimos</div>
     <h2 class="mt-h mt-h-xl">ACREDITAMOS QUE TRABALHO BOM<br>É <span class="mt-acc">COMBINADO, CUMPRIDO</span><br>E <span class="mt-acc">PAGO NO MESMO DIA.</span></h2>
@@ -4715,17 +4752,17 @@
   <section class="slide slide-consolidado" data-label="CONSOLIDADO">
     <div class="eyebrow">consolidado · faturamento potencial</div>
     <h2 class="h2">POTENCIAL <span class="accent">CONSOLIDADO.</span></h2>
-    <p class="lead cons-lead">Soma das simulações salvas nos slides 13 e 14 · receita MatchTurno combinada e faturamento do gateway de pagamento.</p>
+    <p class="lead cons-lead">Soma das simulações salvas nos slides 14 e 15 · receita MatchTurno combinada e faturamento do gateway de pagamento.</p>
 
     <!-- 2 cards superiores · Receita Turnos + Receita Assinaturas -->
     <div class="cons-origem">
       <div class="cons-origem-card">
-        <div class="cons-origem-tag">slide 13 · turnos × take rate</div>
+        <div class="cons-origem-tag">slide 14 · turnos × take rate</div>
         <div class="cons-origem-h">Receita Turnos</div>
         <div class="cons-origem-v" id="cons-bd-turnos">R$ 0 / mês</div>
       </div>
       <div class="cons-origem-card">
-        <div class="cons-origem-tag">slide 14 · planos assinatura</div>
+        <div class="cons-origem-tag">slide 15 · planos assinatura</div>
         <div class="cons-origem-h">Receita Assinaturas</div>
         <div class="cons-origem-v" id="cons-bd-assin">R$ 0 / mês</div>
       </div>
@@ -4759,8 +4796,8 @@
 
     <!-- Status discreto rodapé -->
     <div class="cons-status-footer">
-      <div class="cons-status-pill" id="cons-st-turnos"><span>13</span> <em id="cons-st-turnos-txt">aguardando · slide 13</em></div>
-      <div class="cons-status-pill" id="cons-st-assinaturas"><span>14</span> <em id="cons-st-assinaturas-txt">aguardando · slide 14</em></div>
+      <div class="cons-status-pill" id="cons-st-turnos"><span>14</span> <em id="cons-st-turnos-txt">aguardando · slide 14</em></div>
+      <div class="cons-status-pill" id="cons-st-assinaturas"><span>15</span> <em id="cons-st-assinaturas-txt">aguardando · slide 15</em></div>
       <div class="cons-status-pill total"><span>Σ</span> <em><b id="cons-total-ano">R$ 0</b> · faturamento total / ano</em></div>
     </div>
   </section>
@@ -4793,14 +4830,14 @@
           if(stTurnosTxt) stTurnosTxt.textContent = 'retenção ' + fmtNum(t.retencao, 1).replace(',0','') + '% · ' + fmtReais(t.receitaMes) + '/mês';
         } else {
           if(stTurnos){ stTurnos.classList.add('empty'); stTurnos.classList.remove('saved'); }
-          if(stTurnosTxt) stTurnosTxt.textContent = 'aguardando · slide 13';
+          if(stTurnosTxt) stTurnosTxt.textContent = 'aguardando · slide 14';
         }
         if(a){
           if(stAssin){ stAssin.classList.remove('empty'); stAssin.classList.add('saved'); }
           if(stAssinTxt) stAssinTxt.textContent = 'retenção ' + fmtNum(a.retencao, 1).replace(',0','') + '% · ' + fmtReais(a.receitaMes) + '/mês';
         } else {
           if(stAssin){ stAssin.classList.add('empty'); stAssin.classList.remove('saved'); }
-          if(stAssinTxt) stAssinTxt.textContent = 'aguardando · slide 14';
+          if(stAssinTxt) stAssinTxt.textContent = 'aguardando · slide 15';
         }
 
         // Totais consolidados · soma dos meses (não multiplicar mês × 12 quando já temos t.receitaAno)
@@ -4894,43 +4931,6 @@
       <div class="mt-pf ok"><div class="mt-k">entregue</div><h3>Demo navegável</h3><p>Personas de restaurante, bar e eventos, com turnos ativos e histórico. Não é protótipo nem mockup.</p></div>
       <div class="mt-pf go"><div class="mt-k">em validação</div><h3>Pilotos com operações</h3><p>Hospitalidade e eventos como primeiros parceiros, para medir turnos fechados, recorrência e entrega.</p></div>
       <div class="mt-pf next"><div class="mt-k">próxima etapa</div><h3>Primeiros turnos faturados</h3><p>Receita real a partir dos pilotos. Não há faturamento hoje, e o deck não finge que há.</p></div>
-    </div>
-  </section>
-
-  <section class="slide mt-s" data-label="QUEM ESTÁ NA SALA">
-    <div class="mt-eye">quem está na sala</div>
-    <h2 class="mt-h">DOIS SÓCIOS.<br><span class="mt-acc">OS DOIS LADOS DO TURNO.</span></h2>
-    <div class="mt-socios">
-      <div class="mt-socio">
-        <img src="/img/socio-rodolfo.webp" alt="Rodolfo Nascimento">
-        <div class="mt-socio-b">
-          <div class="mt-k">fundador · CEO</div>
-          <h3>Rodolfo Nascimento</h3>
-          <p class="mt-socio-l">30 anos de mercado · 15 como executivo, 15 como empreendedor.</p>
-          <ul>
-            <li><b>2 exits em Benefícios</b> · Vale Transporte</li>
-            <li><b>RHHUB</b> · plataforma de benefícios com contrato com o <b>Grupo Elopar</b></li>
-            <li><b>Pizzab2b</b> · sócio da primeira fábrica de massas de pizza de longa fermentação para operações <b>sem pizzaiolo</b></li>
-            <li><b>RRevela</b> · co-fundador, com Fábio Barboni</li>
-            <li>Autor de <b>Não Peça Licença para Empreender</b> e <b>IAgora?</b></li>
-          </ul>
-        </div>
-      </div>
-      <div class="mt-socio">
-        <img src="/img/socio-fabio.webp" alt="Fábio Barboni">
-        <div class="mt-socio-b">
-          <div class="mt-k">sócio estratégico · eventos</div>
-          <h3>Fábio Barboni</h3>
-          <p class="mt-socio-l">Estratégia, comunidade e experiências premium · o lado da demanda em eventos.</p>
-          <ul>
-            <li><b>Connect Fun</b> · CEO · experiências corporativas e eventos premium</li>
-            <li><b>Grupo TOP</b> · founder · holding do ecossistema</li>
-            <li><b>ONE Network for Experts</b> · founder · clube empresarial</li>
-            <li><b>Amalfi Gastronomia</b> · sócio</li>
-            <li><b>RRevela</b> · co-fundador, com Rodolfo · autor de <b>Receita Invisível</b></li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 
