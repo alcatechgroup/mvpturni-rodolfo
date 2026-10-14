@@ -4277,6 +4277,141 @@
       </button>
     </div>
   </section>
+  <script>
+    (function(){
+      // ═══ Estado global de simulações ═══
+      window.simResults = window.simResults || { turnos: null, assinaturas: null };
+
+      // ═══ Parâmetros fixos do modelo ═══
+      // Turnos potenciais/mês = 1,017 bilhão · base de mercado total no setor de hospitalidade
+      // Retenção é aplicada DIRETAMENTE sobre este volume de turnos (não sobre estabelecimentos)
+      var TAXA_TURNI = 29; // R$ por turno
+      var TURNOS_POTENCIAIS = 1017000000; // 1,017 BI turnos/mês · mercado total
+
+      // ═══ Elementos DOM ═══
+      var inputRet = document.getElementById('sim-pct-retencao');
+      var inputStone = document.getElementById('sim-pct-stone');
+      var elTurnos = document.getElementById('sim-turnos');
+      var elReceitaMes = document.getElementById('sim-receita-mes');
+      var elReceitaAno = document.getElementById('sim-receita-ano');
+      var elStoneMes = document.getElementById('sim-stone-mes');
+      var elStoneAno = document.getElementById('sim-stone-ano');
+      var btnSave = document.getElementById('sim12-save');
+
+      // ═══ Último cálculo (para o botão salvar) ═══
+      var ultimaCalc = null;
+
+      // ═══ Formatadores brasileiros · sem erro de arredondamento ═══
+      function fmtNum(n, dec){
+        return n.toLocaleString('pt-BR', {
+          minimumFractionDigits: dec,
+          maximumFractionDigits: dec
+        });
+      }
+
+      function fmtTurnos(n){
+        n = Math.round(n);
+        if(n >= 1000000) return fmtNum(n/1000000, 2) + ' Mi';
+        if(n >= 1000) return fmtNum(n/1000, 2) + ' mil';
+        return fmtNum(n, 0);
+      }
+
+      function fmtReais(n){
+        if(n >= 1000000000) return 'R$ ' + fmtNum(n/1000000000, 2) + ' Bi';
+        if(n >= 1000000) return 'R$ ' + fmtNum(n/1000000, 2) + ' Mi';
+        if(n >= 1000) return 'R$ ' + fmtNum(n/1000, 2) + ' mil';
+        return 'R$ ' + fmtNum(n, 2);
+      }
+
+      // ═══ Parse percentual aceitando vírgula ou ponto ═══
+      function parsePct(v){
+        if(v === null || v === undefined) return 0;
+        v = String(v).replace(',', '.').trim();
+        if(v === '') return 0;
+        var n = parseFloat(v);
+        if(isNaN(n) || n < 0) return 0;
+        if(n > 100) return 100;
+        return n;
+      }
+
+      function roundCents(n){ return Math.round(n * 100) / 100; }
+
+      function flash(el){
+        if(!el) return;
+        el.classList.add('flash');
+        setTimeout(function(){ el.classList.remove('flash'); }, 320);
+      }
+
+      function calcula(){
+        var retPct = parsePct(inputRet ? inputRet.value : 0);
+        var stonePct = parsePct(inputStone ? inputStone.value : 0);
+
+        var ret = retPct / 100;
+        var stone = stonePct / 100;
+
+        var turnos = Math.round(TURNOS_POTENCIAIS * ret);
+        var receitaMes = roundCents(turnos * TAXA_TURNI);
+        var receitaAno = roundCents(receitaMes * 12);
+        var stoneMes = roundCents(receitaMes * stone);
+        var stoneAno = roundCents(stoneMes * 12);
+
+        ultimaCalc = {
+          retencao: retPct,
+          taxa: stonePct,
+          turnos: turnos,
+          receitaMes: receitaMes,
+          receitaAno: receitaAno,
+          stoneMes: stoneMes,
+          stoneAno: stoneAno
+        };
+
+        if(elTurnos){ elTurnos.textContent = fmtTurnos(turnos); flash(elTurnos); }
+        if(elReceitaMes){ elReceitaMes.textContent = fmtReais(receitaMes); flash(elReceitaMes); }
+        if(elReceitaAno){ elReceitaAno.textContent = fmtReais(receitaAno); flash(elReceitaAno); }
+        if(elStoneMes){ elStoneMes.textContent = fmtReais(stoneMes); flash(elStoneMes); }
+        if(elStoneAno){ elStoneAno.textContent = fmtReais(stoneAno); flash(elStoneAno); }
+
+        // Modifica botão · saiu de estado "salvo" assim que usuário recalcula
+        if(btnSave && btnSave.classList.contains('saved')){
+          btnSave.classList.remove('saved');
+        }
+      }
+
+      function bindInput(el){
+        if(!el) return;
+        el.addEventListener('input', calcula);
+        el.addEventListener('blur', function(){
+          var v = parsePct(el.value);
+          el.value = String(v).replace('.', ',');
+          calcula();
+        });
+      }
+
+      // ═══ Salvar simulação · armazena em window.simResults.turnos ═══
+      if(btnSave){
+        btnSave.addEventListener('click', function(){
+          if(!ultimaCalc) return;
+          window.simResults.turnos = {
+            retencao: ultimaCalc.retencao,
+            taxa: ultimaCalc.taxa,
+            turnos: ultimaCalc.turnos,
+            receitaMes: ultimaCalc.receitaMes,
+            receitaAno: ultimaCalc.receitaAno,
+            stoneMes: ultimaCalc.stoneMes,
+            stoneAno: ultimaCalc.stoneAno
+          };
+          btnSave.classList.add('saved');
+          btnSave.setAttribute('data-saved-label', '✓ ' + fmtReais(ultimaCalc.receitaMes) + '/mês salvo');
+          window.dispatchEvent(new CustomEvent('simSave'));
+        });
+      }
+
+      bindInput(inputRet);
+      bindInput(inputStone);
+
+      calcula();
+    })();
+  </script>
 
   <section class="slide slide-simulator" data-label="POTENCIAL ASSINATURAS">
     <div class="eyebrow">simulador · potencial de assinaturas</div>
@@ -4417,6 +4552,165 @@
       </button>
     </div>
   </section>
+  <script>
+    (function(){
+      // ═══ Estado global de simulações ═══
+      window.simResults = window.simResults || { turnos: null, assinaturas: null };
+
+      // ═══ Parâmetros fixos ═══
+      var MERCADO_EMP = 1695000;
+      var MERCADO_PROF = 7800000;
+      var PRECO_EMP = [0, 199, 399];
+      var PRECO_PROF = [0, 49, 99];
+
+      var ids = {
+        retencao: 'sub-retencao',
+        stone: 'sub-stone',
+        empG: 'sub-emp-grat',
+        empR: 'sub-emp-rec',
+        empE: 'sub-emp-ent',
+        profG: 'sub-prof-grat',
+        profM: 'sub-prof-mem',
+        profE: 'sub-prof-ent'
+      };
+
+      var outs = {
+        empSoma: document.getElementById('sub-emp-soma'),
+        profSoma: document.getElementById('sub-prof-soma'),
+        receitaMes: document.getElementById('sub-receita-mes'),
+        receitaAno: document.getElementById('sub-receita-ano'),
+        stoneMes: document.getElementById('sub-stone-mes'),
+        stoneAno: document.getElementById('sub-stone-ano')
+      };
+
+      var btnSave = document.getElementById('sim13-save');
+      var ultimaCalc = null;
+
+      // ═══ Parse robusto · aceita vírgula e ponto ═══
+      function parsePct(v){
+        if(v === null || v === undefined) return 0;
+        v = String(v).replace(',', '.').trim();
+        if(v === '') return 0;
+        var n = parseFloat(v);
+        if(isNaN(n) || n < 0) return 0;
+        if(n > 100) return 100;
+        return n;
+      }
+
+      function get(key){
+        var el = document.getElementById(ids[key]);
+        return el ? parsePct(el.value) : 0;
+      }
+
+      // ═══ Formatadores ═══
+      function fmtNum(n, dec){
+        return n.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      }
+      function fmtReais(n){
+        if(n >= 1e9) return 'R$ ' + fmtNum(n/1e9, 2) + ' Bi';
+        if(n >= 1e6) return 'R$ ' + fmtNum(n/1e6, 2) + ' Mi';
+        if(n >= 1e3) return 'R$ ' + fmtNum(n/1e3, 2) + ' mil';
+        return 'R$ ' + fmtNum(n, 2);
+      }
+
+      // ═══ Arredondamento em centavos ═══
+      function roundCents(n){ return Math.round(n * 100) / 100; }
+
+      function flash(el){
+        if(!el) return;
+        el.classList.add('flash');
+        setTimeout(function(){ el.classList.remove('flash'); }, 320);
+      }
+
+      function calcula(){
+        var ret = get('retencao') / 100;
+        var stoneT = get('stone') / 100;
+
+        var empG = get('empG');
+        var empR = get('empR');
+        var empE = get('empE');
+        var profG = get('profG');
+        var profM = get('profM');
+        var profE = get('profE');
+
+        // Somas para feedback visual
+        var empSomaVal = empG + empR + empE;
+        var profSomaVal = profG + profM + profE;
+
+        if(outs.empSoma){
+          outs.empSoma.textContent = fmtNum(empSomaVal, empSomaVal === Math.floor(empSomaVal) ? 0 : 1);
+          var empTag = outs.empSoma.parentElement;
+          if(empTag) empTag.classList.toggle('warn', Math.abs(empSomaVal - 100) > 0.5);
+        }
+        if(outs.profSoma){
+          outs.profSoma.textContent = fmtNum(profSomaVal, profSomaVal === Math.floor(profSomaVal) ? 0 : 1);
+          var profTag = outs.profSoma.parentElement;
+          if(profTag) profTag.classList.toggle('warn', Math.abs(profSomaVal - 100) > 0.5);
+        }
+
+        // Empresas e profissionais retidos
+        var empRet = MERCADO_EMP * ret;
+        var profRet = MERCADO_PROF * ret;
+
+        // ARPU = Σ(% × preço do plano)
+        var arpuEmp = (empG/100)*PRECO_EMP[0] + (empR/100)*PRECO_EMP[1] + (empE/100)*PRECO_EMP[2];
+        var arpuProf = (profG/100)*PRECO_PROF[0] + (profM/100)*PRECO_PROF[1] + (profE/100)*PRECO_PROF[2];
+
+        var receitaMes = roundCents(empRet * arpuEmp + profRet * arpuProf);
+        var receitaAno = roundCents(receitaMes * 12);
+
+        var stoneMes = roundCents(receitaMes * stoneT);
+        var stoneAno = roundCents(stoneMes * 12);
+
+        ultimaCalc = {
+          retencao: get('retencao'),
+          taxa: get('stone'),
+          empresas: Math.round(empRet),
+          profissionais: Math.round(profRet),
+          arpuEmp: roundCents(arpuEmp),
+          arpuProf: roundCents(arpuProf),
+          receitaMes: receitaMes,
+          receitaAno: receitaAno,
+          stoneMes: stoneMes,
+          stoneAno: stoneAno
+        };
+
+        if(outs.receitaMes){ outs.receitaMes.textContent = fmtReais(receitaMes); flash(outs.receitaMes); }
+        if(outs.receitaAno){ outs.receitaAno.textContent = fmtReais(receitaAno); flash(outs.receitaAno); }
+        if(outs.stoneMes){ outs.stoneMes.textContent = fmtReais(stoneMes); flash(outs.stoneMes); }
+        if(outs.stoneAno){ outs.stoneAno.textContent = fmtReais(stoneAno); flash(outs.stoneAno); }
+
+        if(btnSave && btnSave.classList.contains('saved')){
+          btnSave.classList.remove('saved');
+        }
+      }
+
+      // Salvar simulação · armazena em window.simResults.assinaturas
+      if(btnSave){
+        btnSave.addEventListener('click', function(){
+          if(!ultimaCalc) return;
+          window.simResults.assinaturas = JSON.parse(JSON.stringify(ultimaCalc));
+          btnSave.classList.add('saved');
+          btnSave.setAttribute('data-saved-label', '✓ ' + fmtReais(ultimaCalc.receitaMes) + '/mês salvo');
+          window.dispatchEvent(new CustomEvent('simSave'));
+        });
+      }
+
+      // Bind eventos · input ao vivo + blur para normalizar vírgula
+      Object.keys(ids).forEach(function(k){
+        var el = document.getElementById(ids[k]);
+        if(!el) return;
+        el.addEventListener('input', calcula);
+        el.addEventListener('blur', function(){
+          var v = parsePct(el.value);
+          el.value = String(v).replace('.', ',');
+          calcula();
+        });
+      });
+
+      calcula();
+    })();
+  </script>
 
   <section class="slide slide-consolidado" data-label="CONSOLIDADO">
     <div class="eyebrow">consolidado · faturamento potencial</div>
@@ -4470,6 +4764,88 @@
       <div class="cons-status-pill total"><span>Σ</span> <em><b id="cons-total-ano">R$ 0</b> · faturamento total / ano</em></div>
     </div>
   </section>
+  <script>
+    (function(){
+      function fmtNum(n, dec){
+        return n.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      }
+      function fmtReais(n){
+        if(n >= 1e9) return 'R$ ' + fmtNum(n/1e9, 2) + ' Bi';
+        if(n >= 1e6) return 'R$ ' + fmtNum(n/1e6, 2) + ' Mi';
+        if(n >= 1e3) return 'R$ ' + fmtNum(n/1e3, 2) + ' mil';
+        return 'R$ ' + fmtNum(n, 2);
+      }
+      function roundCents(n){ return Math.round(n * 100) / 100; }
+
+      function update(){
+        window.simResults = window.simResults || { turnos: null, assinaturas: null };
+        var t = window.simResults.turnos;
+        var a = window.simResults.assinaturas;
+
+        // Status cards
+        var stTurnos = document.getElementById('cons-st-turnos');
+        var stTurnosTxt = document.getElementById('cons-st-turnos-txt');
+        var stAssin = document.getElementById('cons-st-assinaturas');
+        var stAssinTxt = document.getElementById('cons-st-assinaturas-txt');
+
+        if(t){
+          if(stTurnos){ stTurnos.classList.remove('empty'); stTurnos.classList.add('saved'); }
+          if(stTurnosTxt) stTurnosTxt.textContent = 'retenção ' + fmtNum(t.retencao, 1).replace(',0','') + '% · ' + fmtReais(t.receitaMes) + '/mês';
+        } else {
+          if(stTurnos){ stTurnos.classList.add('empty'); stTurnos.classList.remove('saved'); }
+          if(stTurnosTxt) stTurnosTxt.textContent = 'aguardando · slide 13';
+        }
+        if(a){
+          if(stAssin){ stAssin.classList.remove('empty'); stAssin.classList.add('saved'); }
+          if(stAssinTxt) stAssinTxt.textContent = 'retenção ' + fmtNum(a.retencao, 1).replace(',0','') + '% · ' + fmtReais(a.receitaMes) + '/mês';
+        } else {
+          if(stAssin){ stAssin.classList.add('empty'); stAssin.classList.remove('saved'); }
+          if(stAssinTxt) stAssinTxt.textContent = 'aguardando · slide 14';
+        }
+
+        // Totais consolidados · soma dos meses (não multiplicar mês × 12 quando já temos t.receitaAno)
+        var turniMes = roundCents((t ? t.receitaMes : 0) + (a ? a.receitaMes : 0));
+        var turniAno = roundCents((t ? t.receitaAno : 0) + (a ? a.receitaAno : 0));
+        var stoneMes = roundCents((t ? t.stoneMes : 0) + (a ? a.stoneMes : 0));
+        var stoneAno = roundCents((t ? t.stoneAno : 0) + (a ? a.stoneAno : 0));
+        var totalAno = roundCents(turniAno + stoneAno);
+
+        function setText(id, val){
+          var el = document.getElementById(id);
+          if(el){
+            el.textContent = val;
+            el.classList.add('flash');
+            setTimeout(function(){ el.classList.remove('flash'); }, 320);
+          }
+        }
+
+        setText('cons-total-ano', fmtReais(totalAno));
+        setText('cons-turni-mes', fmtReais(turniMes));
+        setText('cons-turni-ano', fmtReais(turniAno));
+        setText('cons-stone-mes', fmtReais(stoneMes));
+        setText('cons-stone-ano', fmtReais(stoneAno));
+
+        var elBdT = document.getElementById('cons-bd-turnos');
+        var elBdA = document.getElementById('cons-bd-assin');
+        if(elBdT) elBdT.textContent = (t ? fmtReais(t.receitaMes) : 'R$ 0') + ' / mês';
+        if(elBdA) elBdA.textContent = (a ? fmtReais(a.receitaMes) : 'R$ 0') + ' / mês';
+      }
+
+      // Atualiza ao receber evento simSave dos slides 12 e 13
+      window.addEventListener('simSave', update);
+
+      // Atualiza ao virar slide ativo (caso usuário navegue diretamente)
+      var slide = document.querySelector('[data-label="CONSOLIDADO"]');
+      if(slide){
+        var obs = new MutationObserver(function(){
+          if(slide.classList.contains('active')) update();
+        });
+        obs.observe(slide, { attributes: true, attributeFilter: ['class'] });
+      }
+
+      update();
+    })();
+  </script>
 
   <section class="slide" data-label="OUTRAS RECEITAS">
     <div class="eyebrow">outras receitas MatchTurno</div>
