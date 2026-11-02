@@ -5923,10 +5923,10 @@ function depoimentoCardHTML(dep){
 
 // ── Modelo de cobrança ──
 // Taxa cobrada do CONTRATANTE (não do profissional). Profissional recebe valor cheio.
-const TAKE_RATE = 0.15;
+const TAXA_TURNO = 29;                                  // R$ por turno fechado
 function valorProf(v){ return v; }                    // profissional recebe integral
-function taxaTurni(v){ return v * TAKE_RATE; }        // <span class="mt-wm-i">Match<b>Turno</b></span> cobra do contratante
-function totalEmp(v){ return v * (1 + TAKE_RATE); }   // contratante paga valor + taxa
+function taxaTurni(v, n = 1){ return v > 0 ? TAXA_TURNO * n : 0; }        // <span class="mt-wm-i">Match<b>Turno</b></span> cobra do contratante
+function totalEmp(v, n = 1){ return v + taxaTurni(v, n); }   // contratante paga valor + taxa
 
 function showToast(msg, type){
   const t = document.getElementById('toast');
@@ -10670,7 +10670,7 @@ function renderEmpVagaNova(){
             </div>
             <div class="field full">
               <div class="calc" id="calcInfo">Total estimado: —</div>
-              <span class="hint">Total = valor do profissional + taxa <span class="mt-wm-i">Match<b>Turno</b></span> 15%. Asaas reserva o total + 25% de margem no cartão. Cobrança real só após check-out validado.</span>
+              <span class="hint">Total = valor do profissional + taxa <span class="mt-wm-i">Match<b>Turno</b></span> de R$ 29 por turno. Asaas reserva o total + 25% de margem no cartão. Cobrança real só após check-out validado.</span>
             </div>
           </div>
         </div>
@@ -10830,12 +10830,12 @@ function updateVagaCalc(){
   }
   const horas = (fim-ini)/36e5;
   const valorProfTotal = horas*vh*n;
-  const taxa = taxaTurni(valorProfTotal);
-  const totalAPagar = totalEmp(valorProfTotal);
+  const taxa = taxaTurni(valorProfTotal, n);
+  const totalAPagar = totalEmp(valorProfTotal, n);
   const preauth = totalAPagar*1.25;
   out.innerHTML = `${horas.toFixed(1)}h · ${n} posiç${n>1?'ões':'ão'} ·
     Profissional recebe <b style="color:var(--lime)">${valorProfTotal.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</b> ·
-    Taxa <span class="mt-wm-i">Match<b>Turno</b></span> 15% <b>${taxa.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</b> ·
+    Taxa <span class="mt-wm-i">Match<b>Turno</b></span> R$ 29/turno <b>${taxa.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</b> ·
     <b style="color:var(--orange)">Total a pagar ${totalAPagar.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</b> ·
     Pré-aut ${preauth.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}`;
 }
